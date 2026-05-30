@@ -57,3 +57,18 @@ module "sns" {
   environment  = var.environment
   owner        = var.owner
 }
+
+module "cloudtrail" {
+  source            = "./modules/cloudtrail"
+  project_name      = var.project_name
+  environment       = var.environment
+  owner             = var.owner
+  cloudtrail_bucket = "aws-cloudtrail-logs-611483456967-05d7bb2f"
+}
+
+module "vpc" {
+  source       = "./modules/vpc"
+  project_name = var.project_name
+  environment  = var.environment
+  owner        = var.owner
+}
