@@ -43,3 +43,17 @@ module "glue" {
   glue_role_arn      = "arn:aws:iam::611483456967:role/service-role/AWSGlueServiceRole"
   glue_assets_bucket = "aws-glue-assets-611483456967-us-east-2"
 }
+
+module "sqs" {
+  source       = "./modules/sqs"
+  project_name = var.project_name
+  environment  = var.environment
+  owner        = var.owner
+}
+
+module "sns" {
+  source       = "./modules/sns"
+  project_name = var.project_name
+  environment  = var.environment
+  owner        = var.owner
+}
