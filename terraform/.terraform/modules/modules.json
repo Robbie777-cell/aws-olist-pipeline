@@ -1,1 +1,0 @@
-{"Modules":[{"Key":"","Source":"","Dir":"."},{"Key":"kinesis","Source":"./modules/kinesis","Dir":"modules/kinesis"},{"Key":"lambda","Source":"./modules/lambda","Dir":"modules/lambda"},{"Key":"s3","Source":"./modules/s3","Dir":"modules/s3"}]}
