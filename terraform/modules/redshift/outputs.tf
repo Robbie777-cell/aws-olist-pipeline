@@ -1,0 +1,6 @@
+output "workgroup_endpoint" {
+  value = aws_redshiftserverless_workgroup.olist.endpoint
+}
+output "namespace_id" {
+  value = aws_redshiftserverless_namespace.olist.id
+}
