@@ -7,7 +7,7 @@ variable "aws_region" {
 variable "project_name" {
   description = "Nombre del proyecto - cambia esto por cliente"
   type        = string
-  default     = "olist"
+  default     = "tingua"
 }
 
 variable "environment" {
