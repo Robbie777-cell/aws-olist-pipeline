@@ -1,5 +1,5 @@
 resource "aws_kinesis_stream" "orders" {
-  name = "olist-orders-stream"
+  name = "${var.project_name}-orders-stream"
 
   stream_mode_details {
     stream_mode = "ON_DEMAND"
