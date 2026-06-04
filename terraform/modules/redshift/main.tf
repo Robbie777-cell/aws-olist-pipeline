@@ -1,14 +1,12 @@
 resource "aws_redshiftserverless_namespace" "olist" {
-  namespace_name = "default-namespace"
+  namespace_name = "${var.project_name}-namespace"
   db_name        = "dev"
-
   tags = {
     Project     = "${var.project_name}-pipeline"
     Owner       = var.owner
     Environment = var.environment
     ManagedBy   = "terraform"
   }
-
   lifecycle {
     ignore_changes = [
       admin_username,
@@ -21,19 +19,16 @@ resource "aws_redshiftserverless_namespace" "olist" {
     ]
   }
 }
-
 resource "aws_redshiftserverless_workgroup" "olist" {
-  namespace_name = "default-namespace"
-  workgroup_name = "default-workgroup"
+  namespace_name = "${var.project_name}-namespace"
+  workgroup_name = "${var.project_name}-workgroup"
   base_capacity  = 8
-
   tags = {
     Project     = "${var.project_name}-pipeline"
     Owner       = var.owner
     Environment = var.environment
     ManagedBy   = "terraform"
   }
-
   lifecycle {
     ignore_changes = [
       config_parameter,
