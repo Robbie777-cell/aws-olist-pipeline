@@ -1,0 +1,4 @@
+system:index,NDVI_max,NDVI_mean,NDVI_min,NDVI_stdDev,NDWI_max,NDWI_mean,NDWI_min,fecha,fuente,humedal,nubes_pct,sensor_id,.geo
+0,1.0,0.16930244911745576,-1.0,0.5484168773559245,1.0,-0.01512015620742887,-1.0,2026-06-01,Sentinel-2 SR Harmonized,Cienaga Grande,8.620436,SENTINEL2-GEE-001,"{""type"":""MultiPoint"",""coordinates"":[]}"
+1,1.0,0.24442109034942203,-1.0,0.42929831643801936,1.0,-0.2457305942055006,-1.0,2026-05-25,Sentinel-2 SR Harmonized,Mallorquin,2.010805,SENTINEL2-MAL-001,"{""type"":""MultiPoint"",""coordinates"":[]}"
+2,0.8992777669334374,0.1400434312940317,-0.4595179233621755,0.2571373845875191,0.5132201502922349,-0.13300046746556787,-0.7916666666666666,2026-05-25,Sentinel-2 SR Harmonized,Totumo,1.576046,SENTINEL2-TOT-001,"{""type"":""MultiPoint"",""coordinates"":[]}"
