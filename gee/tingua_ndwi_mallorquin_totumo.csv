@@ -1,0 +1,3 @@
+system:index,NDWI_max,NDWI_mean,NDWI_min,NDWI_stdDev,fecha,fuente,humedal,nubes_pct,sensor_id,.geo
+0,1.0,-0.2457305942055006,-1.0,0.403170619824529,2026-05-25,Sentinel-2 SR Harmonized,Mallorquin,2.010805,SENTINEL2-MAL-001,"{""type"":""MultiPoint"",""coordinates"":[]}"
+1,0.5132201502922349,-0.13300046746556787,-0.7916666666666666,0.30800015781796797,2026-05-25,Sentinel-2 SR Harmonized,Totumo,1.576046,SENTINEL2-TOT-001,"{""type"":""MultiPoint"",""coordinates"":[]}"
