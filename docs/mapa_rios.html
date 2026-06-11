@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TINGUA — Red Hídrica Colombia</title>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:#050a0e; font-family:'Space Grotesk',sans-serif; }
+
+  #mapa { width:100%; height:100vh; }
+  .leaflet-container { background:#050a0e !important; }
+
+  /* Panel superior */
+  .panel {
+    position: absolute;
+    top: 12px; left: 50%;
+    transform: translateX(-50%);
+    z-index: 1000;
+    background: rgba(5,10,14,0.92);
+    border: 1px solid rgba(13,127,165,0.35);
+    border-radius: 10px;
+    padding: 8px 18px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    backdrop-filter: blur(10px);
+    white-space: nowrap;
+  }
+
+  .panel-title {
+    font-family: monospace;
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    color: #fff;
+  }
+
+  .panel-sub {
+    font-size: 0.65rem;
+    color: #6a8a96;
+    letter-spacing: 0.08em;
+  }
+
+  .live-dot {
+    width: 7px; height: 7px;
+    border-radius: 50%;
+    background: #1a9e6e;
+    box-shadow: 0 0 8px #1a9e6e;
+    animation: pulse 1.5s infinite;
+    flex-shrink: 0;
+  }
+
+  @keyframes pulse {
+    0%,100%{opacity:1;transform:scale(1)}
+    50%{opacity:0.4;transform:scale(0.7)}
+  }
+
+  /* Leyenda */
+  .leyenda {
+    position: absolute;
+    bottom: 24px; right: 12px;
+    z-index: 1000;
+    background: rgba(5,10,14,0.92);
+    border: 1px solid rgba(13,127,165,0.25);
+    border-radius: 8px;
+    padding: 10px 14px;
+    backdrop-filter: blur(10px);
+    min-width: 160px;
+  }
+
+  .leyenda-title {
+    font-size: 0.6rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: #6a8a96;
+    margin-bottom: 8px;
+    font-family: monospace;
+  }
+
+  .leyenda-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 5px;
+    font-size: 0.7rem;
+    color: #c8dce6;
+  }
+
+  .leyenda-dot {
+    width: 10px; height: 10px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  .leyenda-line {
+    width: 18px; height: 3px;
+    border-radius: 2px;
+    flex-shrink: 0;
+  }
+
+  /* Popup */
+  .leaflet-popup-content-wrapper {
+    background: rgba(8,20,28,0.97) !important;
+    border: 1px solid rgba(13,127,165,0.3) !important;
+    border-radius: 10px !important;
+    color: #c8dce6 !important;
+    font-family: 'Space Grotesk', sans-serif !important;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.6) !important;
+  }
+  .leaflet-popup-tip { background: rgba(8,20,28,0.97) !important; }
+  .popup-titulo { font-size:0.9rem; font-weight:600; color:#fff; margin-bottom:8px; }
+  .popup-grid { display:grid; grid-template-columns:1fr 1fr; gap:5px; font-size:0.73rem; }
+  .popup-item { color:#6a8a96; }
+  .popup-val { color:#4fb8d4; font-family:monospace; }
+
+  @media (max-width: 600px) {
+    .panel { padding: 6px 12px; gap: 8px; }
+    .panel-title { font-size: 0.75rem; }
+    .panel-sub { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<div class="panel">
+  <div class="live-dot"></div>
+  <div>
+    <div class="panel-title">TINGUA · RED HÍDRICA</div>
+    <div class="panel-sub">Colombia · Sentinel-2 · AWS · Google Earth Engine</div>
+  </div>
+</div>
+
+<div id="mapa"></div>
+
+<div class="leyenda">
+  <div class="leyenda-title">Leyenda</div>
+  <div class="leyenda-item">
+    <div class="leyenda-line" style="background:rgba(30,120,200,0.6)"></div>
+    Red hídrica HydroSHEDS
+  </div>
+  <div class="leyenda-item">
+    <div class="leyenda-dot" style="background:#0d7fa5;box-shadow:0 0 8px #0d7fa5"></div>
+    Ciénaga Grande (NDWI -0.015)
+  </div>
+  <div class="leyenda-item">
+    <div class="leyenda-dot" style="background:#1a9e6e;box-shadow:0 0 8px #1a9e6e"></div>
+    Mallorquín (NDWI -0.246)
+  </div>
+  <div class="leyenda-item">
+    <div class="leyenda-dot" style="background:#4fb8d4;box-shadow:0 0 8px #4fb8d4"></div>
+    Totumo (NDWI -0.133)
+  </div>
+</div>
+
+<script>
+const mapa = L.map('mapa', {
+  center: [5.5, -74.0],
+  zoom: 6,
+  zoomControl: true,
+  attributionControl: false
+});
+
+// Capa base oscura
+L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_nolabels/{z}/{x}/{y}{r}.png', {
+  maxZoom: 19, opacity: 1
+}).addTo(mapa);
+
+// Capa de ríos — OpenStreetMap Waterway (azul brillante estilo HydroSHEDS)
+L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+  maxZoom: 19, opacity: 0
+}).addTo(mapa); // invisible, solo para fallback
+
+// Capa de ríos via Stamen Watercolor effect con WMS de ríos
+// Usamos ESRI Hydro reference layer
+const riosLayer = L.tileLayer(
+  'https://server.arcgisonline.com/ArcGIS/rest/services/Reference/World_Reference_Overlay/MapServer/tile/{z}/{y}/{x}',
+  { maxZoom: 19, opacity: 0.15 }
+).addTo(mapa);
+
+// Capa de ríos azules — OpenTopoMap muestra ríos bien
+const aguaLayer = L.tileLayer(
+  'https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png',
+  { maxZoom: 17, opacity: 0 }
+); // No la añadimos, usamos alternativa
+
+// MEJOR: Capa WMS de ríos de Natural Earth / CartoDB con ríos visibles
+// Usamos overlay específico de hidrografía
+const hydroLayer = L.tileLayer(
+  'https://stamen-tiles-{s}.a.ssl.fastly.net/watercolor/{z}/{x}/{y}.{ext}',
+  { subdomains:'abcd', ext:'jpg', maxZoom:16, opacity:0.08 }
+).addTo(mapa);
+
+// Etiquetas encima
+L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_only_labels/{z}/{x}/{y}{r}.png', {
+  maxZoom: 19, opacity: 0.7
+}).addTo(mapa);
+
+// Ríos principales Colombia dibujados manualmente como polylines
+// Río Magdalena (simplificado)
+const magdalena = [
+  [11.24, -74.19], [10.85, -74.55], [10.4, -74.9],
+  [9.8, -74.7], [9.3, -74.4], [8.8, -74.2],
+  [8.2, -73.9], [7.5, -73.8], [6.8, -74.5],
+  [6.2, -74.9], [5.5, -74.7], [4.9, -74.8],
+  [4.3, -75.2], [3.8, -75.5], [3.2, -75.7],
+  [2.6, -75.5], [2.0, -75.7]
+];
+
+// Río Atrato
+const atrato = [
+  [8.1, -76.6], [7.5, -76.8], [7.0, -77.1],
+  [6.5, -77.0], [6.0, -76.8], [5.5, -76.7],
+  [5.0, -76.9], [4.5, -76.8]
+];
+
+// Río Sinú
+const sinu = [
+  [9.4, -75.9], [8.9, -75.7], [8.4, -75.6],
+  [7.9, -75.8], [7.5, -75.7], [7.0, -75.5]
+];
+
+// Río Cauca
+const cauca = [
+  [8.9, -74.5], [8.3, -75.0], [7.7, -75.3],
+  [7.1, -75.6], [6.5, -75.8], [6.0, -75.5],
+  [5.5, -75.6], [5.0, -75.9], [4.5, -76.0],
+  [4.0, -76.1], [3.5, -76.3]
+];
+
+// Río Meta
+const meta = [
+  [4.1, -72.9], [4.3, -73.5], [4.2, -74.0],
+  [4.0, -74.5], [3.8, -75.0]
+];
+
+// Río Putumayo
+const putumayo = [
+  [0.5, -76.5], [0.4, -75.5], [0.3, -74.5],
+  [0.2, -73.5], [-0.1, -72.5]
+];
+
+// Estilo de ríos
+const estiloRio = { color:'rgba(30,120,220,0.55)', weight:1.5, smoothFactor:1 };
+const estiloRioGrande = { color:'rgba(40,140,240,0.7)', weight:2.5, smoothFactor:1 };
+
+L.polyline(magdalena, estiloRioGrande).addTo(mapa).bindTooltip('Río Magdalena', {sticky:true, className:'rio-tooltip'});
+L.polyline(cauca, estiloRioGrande).addTo(mapa).bindTooltip('Río Cauca', {sticky:true});
+L.polyline(atrato, estiloRio).addTo(mapa).bindTooltip('Río Atrato', {sticky:true});
+L.polyline(sinu, estiloRio).addTo(mapa).bindTooltip('Río Sinú', {sticky:true});
+L.polyline(meta, estiloRio).addTo(mapa).bindTooltip('Río Meta', {sticky:true});
+L.polyline(putumayo, estiloRio).addTo(mapa).bindTooltip('Río Putumayo', {sticky:true});
+
+// Humedales monitoreados
+const humedales = [
+  { nombre:'Ciénaga Grande de Santa Marta', lat:10.85, lng:-74.35, ndwi:-0.015, ndvi:0.169, nubes:8.6, imagenes:80, estado:'NORMAL', color:'#0d7fa5', descripcion:'Mayor humedal costero de Colombia. Sitio RAMSAR.' },
+  { nombre:'Ciénaga de Mallorquín', lat:11.045, lng:-74.835, ndwi:-0.246, ndvi:0.244, nubes:2.0, imagenes:1, estado:'NORMAL', color:'#1a9e6e', descripcion:'Laguna costera norte de Barranquilla. Manglar denso.' },
+  { nombre:'Ciénaga de Totumo', lat:10.732, lng:-75.229, ndwi:-0.133, ndvi:0.140, nubes:1.6, imagenes:1, estado:'NORMAL', color:'#4fb8d4', descripcion:'Humedal salobre con volcán de lodo activo.' }
+];
+
+humedales.forEach(h => {
+  const radio = h.imagenes > 50 ? 16 : 11;
+
+  // Anillo pulsante
+  L.circleMarker([h.lat, h.lng], {
+    radius: radio + 10,
+    fillColor:'transparent',
+    color: h.color,
+    weight: 1,
+    opacity: 0.25,
+    fillOpacity: 0
+  }).addTo(mapa);
+
+  // Punto principal
+  const marker = L.circleMarker([h.lat, h.lng], {
+    radius: radio,
+    fillColor: h.color,
+    color: '#fff',
+    weight: 1.5,
+    opacity: 1,
+    fillOpacity: 0.85
+  }).addTo(mapa);
+
+  marker.bindPopup(`
+    <div class="popup-titulo">${h.nombre}</div>
+    <div style="font-size:0.7rem;color:#6a8a96;margin-bottom:8px">${h.descripcion}</div>
+    <div class="popup-grid">
+      <div class="popup-item">NDWI</div><div class="popup-val">${h.ndwi}</div>
+      <div class="popup-item">NDVI</div><div class="popup-val">${h.ndvi}</div>
+      <div class="popup-item">Nubes</div><div class="popup-val">${h.nubes}%</div>
+      <div class="popup-item">Imágenes</div><div class="popup-val">${h.imagenes}</div>
+      <div class="popup-item">Estado</div><div class="popup-val" style="color:#1a9e6e">${h.estado}</div>
+    </div>
+  `);
+});
+</script>
+</body>
+</html>
