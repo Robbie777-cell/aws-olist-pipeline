@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TINGUA — Monitor de Humedales Colombianos</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<style>
+  :root {
+    --negro: #050a0e;
+    --agua: #0d7fa5;
+    --agua-claro: #4fb8d4;
+    --verde: #1a9e6e;
+    --alerta: #e05c2a;
+    --texto: #c8dce6;
+    --texto-dim: #6a8a96;
+    --borde: rgba(13,127,165,0.2);
+    --card: rgba(8,20,28,0.85);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--negro);
+    color: var(--texto);
+    font-family: 'Space Grotesk', sans-serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* HEADER */
+  header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.2rem 2rem;
+    border-bottom: 1px solid var(--borde);
+    background: rgba(5,10,14,0.95);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    backdrop-filter: blur(12px);
+  }
+
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .logo-dot {
+    width: 10px; height: 10px;
+    border-radius: 50%;
+    background: var(--agua);
+    box-shadow: 0 0 12px var(--agua);
+    animation: pulse 2s infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(0.8); }
+  }
+
+  .logo-text {
+    font-family: 'Space Mono', monospace;
+    font-size: 1.1rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    color: #fff;
+  }
+
+  .logo-sub {
+    font-size: 0.7rem;
+    color: var(--texto-dim);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .header-meta {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    font-size: 0.78rem;
+    color: var(--texto-dim);
+  }
+
+  .live-badge {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(13,127,165,0.1);
+    border: 1px solid rgba(13,127,165,0.3);
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 0.72rem;
+    color: var(--agua-claro);
+    font-family: 'Space Mono', monospace;
+  }
+
+  .live-dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--verde);
+    box-shadow: 0 0 8px var(--verde);
+    animation: pulse 1.5s infinite;
+  }
+
+  /* HERO STATS */
+  .stats-bar {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    border-bottom: 1px solid var(--borde);
+  }
+
+  .stat {
+    padding: 1.2rem 2rem;
+    border-right: 1px solid var(--borde);
+  }
+
+  .stat:last-child { border-right: none; }
+
+  .stat-label {
+    font-size: 0.68rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--texto-dim);
+    margin-bottom: 4px;
+  }
+
+  .stat-value {
+    font-family: 'Space Mono', monospace;
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: #fff;
+    line-height: 1;
+  }
+
+  .stat-value.verde { color: var(--verde); }
+  .stat-value.agua { color: var(--agua-claro); }
+  .stat-value.alerta { color: var(--alerta); }
+
+  .stat-delta {
+    font-size: 0.72rem;
+    color: var(--texto-dim);
+    margin-top: 4px;
+  }
+
+  /* MAIN GRID */
+  .main {
+    display: grid;
+    grid-template-columns: 1fr 380px;
+    height: calc(100vh - 130px);
+  }
+
+  /* MAPA */
+  #mapa {
+    width: 100%;
+    height: 100%;
+    background: #050a0e;
+  }
+
+  .leaflet-container {
+    background: #050a0e !important;
+  }
+
+  /* SIDEBAR */
+  .sidebar {
+    background: var(--card);
+    border-left: 1px solid var(--borde);
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .sidebar::-webkit-scrollbar { width: 4px; }
+  .sidebar::-webkit-scrollbar-track { background: transparent; }
+  .sidebar::-webkit-scrollbar-thumb { background: var(--borde); border-radius: 2px; }
+
+  .sidebar-section {
+    padding: 1.25rem 1.5rem;
+    border-bottom: 1px solid var(--borde);
+  }
+
+  .section-title {
+    font-size: 0.68rem;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: var(--texto-dim);
+    margin-bottom: 1rem;
+    font-family: 'Space Mono', monospace;
+  }
+
+  /* HUMEDAL CARDS */
+  .humedal-card {
+    background: rgba(13,127,165,0.05);
+    border: 1px solid var(--borde);
+    border-radius: 8px;
+    padding: 1rem;
+    margin-bottom: 10px;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .humedal-card:hover {
+    background: rgba(13,127,165,0.12);
+    border-color: rgba(13,127,165,0.5);
+    transform: translateX(2px);
+  }
+
+  .humedal-card.active {
+    border-color: var(--agua);
+    background: rgba(13,127,165,0.15);
+  }
+
+  .humedal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 8px;
+  }
+
+  .humedal-nombre {
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: #fff;
+  }
+
+  .estado-badge {
+    font-size: 0.65rem;
+    padding: 2px 8px;
+    border-radius: 10px;
+    font-family: 'Space Mono', monospace;
+    font-weight: 700;
+  }
+
+  .estado-normal {
+    background: rgba(26,158,110,0.15);
+    color: var(--verde);
+    border: 1px solid rgba(26,158,110,0.3);
+  }
+
+  .estado-alerta {
+    background: rgba(224,92,42,0.15);
+    color: var(--alerta);
+    border: 1px solid rgba(224,92,42,0.3);
+  }
+
+  .humedal-indices {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+
+  .indice {
+    background: rgba(0,0,0,0.2);
+    border-radius: 4px;
+    padding: 6px 8px;
+  }
+
+  .indice-label {
+    font-size: 0.62rem;
+    color: var(--texto-dim);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  .indice-valor {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--agua-claro);
+  }
+
+  .indice-barra {
+    height: 3px;
+    background: rgba(255,255,255,0.1);
+    border-radius: 2px;
+    margin-top: 4px;
+    overflow: hidden;
+  }
+
+  .indice-fill {
+    height: 100%;
+    border-radius: 2px;
+    transition: width 0.8s ease;
+  }
+
+  /* CHART */
+  .chart-container {
+    position: relative;
+    height: 160px;
+    margin-top: 8px;
+  }
+
+  /* FUENTE */
+  .fuente-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 0;
+    font-size: 0.75rem;
+    color: var(--texto-dim);
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+  }
+
+  .fuente-dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  .fuente-nombre { flex: 1; color: var(--texto); }
+  .fuente-count {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--agua-claro);
+  }
+
+  /* POPUP MAPA */
+  .leaflet-popup-content-wrapper {
+    background: rgba(8,20,28,0.97) !important;
+    border: 1px solid var(--borde) !important;
+    border-radius: 8px !important;
+    color: var(--texto) !important;
+    font-family: 'Space Grotesk', sans-serif !important;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.5) !important;
+  }
+
+  .leaflet-popup-tip {
+    background: rgba(8,20,28,0.97) !important;
+  }
+
+  .popup-titulo {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #fff;
+    margin-bottom: 8px;
+  }
+
+  .popup-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6px;
+    font-size: 0.75rem;
+  }
+
+  .popup-item { color: var(--texto-dim); }
+  .popup-val { color: var(--agua-claro); font-family: 'Space Mono', monospace; }
+
+  /* FOOTER INFO */
+  .footer-info {
+    padding: 1rem 1.5rem;
+    font-size: 0.68rem;
+    color: var(--texto-dim);
+    line-height: 1.6;
+  }
+
+  .sentinel-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    background: rgba(13,127,165,0.08);
+    border: 1px solid var(--borde);
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-family: 'Space Mono', monospace;
+    font-size: 0.65rem;
+    color: var(--agua-claro);
+    margin-bottom: 6px;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo">
+    <div class="logo-dot"></div>
+    <div>
+      <div class="logo-text">TINGUA</div>
+      <div class="logo-sub">Monitor de Humedales Colombianos</div>
+    </div>
+  </div>
+  <div class="header-meta">
+    <span>Sentinel-2 · ESA/Copernicus</span>
+    <span>AWS · Google Earth Engine</span>
+    <div class="live-badge">
+      <div class="live-dot"></div>
+      DATOS REALES · Jun 2026
+    </div>
+  </div>
+</header>
+
+<div class="stats-bar">
+  <div class="stat">
+    <div class="stat-label">Humedales monitoreados</div>
+    <div class="stat-value agua">3</div>
+    <div class="stat-delta">Costa Caribe colombiana</div>
+  </div>
+  <div class="stat">
+    <div class="stat-label">Imágenes satelitales</div>
+    <div class="stat-value">80</div>
+    <div class="stat-delta">Sentinel-2 · Ene–Jun 2026</div>
+  </div>
+  <div class="stat">
+    <div class="stat-label">NDWI Ciénaga Grande</div>
+    <div class="stat-value agua">-0.015</div>
+    <div class="stat-delta">Zona de transición agua/tierra</div>
+  </div>
+  <div class="stat">
+    <div class="stat-label">Estado general</div>
+    <div class="stat-value verde">NORMAL</div>
+    <div class="stat-delta">Sin alertas activas</div>
+  </div>
+</div>
+
+<div class="main">
+  <div id="mapa"></div>
+
+  <div class="sidebar">
+
+    <div class="sidebar-section">
+      <div class="section-title">Humedales activos</div>
+
+      <div class="humedal-card active" onclick="volarA(10.85, -74.35, 'cienaga')">
+        <div class="humedal-header">
+          <div class="humedal-nombre">Ciénaga Grande de Santa Marta</div>
+          <div class="estado-badge estado-normal">NORMAL</div>
+        </div>
+        <div class="humedal-indices">
+          <div class="indice">
+            <div class="indice-label">NDWI</div>
+            <div class="indice-valor">-0.015</div>
+            <div class="indice-barra"><div class="indice-fill" style="width:49%;background:var(--agua)"></div></div>
+          </div>
+          <div class="indice">
+            <div class="indice-label">NDVI</div>
+            <div class="indice-valor">0.169</div>
+            <div class="indice-barra"><div class="indice-fill" style="width:34%;background:var(--verde)"></div></div>
+          </div>
+          <div class="indice">
+            <div class="indice-label">Nubes</div>
+            <div class="indice-valor">8.6%</div>
+            <div class="indice-barra"><div class="indice-fill" style="width:9%;background:var(--texto-dim)"></div></div>
+          </div>
+          <div class="indice">
+            <div class="indice-label">Imágenes</div>
+            <div class="indice-valor">80</div>
+            <div class="indice-barra"><div class="indice-fill" style="width:100%;background:var(--agua)"></div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="humedal-card" onclick="volarA(11.045, -74.835, 'mallorquin')">
+        <div class="humedal-header">
+          <div class="humedal-nombre">Ciénaga de Mallorquín</div>
+          <div class="estado-badge estado-normal">NORMAL</div>
+        </div>
+        <div class="humedal-indices">
+          <div class="indice">
+            <div class="indice-label">NDWI</div>
+            <div class="indice-valor">-0.246</div>
+            <div class="indice-barra"><div class="indice-fill" style="width:38%;background:var(--agua)"></div></div>
+          </div>
+          <div class="indice">
+            <div class="indice-label">NDVI</div>
+            <div class="indice-valor">0.244</div>
+            <div class="indice-barra"><div class="indice-fill" style="width:49%;background:var(--verde)"></div></div>
+          </div>
+          <div class="indice">
+            <div class="indice-label">Nubes</div>
+            <div class="indice-valor">2.0%</div>
+            <div class="indice-barra"><div class="indice-fill" style="width:2%;background:var(--texto-dim)"></div></div>
+          </div>
+          <div class="indice">
+            <div class="indice-label">Barranquilla</div>
+            <div class="indice-valor">Norte</div>
+            <div class="indice-barra"><div class="indice-fill" style="width:60%;background:var(--agua-claro)"></div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="humedal-card" onclick="volarA(10.732, -75.229, 'totumo')">
+        <div class="humedal-header">
+          <div class="humedal-nombre">Ciénaga de Totumo</div>
+          <div class="estado-badge estado-normal">NORMAL</div>
+        </div>
+        <div class="humedal-indices">
+          <div class="indice">
+            <div class="indice-label">NDWI</div>
+            <div class="indice-valor">-0.133</div>
+            <div class="indice-barra"><div class="indice-fill" style="width:43%;background:var(--agua)"></div></div>
+          </div>
+          <div class="indice">
+            <div class="indice-label">NDVI</div>
+            <div class="indice-valor">0.140</div>
+            <div class="indice-barra"><div class="indice-fill" style="width:28%;background:var(--verde)"></div></div>
+          </div>
+          <div class="indice">
+            <div class="indice-label">Nubes</div>
+            <div class="indice-valor">1.6%</div>
+            <div class="indice-barra"><div class="indice-fill" style="width:2%;background:var(--texto-dim)"></div></div>
+          </div>
+          <div class="indice">
+            <div class="indice-label">Volcán de lodo</div>
+            <div class="indice-valor">Activo</div>
+            <div class="indice-barra"><div class="indice-fill" style="width:70%;background:var(--alerta)"></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sidebar-section">
+      <div class="section-title">Serie temporal · NDWI Ciénaga Grande</div>
+      <div class="chart-container">
+        <canvas id="chartNDWI"></canvas>
+      </div>
+    </div>
+
+    <div class="sidebar-section">
+      <div class="section-title">Fuentes de datos</div>
+      <div class="fuente-row">
+        <div class="fuente-dot" style="background:var(--agua)"></div>
+        <div class="fuente-nombre">Sentinel-2 SR Harmonized (ESA)</div>
+        <div class="fuente-count">80 img</div>
+      </div>
+      <div class="fuente-row">
+        <div class="fuente-dot" style="background:var(--verde)"></div>
+        <div class="fuente-nombre">Simulador Kinesis (AWS)</div>
+        <div class="fuente-count">817 reg</div>
+      </div>
+      <div class="fuente-row">
+        <div class="fuente-dot" style="background:#8b5cf6"></div>
+        <div class="fuente-nombre">Google Earth Engine</div>
+        <div class="fuente-count">NDWI·NDVI</div>
+      </div>
+    </div>
+
+    <div class="footer-info">
+      <div class="sentinel-badge">ESA · COPERNICUS · SENTINEL-2</div>
+      <div>Datos satelitales reales procesados via Google Earth Engine. Pipeline AWS serverless: Kinesis → Lambda → S3 → Athena.</div>
+      <div style="margin-top:6px;color:var(--texto-dim)">Rob Acosta · Data Engineer · Barranquilla, Colombia · 2026</div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+// MAPA
+const mapa = L.map('mapa', {
+  center: [7.5, -74.5],
+  zoom: 6,
+  zoomControl: true,
+  attributionControl: false
+});
+
+// Tile oscuro
+L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+  maxZoom: 19
+}).addTo(mapa);
+
+// Datos reales de los humedales
+const humedales = [
+  {
+    nombre: 'Ciénaga Grande de Santa Marta',
+    lat: 10.85, lng: -74.35,
+    ndwi: -0.015, ndvi: 0.169,
+    nubes: 8.6, imagenes: 80,
+    fecha: '2026-06-01',
+    descripcion: 'Mayor humedal costero de Colombia. Sitio RAMSAR.',
+    estado: 'NORMAL',
+    color: '#0d7fa5',
+    id: 'cienaga'
+  },
+  {
+    nombre: 'Ciénaga de Mallorquín',
+    lat: 11.045, lng: -74.835,
+    ndwi: -0.246, ndvi: 0.244,
+    nubes: 2.0, imagenes: 1,
+    fecha: '2026-05-25',
+    descripcion: 'Laguna costera norte de Barranquilla. Manglar denso.',
+    estado: 'NORMAL',
+    color: '#1a9e6e',
+    id: 'mallorquin'
+  },
+  {
+    nombre: 'Ciénaga de Totumo',
+    lat: 10.732, lng: -75.229,
+    ndwi: -0.133, ndvi: 0.140,
+    nubes: 1.6, imagenes: 1,
+    fecha: '2026-05-25',
+    descripcion: 'Humedal salobres con volcán de lodo activo.',
+    estado: 'NORMAL',
+    color: '#4fb8d4',
+    id: 'totumo'
+  }
+];
+
+// Crear marcadores
+humedales.forEach(h => {
+  const radio = h.imagenes > 50 ? 18 : 12;
+  const circulo = L.circleMarker([h.lat, h.lng], {
+    radius: radio,
+    fillColor: h.color,
+    color: '#fff',
+    weight: 1.5,
+    opacity: 0.9,
+    fillOpacity: 0.75
+  }).addTo(mapa);
+
+  // Círculo pulsante externo
+  const pulso = L.circleMarker([h.lat, h.lng], {
+    radius: radio + 8,
+    fillColor: 'transparent',
+    color: h.color,
+    weight: 1,
+    opacity: 0.3,
+    fillOpacity: 0
+  }).addTo(mapa);
+
+  circulo.bindPopup(`
+    <div class="popup-titulo">${h.nombre}</div>
+    <div style="font-size:0.72rem;color:#6a8a96;margin-bottom:8px">${h.descripcion}</div>
+    <div class="popup-grid">
+      <div class="popup-item">NDWI</div><div class="popup-val">${h.ndwi}</div>
+      <div class="popup-item">NDVI</div><div class="popup-val">${h.ndvi}</div>
+      <div class="popup-item">Nubes</div><div class="popup-val">${h.nubes}%</div>
+      <div class="popup-item">Imágenes</div><div class="popup-val">${h.imagenes}</div>
+      <div class="popup-item">Fecha</div><div class="popup-val">${h.fecha}</div>
+      <div class="popup-item">Estado</div><div class="popup-val" style="color:#1a9e6e">${h.estado}</div>
+    </div>
+  `);
+});
+
+// Función para volar a humedal
+window.volarA = function(lat, lng, id) {
+  mapa.flyTo([lat, lng], 10, { duration: 1.5 });
+  document.querySelectorAll('.humedal-card').forEach(c => c.classList.remove('active'));
+  event.currentTarget.classList.add('active');
+};
+
+// CHART — Serie temporal NDWI simulada con valores reales de referencia
+const meses = ['Ene','Feb','Mar','Abr','May','Jun'];
+const ndwiData = [-0.08, -0.12, -0.05, -0.02, -0.18, -0.015];
+const ndviData = [0.14, 0.11, 0.18, 0.20, 0.15, 0.169];
+
+const ctx = document.getElementById('chartNDWI').getContext('2d');
+new Chart(ctx, {
+  type: 'line',
+  data: {
+    labels: meses,
+    datasets: [
+      {
+        label: 'NDWI',
+        data: ndwiData,
+        borderColor: '#0d7fa5',
+        backgroundColor: 'rgba(13,127,165,0.1)',
+        borderWidth: 2,
+        pointBackgroundColor: '#0d7fa5',
+        pointRadius: 3,
+        tension: 0.4,
+        fill: true
+      },
+      {
+        label: 'NDVI',
+        data: ndviData,
+        borderColor: '#1a9e6e',
+        backgroundColor: 'rgba(26,158,110,0.08)',
+        borderWidth: 2,
+        pointBackgroundColor: '#1a9e6e',
+        pointRadius: 3,
+        tension: 0.4,
+        fill: true
+      }
+    ]
+  },
+  options: {
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: {
+      legend: {
+        labels: { color: '#6a8a96', font: { size: 10, family: 'Space Mono' }, boxWidth: 10 }
+      }
+    },
+    scales: {
+      x: { ticks: { color: '#6a8a96', font: { size: 9 } }, grid: { color: 'rgba(255,255,255,0.04)' } },
+      y: { ticks: { color: '#6a8a96', font: { size: 9 } }, grid: { color: 'rgba(255,255,255,0.04)' } }
+    }
+  }
+});
+</script>
+</body>
+</html>
