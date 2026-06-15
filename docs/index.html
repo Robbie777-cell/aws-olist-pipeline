@@ -819,7 +819,7 @@
 <div class="stats-bar">
   <div class="stat">
     <div class="stat-label">Humedales</div>
-    <div class="stat-value agua">3</div>
+    <div class="stat-value agua">5</div>
     <div class="stat-delta">Costa Caribe</div>
   </div>
   <div class="stat">
@@ -842,7 +842,7 @@
 <div class="enso-banner">
   <div class="enso-icon"></div>
   <div class="enso-tag">EL NIÑO 2026 · IDEAM</div>
-  <div class="enso-text">90% prob. consolidación para sep-2026 — posible <b>reducción de lluvias</b> en Caribe y Andina. TINGUA monitorea el impacto en tiempo real sobre los 3 humedales.</div>
+  <div class="enso-text">90% prob. consolidación para sep-2026 — posible <b>reducción de lluvias</b> en Caribe y Andina. TINGUA monitorea el impacto en tiempo real sobre 5 humedales.</div>
 </div>
 
 <div class="desktop-layout">
@@ -941,6 +941,64 @@
           </div>
         </div>
       </div>
+
+      <div class="humedal-card" onclick="volarA(8.95,-73.80,this)">
+        <div class="humedal-header">
+          <div class="humedal-nombre">Ciénaga de Zapatosa</div>
+          <div class="estado-badge estado-normal">NORMAL</div>
+        </div>
+        <div class="humedal-indices">
+          <div class="indice">
+            <div class="indice-label">NDWI jun</div>
+            <div class="indice-valor">-0.369</div>
+            <div class="indice-barra"><div class="indice-fill" style="width:17%;background:var(--agua)"></div></div>
+          </div>
+          <div class="indice">
+            <div class="indice-label">Hist. jun</div>
+            <div class="indice-valor">-0.385</div>
+            <div class="indice-barra"><div class="indice-fill" style="width:15%;background:var(--texto-dim)"></div></div>
+          </div>
+          <div class="indice">
+            <div class="indice-label">Delta</div>
+            <div class="indice-valor" style="color:var(--verde)">+0.017</div>
+            <div class="indice-barra"><div class="indice-fill" style="width:55%;background:var(--verde)"></div></div>
+          </div>
+          <div class="indice">
+            <div class="indice-label">Muestra</div>
+            <div class="indice-valor">n=4</div>
+            <div class="indice-barra"><div class="indice-fill" style="width:20%;background:var(--texto-dim)"></div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="humedal-card" onclick="volarA(9.37,-75.78,this)">
+        <div class="humedal-header">
+          <div class="humedal-nombre">La Caimanera (Cispatá)</div>
+          <div class="estado-badge estado-normal">VIGILAR</div>
+        </div>
+        <div class="humedal-indices">
+          <div class="indice">
+            <div class="indice-label">NDWI may</div>
+            <div class="indice-valor">-0.324</div>
+            <div class="indice-barra"><div class="indice-fill" style="width:22%;background:var(--agua)"></div></div>
+          </div>
+          <div class="indice">
+            <div class="indice-label">Hist. may</div>
+            <div class="indice-valor">-0.264</div>
+            <div class="indice-barra"><div class="indice-fill" style="width:30%;background:var(--texto-dim)"></div></div>
+          </div>
+          <div class="indice">
+            <div class="indice-label">Delta</div>
+            <div class="indice-valor" style="color:var(--alerta)">-0.060</div>
+            <div class="indice-barra"><div class="indice-fill" style="width:40%;background:var(--alerta)"></div></div>
+          </div>
+          <div class="indice">
+            <div class="indice-label">Jun 2026</div>
+            <div class="indice-valor" style="font-size:0.7rem">Pendiente</div>
+            <div class="indice-barra"><div class="indice-fill" style="width:0%;background:var(--texto-dim)"></div></div>
+          </div>
+        </div>
+      </div>
     </div>
 
     <div class="section" style="margin-top:0.5rem">
@@ -1003,8 +1061,46 @@
         </div>
       </div>
 
+      <div class="riesgo-card">
+        <div class="riesgo-header">
+          <div class="riesgo-nombre">Ciénaga de Zapatosa</div>
+          <div class="riesgo-badge riesgo-bajo">RIESGO BAJO</div>
+        </div>
+        <div class="escala">
+          <div class="escala-marcador" style="left:17%"></div>
+        </div>
+        <div class="escala-labels">
+          <span>Sequía</span>
+          <span>Normal</span>
+          <span>Inundación</span>
+        </div>
+        <div class="riesgo-detalle">
+          <span>NDWI actual: <b>-0.369</b></span>
+          <span>Tendencia: <b>estable (+0.02 vs hist.)</b></span>
+        </div>
+      </div>
+
+      <div class="riesgo-card">
+        <div class="riesgo-header">
+          <div class="riesgo-nombre">La Caimanera (Cispatá)</div>
+          <div class="riesgo-badge riesgo-medio">VIGILAR</div>
+        </div>
+        <div class="escala">
+          <div class="escala-marcador" style="left:22%"></div>
+        </div>
+        <div class="escala-labels">
+          <span>Sequía</span>
+          <span>Normal</span>
+          <span>Inundación</span>
+        </div>
+        <div class="riesgo-detalle">
+          <span>NDWI may: <b>-0.324</b></span>
+          <span>Tendencia: <b>secando (-0.06 vs hist.)</b></span>
+        </div>
+      </div>
+
       <div style="font-size:0.62rem;color:var(--texto-dim);line-height:1.5;margin-top:6px;padding:0 2px">
-        Escala basada en rango histórico NDWI por humedal. Los 3 humedales muestran tendencia de secamiento respecto a su promedio histórico de junio (GEE 2019-2025), coherente con El Niño 2026 confirmado por IDEAM. Se vigilará evolución en próximas capturas Sentinel-2.
+        Escala basada en rango histórico NDWI por humedal. 4 de 5 humedales muestran tendencia de secamiento respecto a su promedio histórico, coherente con El Niño 2026 confirmado por IDEAM. Zapatosa es la excepción — se mantiene cerca de su histórico (muestra pequeña, n=4). Se vigilará evolución en próximas capturas Sentinel-2.
       </div>
     </div>
 
@@ -1067,8 +1163,36 @@
         </div>
       </div>
 
+      <div class="desv-card">
+        <div class="desv-info">
+          <div class="desv-nombre">Ciénaga de Zapatosa</div>
+          <div class="desv-valores">
+            <span>Actual jun: <b>-0.369</b></span>
+            <span>Histórico jun: <b>-0.385</b></span>
+          </div>
+        </div>
+        <div class="desv-delta">
+          <div class="desv-delta-valor normal">+0.017</div>
+          <div class="desv-delta-label">En rango normal</div>
+        </div>
+      </div>
+
+      <div class="desv-card">
+        <div class="desv-info">
+          <div class="desv-nombre">La Caimanera (Cispatá)</div>
+          <div class="desv-valores">
+            <span>Actual may: <b>-0.324</b></span>
+            <span>Histórico may: <b>-0.264</b></span>
+          </div>
+        </div>
+        <div class="desv-delta">
+          <div class="desv-delta-valor seco">-0.060</div>
+          <div class="desv-delta-label">Más seco</div>
+        </div>
+      </div>
+
       <div style="font-size:0.6rem;color:var(--texto-dim);line-height:1.5;padding:0 2px;margin-top:4px">
-        <b style="color:var(--alerta)">Los 3 humedales están por debajo de su promedio histórico de junio</b> — Ciénaga Grande muestra la mayor caída (-0.291). Esta señal regional de secamiento es coherente con la confirmación oficial de El Niño 2026 por el IDEAM (11-jun-2026). Baseline calculado con Sentinel-2 (2019-2025, cloud&lt;40%).
+        <b style="color:var(--alerta)">4 de 5 humedales están por debajo de su promedio histórico</b> — Ciénaga Grande muestra la mayor caída (-0.291). Esta señal regional de secamiento es coherente con la confirmación oficial de El Niño 2026 por el IDEAM (11-jun-2026). Zapatosa se mantiene cerca de su histórico, mostrando que TINGUA reporta datos reales sin forzar una narrativa uniforme. Baseline calculado con Sentinel-2 (2019-2025, cloud&lt;40%).
       </div>
     </div>
 
@@ -1147,7 +1271,7 @@
         <div class="alerta-icon">⚠️</div>
         <div class="alerta-content">
           <div class="alerta-titulo">Alerta regional — Tendencia de secamiento</div>
-          <div class="alerta-desc">Los 3 humedales muestran NDWI por debajo de su promedio histórico de junio (2019-2025), coherente con el inicio de El Niño 2026 confirmado por IDEAM.</div>
+          <div class="alerta-desc">4 de 5 humedales muestran NDWI por debajo de su promedio histórico, coherente con el inicio de El Niño 2026 confirmado por IDEAM.</div>
           <div class="alerta-umbral">Basado en baseline real GEE · Cienaga Grande: -0.291 vs histórico</div>
         </div>
       </div>
@@ -1179,6 +1303,24 @@
         </div>
       </div>
 
+      <div class="alerta-item">
+        <div class="alerta-icon">✅</div>
+        <div class="alerta-content">
+          <div class="alerta-titulo">Ciénaga de Zapatosa — Dentro de umbral</div>
+          <div class="alerta-desc">NDWI: -0.369 (jun, n=4). Solo +0.017 vs su histórico — única excepción a la tendencia regional de secamiento.</div>
+          <div class="alerta-umbral">Umbral sequía: NDWI &lt; -0.45</div>
+        </div>
+      </div>
+
+      <div class="alerta-item media">
+        <div class="alerta-icon">👁️</div>
+        <div class="alerta-content">
+          <div class="alerta-titulo">La Caimanera (Cispatá) — Vigilancia activa</div>
+          <div class="alerta-desc">NDWI: -0.324 (may). -0.060 por debajo de su histórico de mayo. Dato de junio pendiente por cobertura de nubes en la zona.</div>
+          <div class="alerta-umbral">Umbral vigilancia: NDWI &lt; -0.32 · Umbral sequía: NDWI &lt; -0.40</div>
+        </div>
+      </div>
+
       <div class="section-title" style="margin-top:14px">Configuración de umbrales</div>
       <div class="alerta-config">
         <div class="alerta-config-row">
@@ -1192,6 +1334,14 @@
         <div class="alerta-config-row">
           <div class="alerta-config-nombre">Totumo</div>
           <div class="alerta-config-valores"><span class="lim-bajo">&lt;-0.30 sequía</span><span class="lim-alto">&gt;0.05 exceso</span></div>
+        </div>
+        <div class="alerta-config-row">
+          <div class="alerta-config-nombre">Zapatosa</div>
+          <div class="alerta-config-valores"><span class="lim-bajo">&lt;-0.45 sequía</span><span class="lim-alto">&gt;-0.20 exceso</span></div>
+        </div>
+        <div class="alerta-config-row">
+          <div class="alerta-config-nombre">La Caimanera</div>
+          <div class="alerta-config-valores"><span class="lim-bajo">&lt;-0.40 sequía</span><span class="lim-alto">&gt;-0.10 exceso</span></div>
         </div>
       </div>
 
@@ -1217,6 +1367,11 @@
         <div class="fuente-nombre">Google Earth Engine</div>
         <div class="fuente-count">NDWI·NDVI</div>
       </div>
+      <div class="fuente-row">
+        <div class="fuente-dot" style="background:#c9a050"></div>
+        <div class="fuente-nombre">Baseline histórico GEE (2019-2025)</div>
+        <div class="fuente-count">5 humedales</div>
+      </div>
     </div>
 
     <div class="footer-info">
@@ -1230,7 +1385,7 @@
 
 <script>
 const mapa = L.map('mapa', {
-  center: [7.5, -74.5],
+  center: [9.8, -74.8],
   zoom: 6,
   zoomControl: true,
   attributionControl: false
@@ -1243,7 +1398,9 @@ L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
 const humedales = [
   { nombre:'Ciénaga Grande de Santa Marta', lat:10.85, lng:-74.35, ndwi:-0.015, ndvi:0.169, nubes:8.6, imagenes:80, fecha:'2026-06-01', descripcion:'Mayor humedal costero de Colombia. Sitio RAMSAR.', estado:'NORMAL', color:'#0d7fa5' },
   { nombre:'Ciénaga de Mallorquín', lat:11.045, lng:-74.835, ndwi:-0.246, ndvi:0.244, nubes:2.0, imagenes:1, fecha:'2026-05-25', descripcion:'Laguna costera norte de Barranquilla. Manglar denso.', estado:'NORMAL', color:'#1a9e6e' },
-  { nombre:'Ciénaga de Totumo', lat:10.732, lng:-75.229, ndwi:-0.133, ndvi:0.140, nubes:1.6, imagenes:1, fecha:'2026-05-25', descripcion:'Humedal salobre con volcán de lodo activo.', estado:'NORMAL', color:'#4fb8d4' }
+  { nombre:'Ciénaga de Totumo', lat:10.732, lng:-75.229, ndwi:-0.133, ndvi:0.140, nubes:1.6, imagenes:1, fecha:'2026-05-25', descripcion:'Humedal salobre con volcán de lodo activo.', estado:'NORMAL', color:'#4fb8d4' },
+  { nombre:'Ciénaga de Zapatosa', lat:8.95, lng:-73.80, ndwi:-0.369, ndvi:null, nubes:null, imagenes:4, fecha:'2026-06-01', descripcion:'Mayor humedal interior de Colombia (Cesar/Magdalena).', estado:'NORMAL', color:'#c9a050' },
+  { nombre:'La Caimanera (Cispatá)', lat:9.37, lng:-75.78, ndwi:-0.324, ndvi:null, nubes:null, imagenes:4, fecha:'2026-05-25', descripcion:'Complejo de manglares Cispatá, Golfo de Morrosquillo.', estado:'VIGILAR', color:'#5fb8a8' }
 ];
 
 humedales.forEach(h => {
@@ -1261,8 +1418,8 @@ humedales.forEach(h => {
     <div style="font-size:0.7rem;color:#6a8a96;margin-bottom:8px">${h.descripcion}</div>
     <div class="popup-grid">
       <div class="popup-item">NDWI</div><div class="popup-val">${h.ndwi}</div>
-      <div class="popup-item">NDVI</div><div class="popup-val">${h.ndvi}</div>
-      <div class="popup-item">Nubes</div><div class="popup-val">${h.nubes}%</div>
+      <div class="popup-item">NDVI</div><div class="popup-val">${h.ndvi !== null ? h.ndvi : 'Pendiente'}</div>
+      <div class="popup-item">Nubes</div><div class="popup-val">${h.nubes !== null ? h.nubes + '%' : 'Pendiente'}</div>
       <div class="popup-item">Imágenes</div><div class="popup-val">${h.imagenes}</div>
       <div class="popup-item">Fecha</div><div class="popup-val">${h.fecha}</div>
       <div class="popup-item">Estado</div><div class="popup-val" style="color:#1a9e6e">${h.estado}</div>
