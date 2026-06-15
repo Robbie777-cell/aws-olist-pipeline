@@ -145,6 +145,7 @@
 
   .stat-value.verde { color: var(--verde); }
   .stat-value.agua  { color: var(--agua-claro); }
+  .stat-value.alerta { color: var(--alerta); }
 
   .stat-delta {
     font-size: 0.62rem;
@@ -229,6 +230,18 @@
     background: rgba(26,158,110,0.15);
     color: var(--verde);
     border: 1px solid rgba(26,158,110,0.3);
+  }
+
+  .estado-vigilar {
+    background: rgba(224,170,42,0.15);
+    color: #e0aa2a;
+    border: 1px solid rgba(224,170,42,0.3);
+  }
+
+  .estado-alerta {
+    background: rgba(224,92,42,0.15);
+    color: var(--alerta);
+    border: 1px solid rgba(224,92,42,0.3);
   }
 
   .humedal-indices {
@@ -744,6 +757,46 @@
     margin-top: 2px;
   }
 
+  /* ── METODOLOGÍA ── */
+  .metodo-box {
+    background: rgba(13,127,165,0.05);
+    border: 1px solid var(--borde);
+    border-radius: 10px;
+    padding: 0.85rem 1rem;
+  }
+
+  .metodo-row {
+    display: flex;
+    gap: 8px;
+    padding: 5px 0;
+    font-size: 0.68rem;
+    line-height: 1.5;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+  }
+
+  .metodo-row:last-child { border-bottom: none; }
+
+  .metodo-label {
+    color: var(--texto-dim);
+    flex-shrink: 0;
+    width: 92px;
+    font-family: 'Space Mono', monospace;
+    font-size: 0.62rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    padding-top: 1px;
+  }
+
+  .metodo-val { color: var(--texto); }
+  .metodo-val code {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.65rem;
+    color: var(--agua-claro);
+    background: rgba(0,0,0,0.25);
+    padding: 1px 5px;
+    border-radius: 3px;
+  }
+
   /* ── DESKTOP ── */
   @media (min-width: 768px) {
     header { padding: 1.1rem 2rem; }
@@ -828,21 +881,21 @@
     <div class="stat-delta">Sentinel-2 · Ene–Jun 2026</div>
   </div>
   <div class="stat">
-    <div class="stat-label">NDWI Ciénaga Grande</div>
-    <div class="stat-value agua">-0.015</div>
-    <div class="stat-delta">Zona transición agua/tierra</div>
+    <div class="stat-label">NDWI C.Grande abr-jun</div>
+    <div class="stat-value agua">+0.470</div>
+    <div class="stat-delta">vs histórico 0.409 (n=27/109)</div>
   </div>
   <div class="stat">
     <div class="stat-label">Estado general</div>
-    <div class="stat-value verde">NORMAL</div>
-    <div class="stat-delta">Sin alertas activas</div>
+    <div class="stat-value alerta">1 ALERTA</div>
+    <div class="stat-delta">La Caimanera: déficit -0.073</div>
   </div>
 </div>
 
 <div class="enso-banner">
   <div class="enso-icon"></div>
   <div class="enso-tag">EL NIÑO 2026 · IDEAM</div>
-  <div class="enso-text">90% prob. consolidación para sep-2026 — posible <b>reducción de lluvias</b> en Caribe y Andina. TINGUA monitorea el impacto en tiempo real sobre 5 humedales.</div>
+  <div class="enso-text">90% prob. consolidación para sep-2026 — posible <b>reducción de lluvias</b> en Caribe y Andina. TINGUA detecta déficit hídrico en <b>3 de 5 humedales</b> vs su promedio histórico abr-jun.</div>
 </div>
 
 <div class="desktop-layout">
@@ -851,6 +904,35 @@
   </div>
 
   <div class="content">
+
+    <div class="section">
+      <div class="section-title" style="margin-top:0.75rem">Metodología</div>
+      <div class="metodo-box">
+        <div class="metodo-row">
+          <div class="metodo-label">Índice</div>
+          <div class="metodo-val">NDWI = (B3−B8)/(B3+B8) — Sentinel-2 SR Harmonized</div>
+        </div>
+        <div class="metodo-row">
+          <div class="metodo-label">Geometría</div>
+          <div class="metodo-val">Buffer circular <code>2000m</code> por humedal (mismo para los 5)</div>
+        </div>
+        <div class="metodo-row">
+          <div class="metodo-label">Filtro nubes</div>
+          <div class="metodo-val"><code>CLOUDY_PIXEL_PERCENTAGE &lt; 40%</code></div>
+        </div>
+        <div class="metodo-row">
+          <div class="metodo-label">Comparación</div>
+          <div class="metodo-val">Trimestre <code>abr–jun 2026</code> vs promedio <code>abr–jun 2019-2025</code> (7 años)</div>
+        </div>
+        <div class="metodo-row">
+          <div class="metodo-label">Fuente</div>
+          <div class="metodo-val">Google Earth Engine · <code>scripts/calibrar_trimestre.py</code> → <code>docs/data/humedales.json</code></div>
+        </div>
+      </div>
+      <div style="font-size:0.6rem;color:var(--texto-dim);line-height:1.5;padding:0 2px;margin-top:8px">
+        Misma metodología para los 5 humedales — resultados directamente comparables. Tamaños de muestra (n) varían por humedal según frecuencia de pasos satelitales libres de nubes; se reportan junto a cada valor.
+      </div>
+    </div>
 
     <div class="section">
       <div class="section-title" style="margin-top:0.75rem">Humedales activos</div>
@@ -862,24 +944,24 @@
         </div>
         <div class="humedal-indices">
           <div class="indice">
-            <div class="indice-label">NDWI</div>
-            <div class="indice-valor">-0.015</div>
-            <div class="indice-barra"><div class="indice-fill" style="width:49%;background:var(--agua)"></div></div>
+            <div class="indice-label">NDWI actual</div>
+            <div class="indice-valor">+0.470</div>
+            <div class="indice-barra"><div class="indice-fill" style="width:97%;background:var(--agua)"></div></div>
           </div>
           <div class="indice">
-            <div class="indice-label">NDVI</div>
-            <div class="indice-valor">0.169</div>
-            <div class="indice-barra"><div class="indice-fill" style="width:34%;background:var(--verde)"></div></div>
+            <div class="indice-label">NDWI hist.</div>
+            <div class="indice-valor">0.409</div>
+            <div class="indice-barra"><div class="indice-fill" style="width:91%;background:var(--texto-dim)"></div></div>
           </div>
           <div class="indice">
-            <div class="indice-label">Nubes</div>
-            <div class="indice-valor">8.6%</div>
-            <div class="indice-barra"><div class="indice-fill" style="width:9%;background:var(--texto-dim)"></div></div>
+            <div class="indice-label">Delta</div>
+            <div class="indice-valor" style="color:var(--verde)">+0.061</div>
+            <div class="indice-barra"><div class="indice-fill" style="width:81%;background:var(--verde)"></div></div>
           </div>
           <div class="indice">
-            <div class="indice-label">Imágenes</div>
-            <div class="indice-valor">80</div>
-            <div class="indice-barra"><div class="indice-fill" style="width:100%;background:var(--agua)"></div></div>
+            <div class="indice-label">Muestra n</div>
+            <div class="indice-valor" style="font-size:0.75rem">27 / 109</div>
+            <div class="indice-barra"><div class="indice-fill" style="width:90%;background:var(--agua)"></div></div>
           </div>
         </div>
       </div>
@@ -887,28 +969,28 @@
       <div class="humedal-card" onclick="volarA(11.045,-74.835,this)">
         <div class="humedal-header">
           <div class="humedal-nombre">Ciénaga de Mallorquín</div>
-          <div class="estado-badge estado-normal">NORMAL</div>
+          <div class="estado-badge estado-vigilar">VIGILAR</div>
         </div>
         <div class="humedal-indices">
           <div class="indice">
-            <div class="indice-label">NDWI</div>
-            <div class="indice-valor">-0.246</div>
-            <div class="indice-barra"><div class="indice-fill" style="width:38%;background:var(--agua)"></div></div>
+            <div class="indice-label">NDWI actual</div>
+            <div class="indice-valor">-0.162</div>
+            <div class="indice-barra"><div class="indice-fill" style="width:34%;background:var(--agua)"></div></div>
           </div>
           <div class="indice">
-            <div class="indice-label">NDVI</div>
-            <div class="indice-valor">0.244</div>
-            <div class="indice-barra"><div class="indice-fill" style="width:49%;background:var(--verde)"></div></div>
+            <div class="indice-label">NDWI hist.</div>
+            <div class="indice-valor">-0.119</div>
+            <div class="indice-barra"><div class="indice-fill" style="width:38%;background:var(--texto-dim)"></div></div>
           </div>
           <div class="indice">
-            <div class="indice-label">Nubes</div>
-            <div class="indice-valor">2.0%</div>
-            <div class="indice-barra"><div class="indice-fill" style="width:2%;background:var(--texto-dim)"></div></div>
+            <div class="indice-label">Delta</div>
+            <div class="indice-valor" style="color:#e0aa2a">-0.043</div>
+            <div class="indice-barra"><div class="indice-fill" style="width:29%;background:#e0aa2a"></div></div>
           </div>
           <div class="indice">
-            <div class="indice-label">BQ Norte</div>
-            <div class="indice-valor">Norte</div>
-            <div class="indice-barra"><div class="indice-fill" style="width:60%;background:var(--agua-claro)"></div></div>
+            <div class="indice-label">Muestra n</div>
+            <div class="indice-valor" style="font-size:0.75rem">9 / 56</div>
+            <div class="indice-barra"><div class="indice-fill" style="width:30%;background:var(--agua)"></div></div>
           </div>
         </div>
       </div>
@@ -916,28 +998,28 @@
       <div class="humedal-card" onclick="volarA(10.732,-75.229,this)">
         <div class="humedal-header">
           <div class="humedal-nombre">Ciénaga de Totumo</div>
-          <div class="estado-badge estado-normal">NORMAL</div>
+          <div class="estado-badge estado-vigilar">VIGILAR</div>
         </div>
         <div class="humedal-indices">
           <div class="indice">
-            <div class="indice-label">NDWI</div>
-            <div class="indice-valor">-0.133</div>
-            <div class="indice-barra"><div class="indice-fill" style="width:43%;background:var(--agua)"></div></div>
+            <div class="indice-label">NDWI actual</div>
+            <div class="indice-valor">-0.026</div>
+            <div class="indice-barra"><div class="indice-fill" style="width:47%;background:var(--agua)"></div></div>
           </div>
           <div class="indice">
-            <div class="indice-label">NDVI</div>
-            <div class="indice-valor">0.140</div>
-            <div class="indice-barra"><div class="indice-fill" style="width:28%;background:var(--verde)"></div></div>
+            <div class="indice-label">NDWI hist.</div>
+            <div class="indice-valor">0.011</div>
+            <div class="indice-barra"><div class="indice-fill" style="width:51%;background:var(--texto-dim)"></div></div>
           </div>
           <div class="indice">
-            <div class="indice-label">Nubes</div>
-            <div class="indice-valor">1.6%</div>
-            <div class="indice-barra"><div class="indice-fill" style="width:2%;background:var(--texto-dim)"></div></div>
+            <div class="indice-label">Delta</div>
+            <div class="indice-valor" style="color:#e0aa2a">-0.037</div>
+            <div class="indice-barra"><div class="indice-fill" style="width:32%;background:#e0aa2a"></div></div>
           </div>
           <div class="indice">
-            <div class="indice-label">Volcán</div>
-            <div class="indice-valor">Activo</div>
-            <div class="indice-barra"><div class="indice-fill" style="width:70%;background:var(--alerta)"></div></div>
+            <div class="indice-label">Muestra n</div>
+            <div class="indice-valor" style="font-size:0.75rem">7 / 44</div>
+            <div class="indice-barra"><div class="indice-fill" style="width:23%;background:var(--agua)"></div></div>
           </div>
         </div>
       </div>
@@ -949,24 +1031,24 @@
         </div>
         <div class="humedal-indices">
           <div class="indice">
-            <div class="indice-label">NDWI jun</div>
-            <div class="indice-valor">-0.369</div>
-            <div class="indice-barra"><div class="indice-fill" style="width:17%;background:var(--agua)"></div></div>
+            <div class="indice-label">NDWI actual</div>
+            <div class="indice-valor">-0.242</div>
+            <div class="indice-barra"><div class="indice-fill" style="width:26%;background:var(--agua)"></div></div>
           </div>
           <div class="indice">
-            <div class="indice-label">Hist. jun</div>
-            <div class="indice-valor">-0.385</div>
-            <div class="indice-barra"><div class="indice-fill" style="width:15%;background:var(--texto-dim)"></div></div>
+            <div class="indice-label">NDWI hist.</div>
+            <div class="indice-valor">-0.250</div>
+            <div class="indice-barra"><div class="indice-fill" style="width:25%;background:var(--texto-dim)"></div></div>
           </div>
           <div class="indice">
             <div class="indice-label">Delta</div>
-            <div class="indice-valor" style="color:var(--verde)">+0.017</div>
-            <div class="indice-barra"><div class="indice-fill" style="width:55%;background:var(--verde)"></div></div>
+            <div class="indice-valor" style="color:var(--verde)">+0.008</div>
+            <div class="indice-barra"><div class="indice-fill" style="width:54%;background:var(--verde)"></div></div>
           </div>
           <div class="indice">
-            <div class="indice-label">Muestra</div>
-            <div class="indice-valor">n=4</div>
-            <div class="indice-barra"><div class="indice-fill" style="width:20%;background:var(--texto-dim)"></div></div>
+            <div class="indice-label">Muestra n</div>
+            <div class="indice-valor" style="font-size:0.75rem">17 / 48</div>
+            <div class="indice-barra"><div class="indice-fill" style="width:57%;background:var(--agua)"></div></div>
           </div>
         </div>
       </div>
@@ -974,28 +1056,28 @@
       <div class="humedal-card" onclick="volarA(9.37,-75.78,this)">
         <div class="humedal-header">
           <div class="humedal-nombre">La Caimanera (Cispatá)</div>
-          <div class="estado-badge estado-normal">VIGILAR</div>
+          <div class="estado-badge estado-alerta">ALERTA</div>
         </div>
         <div class="humedal-indices">
           <div class="indice">
-            <div class="indice-label">NDWI may</div>
-            <div class="indice-valor">-0.324</div>
-            <div class="indice-barra"><div class="indice-fill" style="width:22%;background:var(--agua)"></div></div>
+            <div class="indice-label">NDWI actual</div>
+            <div class="indice-valor">-0.360</div>
+            <div class="indice-barra"><div class="indice-fill" style="width:14%;background:var(--agua)"></div></div>
           </div>
           <div class="indice">
-            <div class="indice-label">Hist. may</div>
-            <div class="indice-valor">-0.264</div>
-            <div class="indice-barra"><div class="indice-fill" style="width:30%;background:var(--texto-dim)"></div></div>
+            <div class="indice-label">NDWI hist.</div>
+            <div class="indice-valor">-0.287</div>
+            <div class="indice-barra"><div class="indice-fill" style="width:21%;background:var(--texto-dim)"></div></div>
           </div>
           <div class="indice">
             <div class="indice-label">Delta</div>
-            <div class="indice-valor" style="color:var(--alerta)">-0.060</div>
-            <div class="indice-barra"><div class="indice-fill" style="width:40%;background:var(--alerta)"></div></div>
+            <div class="indice-valor" style="color:var(--alerta)">-0.073</div>
+            <div class="indice-barra"><div class="indice-fill" style="width:14%;background:var(--alerta)"></div></div>
           </div>
           <div class="indice">
-            <div class="indice-label">Jun 2026</div>
-            <div class="indice-valor" style="font-size:0.7rem">Pendiente</div>
-            <div class="indice-barra"><div class="indice-fill" style="width:0%;background:var(--texto-dim)"></div></div>
+            <div class="indice-label">Muestra n</div>
+            <div class="indice-valor" style="font-size:0.75rem">7 / 22</div>
+            <div class="indice-barra"><div class="indice-fill" style="width:23%;background:var(--agua)"></div></div>
           </div>
         </div>
       </div>
@@ -1003,23 +1085,26 @@
 
     <div class="section" style="margin-top:0.5rem">
       <div class="section-title">Radar de riesgo hídrico · ENSO 2026</div>
+      <div style="font-size:0.58rem;color:var(--texto-dim);margin-bottom:8px;font-family:'Space Mono',monospace">
+        ESCALA = DESVIACIÓN VS PROMEDIO ABR-JUN 2019-2025 (PROPIO DE CADA HUMEDAL)
+      </div>
 
       <div class="riesgo-card">
         <div class="riesgo-header">
           <div class="riesgo-nombre">Ciénaga Grande de Santa Marta</div>
-          <div class="riesgo-badge riesgo-medio">VIGILAR</div>
+          <div class="riesgo-badge riesgo-bajo">RIESGO BAJO</div>
         </div>
         <div class="escala">
-          <div class="escala-marcador" style="left:61%"></div>
+          <div class="escala-marcador" style="left:70%"></div>
         </div>
         <div class="escala-labels">
-          <span>Sequía</span>
-          <span>Normal</span>
-          <span>Inundación</span>
+          <span>Más seco</span>
+          <span>Normal (hist.)</span>
+          <span>Más húmedo</span>
         </div>
         <div class="riesgo-detalle">
-          <span>NDWI actual: <b>-0.015</b></span>
-          <span>Tendencia: <b>secando (-0.29 vs hist.)</b></span>
+          <span>NDWI: <b>+0.470</b></span>
+          <span>Delta: <b>+0.061 (más húmedo)</b></span>
         </div>
       </div>
 
@@ -1029,16 +1114,16 @@
           <div class="riesgo-badge riesgo-medio">VIGILAR</div>
         </div>
         <div class="escala">
-          <div class="escala-marcador" style="left:32%"></div>
+          <div class="escala-marcador" style="left:36%"></div>
         </div>
         <div class="escala-labels">
-          <span>Sequía</span>
-          <span>Normal</span>
-          <span>Inundación</span>
+          <span>Más seco</span>
+          <span>Normal (hist.)</span>
+          <span>Más húmedo</span>
         </div>
         <div class="riesgo-detalle">
-          <span>NDWI actual: <b>-0.246</b></span>
-          <span>Tendencia: <b>secando (-0.13 vs hist.)</b></span>
+          <span>NDWI: <b>-0.162</b></span>
+          <span>Delta: <b>-0.043 (más seco)</b></span>
         </div>
       </div>
 
@@ -1048,16 +1133,16 @@
           <div class="riesgo-badge riesgo-medio">VIGILAR</div>
         </div>
         <div class="escala">
-          <div class="escala-marcador" style="left:46%"></div>
+          <div class="escala-marcador" style="left:38%"></div>
         </div>
         <div class="escala-labels">
-          <span>Sequía</span>
-          <span>Normal</span>
-          <span>Inundación</span>
+          <span>Más seco</span>
+          <span>Normal (hist.)</span>
+          <span>Más húmedo</span>
         </div>
         <div class="riesgo-detalle">
-          <span>NDWI actual: <b>-0.133</b></span>
-          <span>Tendencia: <b>secando (-0.20 vs hist.)</b></span>
+          <span>NDWI: <b>-0.026</b></span>
+          <span>Delta: <b>-0.037 (más seco)</b></span>
         </div>
       </div>
 
@@ -1067,132 +1152,128 @@
           <div class="riesgo-badge riesgo-bajo">RIESGO BAJO</div>
         </div>
         <div class="escala">
-          <div class="escala-marcador" style="left:17%"></div>
+          <div class="escala-marcador" style="left:53%"></div>
         </div>
         <div class="escala-labels">
-          <span>Sequía</span>
-          <span>Normal</span>
-          <span>Inundación</span>
+          <span>Más seco</span>
+          <span>Normal (hist.)</span>
+          <span>Más húmedo</span>
         </div>
         <div class="riesgo-detalle">
-          <span>NDWI actual: <b>-0.369</b></span>
-          <span>Tendencia: <b>estable (+0.02 vs hist.)</b></span>
+          <span>NDWI: <b>-0.242</b></span>
+          <span>Delta: <b>+0.008 (neutral)</b></span>
         </div>
       </div>
 
       <div class="riesgo-card">
         <div class="riesgo-header">
           <div class="riesgo-nombre">La Caimanera (Cispatá)</div>
-          <div class="riesgo-badge riesgo-medio">VIGILAR</div>
+          <div class="riesgo-badge riesgo-alto">RIESGO ALTO</div>
         </div>
         <div class="escala">
-          <div class="escala-marcador" style="left:22%"></div>
+          <div class="escala-marcador" style="left:26%"></div>
         </div>
         <div class="escala-labels">
-          <span>Sequía</span>
-          <span>Normal</span>
-          <span>Inundación</span>
+          <span>Más seco</span>
+          <span>Normal (hist.)</span>
+          <span>Más húmedo</span>
         </div>
         <div class="riesgo-detalle">
-          <span>NDWI may: <b>-0.324</b></span>
-          <span>Tendencia: <b>secando (-0.06 vs hist.)</b></span>
+          <span>NDWI: <b>-0.360</b></span>
+          <span>Delta: <b>-0.073 (mayor déficit)</b></span>
         </div>
       </div>
 
       <div style="font-size:0.62rem;color:var(--texto-dim);line-height:1.5;margin-top:6px;padding:0 2px">
-        Escala basada en rango histórico NDWI por humedal. 4 de 5 humedales muestran tendencia de secamiento respecto a su promedio histórico, coherente con El Niño 2026 confirmado por IDEAM. Zapatosa es la excepción — se mantiene cerca de su histórico (muestra pequeña, n=4). Se vigilará evolución en próximas capturas Sentinel-2.
+        3 de 5 humedales (Mallorquín, Totumo, La Caimanera) muestran déficit hídrico vs su propio promedio abr-jun 2019-2025. La Caimanera tiene el mayor déficit (-0.073). Ciénaga Grande está por encima de su histórico (+0.061) y Zapatosa se mantiene neutral. Esta variabilidad espacial es consistente con lo señalado por IDEAM: El Niño 2026 no afecta uniformemente todo el territorio. Se vigilará evolución en próximas capturas Sentinel-2.
       </div>
     </div>
 
     <div class="section" style="margin-top:0.5rem">
-      <div class="section-title">Serie temporal · NDWI Ciénaga Grande</div>
-      <div class="chart-container">
+      <div class="section-title">NDWI actual vs histórico · abr-jun</div>
+      <div class="chart-container" style="height:200px">
         <canvas id="chartNDWI"></canvas>
       </div>
-      <div style="font-size:0.58rem;color:var(--texto-dim);margin-top:6px;font-family:'Space Mono',monospace;display:flex;align-items:center;gap:6px">
-        <span style="display:inline-block;width:14px;height:0;border-top:2px dashed #6a8a96"></span>
-        Promedio histórico real 2019-2025 (Google Earth Engine)
+      <div style="font-size:0.58rem;color:var(--texto-dim);margin-top:6px;font-family:'Space Mono',monospace">
+        Actual = abr-jun 2026 · Histórico = promedio abr-jun 2019-2025 (Google Earth Engine)
       </div>
     </div>
 
     <div class="section" style="margin-top:0.5rem">
-      <div class="section-title">Desviación NDWI vs histórico</div>
-      <div style="font-size:0.58rem;color:var(--texto-dim);margin-bottom:8px;font-family:'Space Mono',monospace">
-        BASELINE REAL · PROMEDIO JUNIO 2019-2025 (GOOGLE EARTH ENGINE)
-      </div>
+      <div class="section-title">Ranking de desviación · abr-jun 2026 vs histórico</div>
 
       <div class="desv-card">
         <div class="desv-info">
-          <div class="desv-nombre">Ciénaga Grande de Santa Marta</div>
+          <div class="desv-nombre">1. La Caimanera (Cispatá)</div>
           <div class="desv-valores">
-            <span>Actual: <b>-0.015</b></span>
-            <span>Histórico jun: <b>0.276</b></span>
+            <span>Actual: <b>-0.360</b></span>
+            <span>Histórico: <b>-0.287</b></span>
           </div>
         </div>
         <div class="desv-delta">
-          <div class="desv-delta-valor seco">-0.291</div>
+          <div class="desv-delta-valor seco">-0.073</div>
           <div class="desv-delta-label">Más seco</div>
         </div>
       </div>
 
       <div class="desv-card">
         <div class="desv-info">
-          <div class="desv-nombre">Ciénaga de Mallorquín</div>
+          <div class="desv-nombre">2. Ciénaga de Mallorquín</div>
           <div class="desv-valores">
-            <span>Actual: <b>-0.246</b></span>
-            <span>Histórico jun: <b>-0.118</b></span>
+            <span>Actual: <b>-0.162</b></span>
+            <span>Histórico: <b>-0.119</b></span>
           </div>
         </div>
         <div class="desv-delta">
-          <div class="desv-delta-valor seco">-0.128</div>
+          <div class="desv-delta-valor seco">-0.043</div>
           <div class="desv-delta-label">Más seco</div>
         </div>
       </div>
 
       <div class="desv-card">
         <div class="desv-info">
-          <div class="desv-nombre">Ciénaga de Totumo</div>
+          <div class="desv-nombre">3. Ciénaga de Totumo</div>
           <div class="desv-valores">
-            <span>Actual: <b>-0.133</b></span>
-            <span>Histórico jun: <b>0.065</b></span>
+            <span>Actual: <b>-0.026</b></span>
+            <span>Histórico: <b>0.011</b></span>
           </div>
         </div>
         <div class="desv-delta">
-          <div class="desv-delta-valor seco">-0.198</div>
+          <div class="desv-delta-valor seco">-0.037</div>
           <div class="desv-delta-label">Más seco</div>
         </div>
       </div>
 
       <div class="desv-card">
         <div class="desv-info">
-          <div class="desv-nombre">Ciénaga de Zapatosa</div>
+          <div class="desv-nombre">4. Ciénaga de Zapatosa</div>
           <div class="desv-valores">
-            <span>Actual jun: <b>-0.369</b></span>
-            <span>Histórico jun: <b>-0.385</b></span>
+            <span>Actual: <b>-0.242</b></span>
+            <span>Histórico: <b>-0.250</b></span>
           </div>
         </div>
         <div class="desv-delta">
-          <div class="desv-delta-valor normal">+0.017</div>
-          <div class="desv-delta-label">En rango normal</div>
+          <div class="desv-delta-valor normal">+0.008</div>
+          <div class="desv-delta-label">Neutral</div>
         </div>
       </div>
 
       <div class="desv-card">
         <div class="desv-info">
-          <div class="desv-nombre">La Caimanera (Cispatá)</div>
+          <div class="desv-nombre">5. Ciénaga Grande de Santa Marta</div>
           <div class="desv-valores">
-            <span>Actual may: <b>-0.324</b></span>
-            <span>Histórico may: <b>-0.264</b></span>
+            <span>Actual: <b>+0.470</b></span>
+            <span>Histórico: <b>0.409</b></span>
           </div>
         </div>
         <div class="desv-delta">
-          <div class="desv-delta-valor seco">-0.060</div>
-          <div class="desv-delta-label">Más seco</div>
+          <div class="desv-delta-valor humedo">+0.061</div>
+          <div class="desv-delta-label">Más húmedo</div>
         </div>
       </div>
 
       <div style="font-size:0.6rem;color:var(--texto-dim);line-height:1.5;padding:0 2px;margin-top:4px">
-        <b style="color:var(--alerta)">4 de 5 humedales están por debajo de su promedio histórico</b> — Ciénaga Grande muestra la mayor caída (-0.291). Esta señal regional de secamiento es coherente con la confirmación oficial de El Niño 2026 por el IDEAM (11-jun-2026). Zapatosa se mantiene cerca de su histórico, mostrando que TINGUA reporta datos reales sin forzar una narrativa uniforme. Baseline calculado con Sentinel-2 (2019-2025, cloud&lt;40%).
+        <b style="color:var(--alerta)">La Caimanera presenta el mayor déficit hídrico</b> (-0.073) y es prioridad de monitoreo. Mallorquín y Totumo muestran déficit moderado. Ciénaga Grande (Sitio RAMSAR) está por encima de su histórico. Misma metodología para los 5 humedales: buffer 2000m, cloud&lt;40%, trimestre abr-jun.
       </div>
     </div>
 
@@ -1266,87 +1347,77 @@
 
     <div class="section" style="margin-top:0.5rem">
       <div class="section-title">Centro de alertas</div>
+      <div style="font-size:0.58rem;color:var(--texto-dim);margin-bottom:8px;font-family:'Space Mono',monospace">
+        UMBRAL ÚNICO · DELTA = ACTUAL − HISTÓRICO (ABR-JUN)
+      </div>
 
-      <div class="alerta-item media">
+      <div class="alerta-item">
         <div class="alerta-icon">⚠️</div>
         <div class="alerta-content">
-          <div class="alerta-titulo">Alerta regional — Tendencia de secamiento</div>
-          <div class="alerta-desc">4 de 5 humedales muestran NDWI por debajo de su promedio histórico, coherente con el inicio de El Niño 2026 confirmado por IDEAM.</div>
-          <div class="alerta-umbral">Basado en baseline real GEE · Cienaga Grande: -0.291 vs histórico</div>
-        </div>
-      </div>
-
-      <div class="alerta-item">
-        <div class="alerta-icon">✅</div>
-        <div class="alerta-content">
-          <div class="alerta-titulo">Ciénaga Grande de Santa Marta — Dentro de umbral</div>
-          <div class="alerta-desc">NDWI: -0.015 (01-jun-2026). Aún dentro del umbral de sequía, pero -0.291 por debajo de su histórico de junio.</div>
-          <div class="alerta-umbral">Umbral sequía: NDWI &lt; -0.30</div>
+          <div class="alerta-titulo">La Caimanera (Cispatá) — Alerta activa</div>
+          <div class="alerta-desc">Delta -0.073 supera el umbral de déficit (-0.06). NDWI actual -0.360 vs histórico -0.287 (n=7/22).</div>
+          <div class="alerta-umbral">Umbral déficit: delta &lt; -0.06</div>
         </div>
       </div>
 
       <div class="alerta-item media">
         <div class="alerta-icon">👁️</div>
         <div class="alerta-content">
-          <div class="alerta-titulo">Ciénaga de Mallorquín — Vigilancia activa</div>
-          <div class="alerta-desc">NDWI más bajo de los 3 humedales (-0.246). -0.128 por debajo de su histórico de junio (-0.118).</div>
-          <div class="alerta-umbral">Umbral vigilancia: NDWI &lt; -0.25 · Umbral sequía: NDWI &lt; -0.35</div>
-        </div>
-      </div>
-
-      <div class="alerta-item">
-        <div class="alerta-icon">✅</div>
-        <div class="alerta-content">
-          <div class="alerta-titulo">Ciénaga de Totumo — Dentro de umbral</div>
-          <div class="alerta-desc">NDWI: -0.133. Volcán de lodo activo sin anomalías. -0.198 por debajo de su histórico de junio (0.065).</div>
-          <div class="alerta-umbral">Umbral sequía: NDWI &lt; -0.30</div>
-        </div>
-      </div>
-
-      <div class="alerta-item">
-        <div class="alerta-icon">✅</div>
-        <div class="alerta-content">
-          <div class="alerta-titulo">Ciénaga de Zapatosa — Dentro de umbral</div>
-          <div class="alerta-desc">NDWI: -0.369 (jun, n=4). Solo +0.017 vs su histórico — única excepción a la tendencia regional de secamiento.</div>
-          <div class="alerta-umbral">Umbral sequía: NDWI &lt; -0.45</div>
+          <div class="alerta-titulo">Ciénaga de Mallorquín — Vigilancia</div>
+          <div class="alerta-desc">Delta -0.043, dentro de rango de vigilancia. NDWI actual -0.162 vs histórico -0.119 (n=9/56).</div>
+          <div class="alerta-umbral">Umbral vigilancia: -0.06 ≤ delta &lt; -0.02</div>
         </div>
       </div>
 
       <div class="alerta-item media">
         <div class="alerta-icon">👁️</div>
         <div class="alerta-content">
-          <div class="alerta-titulo">La Caimanera (Cispatá) — Vigilancia activa</div>
-          <div class="alerta-desc">NDWI: -0.324 (may). -0.060 por debajo de su histórico de mayo. Dato de junio pendiente por cobertura de nubes en la zona.</div>
-          <div class="alerta-umbral">Umbral vigilancia: NDWI &lt; -0.32 · Umbral sequía: NDWI &lt; -0.40</div>
+          <div class="alerta-titulo">Ciénaga de Totumo — Vigilancia</div>
+          <div class="alerta-desc">Delta -0.037, dentro de rango de vigilancia. NDWI actual -0.026 vs histórico 0.011 (n=7/44).</div>
+          <div class="alerta-umbral">Umbral vigilancia: -0.06 ≤ delta &lt; -0.02</div>
         </div>
       </div>
 
-      <div class="section-title" style="margin-top:14px">Configuración de umbrales</div>
+      <div class="alerta-item">
+        <div class="alerta-icon">✅</div>
+        <div class="alerta-content">
+          <div class="alerta-titulo">Ciénaga de Zapatosa — Normal</div>
+          <div class="alerta-desc">Delta +0.008, dentro de rango normal. NDWI actual -0.242 vs histórico -0.250 (n=17/48).</div>
+          <div class="alerta-umbral">Rango normal: -0.02 ≤ delta ≤ +0.10</div>
+        </div>
+      </div>
+
+      <div class="alerta-item">
+        <div class="alerta-icon">✅</div>
+        <div class="alerta-content">
+          <div class="alerta-titulo">Ciénaga Grande de Santa Marta — Normal</div>
+          <div class="alerta-desc">Delta +0.061, por encima de su histórico. NDWI actual +0.470 vs histórico 0.409 (n=27/109).</div>
+          <div class="alerta-umbral">Rango normal: -0.02 ≤ delta ≤ +0.10</div>
+        </div>
+      </div>
+
+      <div class="section-title" style="margin-top:14px">Configuración de umbrales (los 5 humedales)</div>
       <div class="alerta-config">
         <div class="alerta-config-row">
-          <div class="alerta-config-nombre">Ciénaga Grande</div>
-          <div class="alerta-config-valores"><span class="lim-bajo">&lt;-0.30 sequía</span><span class="lim-alto">&gt;0.10 exceso</span></div>
+          <div class="alerta-config-nombre">Alerta — déficit crítico</div>
+          <div class="alerta-config-valores"><span class="lim-bajo">delta &lt; -0.06</span></div>
         </div>
         <div class="alerta-config-row">
-          <div class="alerta-config-nombre">Mallorquín</div>
-          <div class="alerta-config-valores"><span class="lim-bajo">&lt;-0.35 sequía</span><span class="lim-alto">&gt;0.00 exceso</span></div>
+          <div class="alerta-config-nombre">Vigilancia — déficit moderado</div>
+          <div class="alerta-config-valores"><span class="lim-bajo">-0.06 a -0.02</span></div>
         </div>
         <div class="alerta-config-row">
-          <div class="alerta-config-nombre">Totumo</div>
-          <div class="alerta-config-valores"><span class="lim-bajo">&lt;-0.30 sequía</span><span class="lim-alto">&gt;0.05 exceso</span></div>
+          <div class="alerta-config-nombre">Normal</div>
+          <div class="alerta-config-valores"><span class="lim-alto">-0.02 a +0.10</span></div>
         </div>
         <div class="alerta-config-row">
-          <div class="alerta-config-nombre">Zapatosa</div>
-          <div class="alerta-config-valores"><span class="lim-bajo">&lt;-0.45 sequía</span><span class="lim-alto">&gt;-0.20 exceso</span></div>
-        </div>
-        <div class="alerta-config-row">
-          <div class="alerta-config-nombre">La Caimanera</div>
-          <div class="alerta-config-valores"><span class="lim-bajo">&lt;-0.40 sequía</span><span class="lim-alto">&gt;-0.10 exceso</span></div>
+          <div class="alerta-config-nombre">Vigilancia — exceso</div>
+          <div class="alerta-config-valores"><span class="lim-alto">delta &gt; +0.10</span></div>
         </div>
       </div>
 
       <div style="font-size:0.6rem;color:var(--texto-dim);line-height:1.5;padding:0 2px;margin-top:8px">
-        Próxima fase: notificaciones automáticas por email/WhatsApp vía AWS SNS cuando un humedal cruce su umbral — usando la misma infraestructura Lambda existente, sin costo adicional.
+        Umbral único basado en delta (no en NDWI absoluto) — válido para los 5 humedales sin importar su rango natural de NDWI. Próxima fase: notificaciones automáticas por email/WhatsApp vía AWS SNS cuando un humedal cruce estos umbrales, usando la infraestructura Lambda existente, sin costo adicional.
       </div>
     </div>
 
@@ -1355,22 +1426,22 @@
       <div class="fuente-row">
         <div class="fuente-dot" style="background:var(--agua)"></div>
         <div class="fuente-nombre">Sentinel-2 SR Harmonized (ESA)</div>
-        <div class="fuente-count">80 img</div>
-      </div>
-      <div class="fuente-row">
-        <div class="fuente-dot" style="background:var(--verde)"></div>
-        <div class="fuente-nombre">Simulador Kinesis (AWS)</div>
-        <div class="fuente-count">817 reg</div>
+        <div class="fuente-count">67 img totales</div>
       </div>
       <div class="fuente-row">
         <div class="fuente-dot" style="background:#8b5cf6"></div>
-        <div class="fuente-nombre">Google Earth Engine</div>
-        <div class="fuente-count">NDWI·NDVI</div>
+        <div class="fuente-nombre">Google Earth Engine — abr-jun 2026</div>
+        <div class="fuente-count">5 humedales</div>
       </div>
       <div class="fuente-row">
         <div class="fuente-dot" style="background:#c9a050"></div>
         <div class="fuente-nombre">Baseline histórico GEE (2019-2025)</div>
-        <div class="fuente-count">5 humedales</div>
+        <div class="fuente-count">279 img</div>
+      </div>
+      <div class="fuente-row">
+        <div class="fuente-dot" style="background:var(--verde)"></div>
+        <div class="fuente-nombre">Pipeline AWS (Kinesis→Lambda→S3→Athena)</div>
+        <div class="fuente-count">817 reg</div>
       </div>
     </div>
 
@@ -1396,15 +1467,15 @@ L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
 }).addTo(mapa);
 
 const humedales = [
-  { nombre:'Ciénaga Grande de Santa Marta', lat:10.85, lng:-74.35, ndwi:-0.015, ndvi:0.169, nubes:8.6, imagenes:80, fecha:'2026-06-01', descripcion:'Mayor humedal costero de Colombia. Sitio RAMSAR.', estado:'NORMAL', color:'#0d7fa5' },
-  { nombre:'Ciénaga de Mallorquín', lat:11.045, lng:-74.835, ndwi:-0.246, ndvi:0.244, nubes:2.0, imagenes:1, fecha:'2026-05-25', descripcion:'Laguna costera norte de Barranquilla. Manglar denso.', estado:'NORMAL', color:'#1a9e6e' },
-  { nombre:'Ciénaga de Totumo', lat:10.732, lng:-75.229, ndwi:-0.133, ndvi:0.140, nubes:1.6, imagenes:1, fecha:'2026-05-25', descripcion:'Humedal salobre con volcán de lodo activo.', estado:'NORMAL', color:'#4fb8d4' },
-  { nombre:'Ciénaga de Zapatosa', lat:8.95, lng:-73.80, ndwi:-0.369, ndvi:null, nubes:null, imagenes:4, fecha:'2026-06-01', descripcion:'Mayor humedal interior de Colombia (Cesar/Magdalena).', estado:'NORMAL', color:'#c9a050' },
-  { nombre:'La Caimanera (Cispatá)', lat:9.37, lng:-75.78, ndwi:-0.324, ndvi:null, nubes:null, imagenes:4, fecha:'2026-05-25', descripcion:'Complejo de manglares Cispatá, Golfo de Morrosquillo.', estado:'VIGILAR', color:'#5fb8a8' }
+  { nombre:'Ciénaga Grande de Santa Marta', lat:10.85, lng:-74.35, ndwi:0.470, hist:0.409, delta:0.061, n_actual:27, n_hist:109, descripcion:'Mayor humedal costero de Colombia. Sitio RAMSAR.', estado:'NORMAL', color:'#1a9e6e' },
+  { nombre:'Ciénaga de Mallorquín', lat:11.045, lng:-74.835, ndwi:-0.162, hist:-0.119, delta:-0.043, n_actual:9, n_hist:56, descripcion:'Laguna costera norte de Barranquilla. Manglar denso.', estado:'VIGILAR', color:'#e0aa2a' },
+  { nombre:'Ciénaga de Totumo', lat:10.732, lng:-75.229, ndwi:-0.026, hist:0.011, delta:-0.037, n_actual:7, n_hist:44, descripcion:'Humedal salobre con volcán de lodo activo.', estado:'VIGILAR', color:'#e0aa2a' },
+  { nombre:'Ciénaga de Zapatosa', lat:8.95, lng:-73.80, ndwi:-0.242, hist:-0.250, delta:0.008, n_actual:17, n_hist:48, descripcion:'Mayor humedal interior de Colombia (Cesar/Magdalena).', estado:'NORMAL', color:'#1a9e6e' },
+  { nombre:'La Caimanera (Cispatá)', lat:9.37, lng:-75.78, ndwi:-0.360, hist:-0.287, delta:-0.073, n_actual:7, n_hist:22, descripcion:'Complejo de manglares Cispatá, Golfo de Morrosquillo.', estado:'ALERTA', color:'#e05c2a' }
 ];
 
 humedales.forEach(h => {
-  const radio = h.imagenes > 50 ? 18 : 12;
+  const radio = h.estado === 'ALERTA' ? 18 : 12;
   const c = L.circleMarker([h.lat, h.lng], {
     radius: radio, fillColor: h.color, color:'#fff',
     weight:1.5, opacity:0.9, fillOpacity:0.75
@@ -1413,16 +1484,18 @@ humedales.forEach(h => {
     radius: radio+8, fillColor:'transparent',
     color: h.color, weight:1, opacity:0.3, fillOpacity:0
   }).addTo(mapa);
+  const deltaStr = (h.delta >= 0 ? '+' : '') + h.delta.toFixed(3);
+  const estadoColor = h.estado === 'ALERTA' ? '#e05c2a' : (h.estado === 'VIGILAR' ? '#e0aa2a' : '#1a9e6e');
   c.bindPopup(`
     <div class="popup-titulo">${h.nombre}</div>
     <div style="font-size:0.7rem;color:#6a8a96;margin-bottom:8px">${h.descripcion}</div>
     <div class="popup-grid">
-      <div class="popup-item">NDWI</div><div class="popup-val">${h.ndwi}</div>
-      <div class="popup-item">NDVI</div><div class="popup-val">${h.ndvi !== null ? h.ndvi : 'Pendiente'}</div>
-      <div class="popup-item">Nubes</div><div class="popup-val">${h.nubes !== null ? h.nubes + '%' : 'Pendiente'}</div>
-      <div class="popup-item">Imágenes</div><div class="popup-val">${h.imagenes}</div>
-      <div class="popup-item">Fecha</div><div class="popup-val">${h.fecha}</div>
-      <div class="popup-item">Estado</div><div class="popup-val" style="color:#1a9e6e">${h.estado}</div>
+      <div class="popup-item">NDWI actual</div><div class="popup-val">${h.ndwi.toFixed(3)}</div>
+      <div class="popup-item">NDWI histórico</div><div class="popup-val">${h.hist.toFixed(3)}</div>
+      <div class="popup-item">Delta</div><div class="popup-val">${deltaStr}</div>
+      <div class="popup-item">Muestra n</div><div class="popup-val">${h.n_actual}/${h.n_hist}</div>
+      <div class="popup-item">Periodo</div><div class="popup-val">abr-jun 2026</div>
+      <div class="popup-item">Estado</div><div class="popup-val" style="color:${estadoColor}">${h.estado}</div>
     </div>
   `);
 });
@@ -1439,20 +1512,19 @@ window.volarA = function(lat, lng, card) {
 
 const ctx = document.getElementById('chartNDWI').getContext('2d');
 new Chart(ctx, {
-  type: 'line',
+  type: 'bar',
   data: {
-    labels: ['Ene','Feb','Mar','Abr','May','Jun'],
+    labels: ['C.Grande','Mallorquín','Totumo','Zapatosa','Caimanera'],
     datasets: [
-      { label:'NDWI', data:[-0.08,-0.12,-0.05,-0.02,-0.18,-0.015], borderColor:'#0d7fa5', backgroundColor:'rgba(13,127,165,0.1)', borderWidth:2, pointBackgroundColor:'#0d7fa5', pointRadius:3, tension:0.4, fill:true },
-      { label:'NDVI', data:[0.14,0.11,0.18,0.20,0.15,0.169], borderColor:'#1a9e6e', backgroundColor:'rgba(26,158,110,0.08)', borderWidth:2, pointBackgroundColor:'#1a9e6e', pointRadius:3, tension:0.4, fill:true },
-      { label:'NDWI histórico (2019-25)', data:[0.412,0.375,0.374,0.344,0.345,0.276], borderColor:'#6a8a96', borderWidth:1.5, borderDash:[5,4], pointRadius:0, tension:0.3, fill:false }
+      { label:'Actual abr-jun 2026', data:[0.470,-0.162,-0.026,-0.242,-0.360], backgroundColor:'#0d7fa5', borderRadius:3 },
+      { label:'Histórico abr-jun 2019-25', data:[0.409,-0.119,0.011,-0.250,-0.287], backgroundColor:'rgba(106,138,150,0.5)', borderRadius:3 }
     ]
   },
   options: {
     responsive:true, maintainAspectRatio:false,
-    plugins: { legend:{ labels:{ color:'#6a8a96', font:{size:10,family:'Space Mono'}, boxWidth:10 } } },
+    plugins: { legend:{ labels:{ color:'#6a8a96', font:{size:9,family:'Space Mono'}, boxWidth:10 } } },
     scales: {
-      x:{ ticks:{color:'#6a8a96',font:{size:9}}, grid:{color:'rgba(255,255,255,0.04)'} },
+      x:{ ticks:{color:'#6a8a96',font:{size:9}}, grid:{display:false} },
       y:{ ticks:{color:'#6a8a96',font:{size:9}}, grid:{color:'rgba(255,255,255,0.04)'} }
     }
   }

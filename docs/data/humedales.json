@@ -1,0 +1,72 @@
+{
+  "metadata": {
+    "fuente": "Sentinel-2 SR Harmonized (COPERNICUS/S2_SR_HARMONIZED)",
+    "metodologia": "Buffer circular 2000m por humedal, filtro cloud<40%, NDWI=(B3-B8)/(B3+B8), ventana trimestral abr-jun",
+    "periodo_historico": "2019-2025 (abr-jun)",
+    "periodo_actual": "2026 (abr-jun)",
+    "generado": "2026-06-15T02:17:20.290158+00:00",
+    "proyecto": "TINGUA"
+  },
+  "humedales": [
+    {
+      "id": "cienaga_grande",
+      "nombre": "Ciénaga Grande de Santa Marta",
+      "lat": 10.85,
+      "lng": -74.35,
+      "descripcion": "Mayor humedal costero de Colombia. Sitio RAMSAR.",
+      "ndwi_actual": 0.4698,
+      "n_actual": 27,
+      "ndwi_historico": 0.409,
+      "n_historico": 109,
+      "delta": 0.0608
+    },
+    {
+      "id": "mallorquin",
+      "nombre": "Ciénaga de Mallorquín",
+      "lat": 11.045,
+      "lng": -74.835,
+      "descripcion": "Laguna costera norte de Barranquilla. Manglar denso.",
+      "ndwi_actual": -0.1615,
+      "n_actual": 9,
+      "ndwi_historico": -0.1189,
+      "n_historico": 56,
+      "delta": -0.0426
+    },
+    {
+      "id": "totumo",
+      "nombre": "Ciénaga de Totumo",
+      "lat": 10.732,
+      "lng": -75.229,
+      "descripcion": "Humedal salobre con volcán de lodo activo.",
+      "ndwi_actual": -0.0255,
+      "n_actual": 7,
+      "ndwi_historico": 0.011,
+      "n_historico": 44,
+      "delta": -0.0365
+    },
+    {
+      "id": "zapatosa",
+      "nombre": "Ciénaga de Zapatosa",
+      "lat": 8.95,
+      "lng": -73.8,
+      "descripcion": "Mayor humedal interior de Colombia (Cesar/Magdalena).",
+      "ndwi_actual": -0.2424,
+      "n_actual": 17,
+      "ndwi_historico": -0.2503,
+      "n_historico": 48,
+      "delta": 0.0079
+    },
+    {
+      "id": "caimanera",
+      "nombre": "La Caimanera (Cispatá)",
+      "lat": 9.37,
+      "lng": -75.78,
+      "descripcion": "Complejo de manglares Cispatá, Golfo de Morrosquillo.",
+      "ndwi_actual": -0.36,
+      "n_actual": 7,
+      "ndwi_historico": -0.2869,
+      "n_historico": 22,
+      "delta": -0.0731
+    }
+  ]
+}
