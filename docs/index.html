@@ -340,6 +340,267 @@
   .popup-item { color: var(--texto-dim); }
   .popup-val { color: var(--agua-claro); font-family: 'Space Mono', monospace; }
 
+  /* ── ALERTA ENSO ── */
+  .enso-banner {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 0.65rem 1rem;
+    background: rgba(224,92,42,0.08);
+    border-bottom: 1px solid rgba(224,92,42,0.25);
+    font-size: 0.7rem;
+    color: var(--texto);
+    flex-wrap: wrap;
+  }
+
+  .enso-icon {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: var(--alerta);
+    box-shadow: 0 0 8px var(--alerta);
+    flex-shrink: 0;
+    animation: pulse 2s infinite;
+  }
+
+  .enso-tag {
+    font-family: 'Space Mono', monospace;
+    font-weight: 700;
+    color: var(--alerta);
+    letter-spacing: 0.06em;
+    white-space: nowrap;
+  }
+
+  .enso-text { color: var(--texto-dim); }
+  .enso-text b { color: var(--texto); font-weight: 600; }
+
+  /* ── RADAR DE RIESGO HÍDRICO ── */
+  .riesgo-card {
+    background: rgba(13,127,165,0.05);
+    border: 1px solid var(--borde);
+    border-radius: 10px;
+    padding: 0.85rem;
+    margin-bottom: 10px;
+  }
+
+  .riesgo-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+  }
+
+  .riesgo-nombre {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #fff;
+  }
+
+  .riesgo-badge {
+    font-size: 0.6rem;
+    padding: 3px 9px;
+    border-radius: 10px;
+    font-family: 'Space Mono', monospace;
+    font-weight: 700;
+    white-space: nowrap;
+  }
+
+  .riesgo-bajo {
+    background: rgba(26,158,110,0.15);
+    color: var(--verde);
+    border: 1px solid rgba(26,158,110,0.3);
+  }
+
+  .riesgo-medio {
+    background: rgba(224,170,42,0.15);
+    color: #e0aa2a;
+    border: 1px solid rgba(224,170,42,0.3);
+  }
+
+  .riesgo-alto {
+    background: rgba(224,92,42,0.15);
+    color: var(--alerta);
+    border: 1px solid rgba(224,92,42,0.3);
+  }
+
+  /* Escala de riesgo */
+  .escala {
+    position: relative;
+    height: 8px;
+    border-radius: 4px;
+    margin: 14px 0 6px;
+    background: linear-gradient(to right,
+      #e05c2a 0%,
+      #e0aa2a 25%,
+      #1a9e6e 45%,
+      #1a9e6e 65%,
+      #0d7fa5 85%,
+      #4fb8d4 100%
+    );
+  }
+
+  .escala-marcador {
+    position: absolute;
+    top: -5px;
+    width: 2px;
+    height: 18px;
+    background: #fff;
+    box-shadow: 0 0 6px rgba(255,255,255,0.8);
+    transform: translateX(-50%);
+  }
+
+  .escala-marcador::after {
+    content: '';
+    position: absolute;
+    top: -4px;
+    left: -3px;
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: #fff;
+  }
+
+  .escala-labels {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.55rem;
+    color: var(--texto-dim);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    font-family: 'Space Mono', monospace;
+  }
+
+  .riesgo-detalle {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+    font-size: 0.68rem;
+    color: var(--texto-dim);
+  }
+
+  .riesgo-detalle b {
+    color: var(--agua-claro);
+    font-family: 'Space Mono', monospace;
+  }
+
+  /* ── PANEL ENSO HISTÓRICO ── */
+  .enso-card {
+    background: rgba(224,92,42,0.04);
+    border: 1px solid rgba(224,92,42,0.2);
+    border-radius: 10px;
+    padding: 0.9rem;
+    margin-bottom: 10px;
+  }
+
+  .enso-card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 4px;
+  }
+
+  .enso-card-title {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #fff;
+  }
+
+  .enso-prob {
+    font-family: 'Space Mono', monospace;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--alerta);
+  }
+
+  .enso-card-sub {
+    font-size: 0.65rem;
+    color: var(--texto-dim);
+    margin-bottom: 12px;
+  }
+
+  .enso-historico {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+    margin-bottom: 10px;
+  }
+
+  .enso-evento {
+    background: rgba(0,0,0,0.2);
+    border-radius: 6px;
+    padding: 8px;
+    text-align: center;
+  }
+
+  .enso-evento-año {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--agua-claro);
+  }
+
+  .enso-evento-label {
+    font-size: 0.56rem;
+    color: var(--texto-dim);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-top: 2px;
+  }
+
+  .enso-evento.actual {
+    border: 1px solid rgba(224,92,42,0.4);
+    background: rgba(224,92,42,0.08);
+  }
+
+  .enso-evento.actual .enso-evento-año {
+    color: var(--alerta);
+  }
+
+  .enso-timeline {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    margin-top: 10px;
+  }
+
+  .enso-mes {
+    flex: 1;
+    text-align: center;
+    font-size: 0.55rem;
+    color: var(--texto-dim);
+    font-family: 'Space Mono', monospace;
+  }
+
+  .enso-mes-bar {
+    height: 24px;
+    border-radius: 3px;
+    margin-bottom: 4px;
+    display: flex;
+    align-items: flex-end;
+  }
+
+  .enso-mes-fill {
+    width: 100%;
+    border-radius: 3px;
+    transition: height 0.6s ease;
+  }
+
+  .enso-impacto {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    background: rgba(0,0,0,0.2);
+    border-radius: 6px;
+    padding: 8px 10px;
+    margin-top: 4px;
+    font-size: 0.66rem;
+    color: var(--texto-dim);
+    line-height: 1.5;
+  }
+
+  .enso-impacto-icon {
+    font-size: 0.9rem;
+    flex-shrink: 0;
+  }
+
   /* ── DESKTOP ── */
   @media (min-width: 768px) {
     header { padding: 1.1rem 2rem; }
@@ -433,6 +694,12 @@
     <div class="stat-value verde">NORMAL</div>
     <div class="stat-delta">Sin alertas activas</div>
   </div>
+</div>
+
+<div class="enso-banner">
+  <div class="enso-icon"></div>
+  <div class="enso-tag">EL NIÑO 2026 · IDEAM</div>
+  <div class="enso-text">90% prob. consolidación para sep-2026 — posible <b>reducción de lluvias</b> en Caribe y Andina. TINGUA monitorea el impacto en tiempo real sobre los 3 humedales.</div>
 </div>
 
 <div class="desktop-layout">
@@ -534,9 +801,142 @@
     </div>
 
     <div class="section" style="margin-top:0.5rem">
+      <div class="section-title">Radar de riesgo hídrico · ENSO 2026</div>
+
+      <div class="riesgo-card">
+        <div class="riesgo-header">
+          <div class="riesgo-nombre">Ciénaga Grande de Santa Marta</div>
+          <div class="riesgo-badge riesgo-bajo">RIESGO BAJO</div>
+        </div>
+        <div class="escala">
+          <div class="escala-marcador" style="left:61%"></div>
+        </div>
+        <div class="escala-labels">
+          <span>Sequía</span>
+          <span>Normal</span>
+          <span>Inundación</span>
+        </div>
+        <div class="riesgo-detalle">
+          <span>NDWI actual: <b>-0.015</b></span>
+          <span>Tendencia: <b>estable</b></span>
+        </div>
+      </div>
+
+      <div class="riesgo-card">
+        <div class="riesgo-header">
+          <div class="riesgo-nombre">Ciénaga de Mallorquín</div>
+          <div class="riesgo-badge riesgo-medio">VIGILAR</div>
+        </div>
+        <div class="escala">
+          <div class="escala-marcador" style="left:32%"></div>
+        </div>
+        <div class="escala-labels">
+          <span>Sequía</span>
+          <span>Normal</span>
+          <span>Inundación</span>
+        </div>
+        <div class="riesgo-detalle">
+          <span>NDWI actual: <b>-0.246</b></span>
+          <span>Tendencia: <b>monitorear</b></span>
+        </div>
+      </div>
+
+      <div class="riesgo-card">
+        <div class="riesgo-header">
+          <div class="riesgo-nombre">Ciénaga de Totumo</div>
+          <div class="riesgo-badge riesgo-bajo">RIESGO BAJO</div>
+        </div>
+        <div class="escala">
+          <div class="escala-marcador" style="left:46%"></div>
+        </div>
+        <div class="escala-labels">
+          <span>Sequía</span>
+          <span>Normal</span>
+          <span>Inundación</span>
+        </div>
+        <div class="riesgo-detalle">
+          <span>NDWI actual: <b>-0.133</b></span>
+          <span>Tendencia: <b>estable</b></span>
+        </div>
+      </div>
+
+      <div style="font-size:0.62rem;color:var(--texto-dim);line-height:1.5;margin-top:6px;padding:0 2px">
+        Escala basada en rango histórico NDWI por humedal. Con El Niño 2026 confirmado por IDEAM (90% prob. consolidación a sep-2026), se espera vigilar tendencia decreciente en próximas capturas Sentinel-2.
+      </div>
+    </div>
+
+    <div class="section" style="margin-top:0.5rem">
       <div class="section-title">Serie temporal · NDWI Ciénaga Grande</div>
       <div class="chart-container">
         <canvas id="chartNDWI"></canvas>
+      </div>
+    </div>
+
+    <div class="section" style="margin-top:0.5rem">
+      <div class="section-title">Fenómeno ENSO · Contexto histórico</div>
+
+      <div class="enso-card">
+        <div class="enso-card-header">
+          <div class="enso-card-title">El Niño 2026</div>
+          <div class="enso-prob">90%</div>
+        </div>
+        <div class="enso-card-sub">Probabilidad de consolidación para sep-2026 (IDEAM/MinAmbiente, jun-2026)</div>
+
+        <div class="enso-historico">
+          <div class="enso-evento">
+            <div class="enso-evento-año">1997</div>
+            <div class="enso-evento-label">Súper Niño</div>
+          </div>
+          <div class="enso-evento">
+            <div class="enso-evento-año">2015</div>
+            <div class="enso-evento-label">Fuerte</div>
+          </div>
+          <div class="enso-evento actual">
+            <div class="enso-evento-año">2026</div>
+            <div class="enso-evento-label">En curso</div>
+          </div>
+        </div>
+
+        <div class="enso-timeline">
+          <div class="enso-mes">
+            <div class="enso-mes-bar" style="height:24px"><div class="enso-mes-fill" style="height:40%;background:var(--agua)"></div></div>
+            ABR
+          </div>
+          <div class="enso-mes">
+            <div class="enso-mes-bar" style="height:24px"><div class="enso-mes-fill" style="height:55%;background:var(--agua)"></div></div>
+            MAY
+          </div>
+          <div class="enso-mes">
+            <div class="enso-mes-bar" style="height:24px"><div class="enso-mes-fill" style="height:65%;background:#e0aa2a"></div></div>
+            JUN
+          </div>
+          <div class="enso-mes">
+            <div class="enso-mes-bar" style="height:24px"><div class="enso-mes-fill" style="height:75%;background:#e0aa2a"></div></div>
+            JUL
+          </div>
+          <div class="enso-mes">
+            <div class="enso-mes-bar" style="height:24px"><div class="enso-mes-fill" style="height:85%;background:var(--alerta)"></div></div>
+            AGO
+          </div>
+          <div class="enso-mes">
+            <div class="enso-mes-bar" style="height:24px"><div class="enso-mes-fill" style="height:95%;background:var(--alerta)"></div></div>
+            SEP
+          </div>
+        </div>
+        <div style="font-size:0.55rem;color:var(--texto-dim);text-align:center;margin-top:2px;font-family:'Space Mono',monospace;letter-spacing:0.05em">
+          PROBABILIDAD ENSO POR MES · 2026
+        </div>
+
+        <div class="enso-impacto">
+          <div class="enso-impacto-icon">🌊</div>
+          <div>
+            En Colombia, El Niño se asocia a <b style="color:var(--texto)">reducción de lluvias</b> y aumento de temperatura, especialmente en Caribe, Andina y Pacífica — impacto directo sobre el balance hídrico de los humedales monitoreados por TINGUA. El evento 2026 podría ser uno de los más intensos desde 1950.
+          </div>
+        </div>
+      </div>
+
+      <div style="font-size:0.6rem;color:var(--texto-dim);line-height:1.5;padding:0 2px">
+        Fuente: IDEAM · Ministerio de Ambiente y Desarrollo Sostenible. TINGUA cruzará automáticamente estas alertas con la tendencia NDWI de cada humedal en próximas actualizaciones.
       </div>
     </div>
 
