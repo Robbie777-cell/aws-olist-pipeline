@@ -949,7 +949,7 @@
       <div class="riesgo-card">
         <div class="riesgo-header">
           <div class="riesgo-nombre">Ciénaga Grande de Santa Marta</div>
-          <div class="riesgo-badge riesgo-bajo">RIESGO BAJO</div>
+          <div class="riesgo-badge riesgo-medio">VIGILAR</div>
         </div>
         <div class="escala">
           <div class="escala-marcador" style="left:61%"></div>
@@ -961,7 +961,7 @@
         </div>
         <div class="riesgo-detalle">
           <span>NDWI actual: <b>-0.015</b></span>
-          <span>Tendencia: <b>estable</b></span>
+          <span>Tendencia: <b>secando (-0.29 vs hist.)</b></span>
         </div>
       </div>
 
@@ -980,14 +980,14 @@
         </div>
         <div class="riesgo-detalle">
           <span>NDWI actual: <b>-0.246</b></span>
-          <span>Tendencia: <b>monitorear</b></span>
+          <span>Tendencia: <b>secando (-0.13 vs hist.)</b></span>
         </div>
       </div>
 
       <div class="riesgo-card">
         <div class="riesgo-header">
           <div class="riesgo-nombre">Ciénaga de Totumo</div>
-          <div class="riesgo-badge riesgo-bajo">RIESGO BAJO</div>
+          <div class="riesgo-badge riesgo-medio">VIGILAR</div>
         </div>
         <div class="escala">
           <div class="escala-marcador" style="left:46%"></div>
@@ -999,12 +999,12 @@
         </div>
         <div class="riesgo-detalle">
           <span>NDWI actual: <b>-0.133</b></span>
-          <span>Tendencia: <b>estable</b></span>
+          <span>Tendencia: <b>secando (-0.20 vs hist.)</b></span>
         </div>
       </div>
 
       <div style="font-size:0.62rem;color:var(--texto-dim);line-height:1.5;margin-top:6px;padding:0 2px">
-        Escala basada en rango histórico NDWI por humedal. Con El Niño 2026 confirmado por IDEAM (90% prob. consolidación a sep-2026), se espera vigilar tendencia decreciente en próximas capturas Sentinel-2.
+        Escala basada en rango histórico NDWI por humedal. Los 3 humedales muestran tendencia de secamiento respecto a su promedio histórico de junio (GEE 2019-2025), coherente con El Niño 2026 confirmado por IDEAM. Se vigilará evolución en próximas capturas Sentinel-2.
       </div>
     </div>
 
@@ -1015,24 +1015,27 @@
       </div>
       <div style="font-size:0.58rem;color:var(--texto-dim);margin-top:6px;font-family:'Space Mono',monospace;display:flex;align-items:center;gap:6px">
         <span style="display:inline-block;width:14px;height:0;border-top:2px dashed #6a8a96"></span>
-        Promedio histórico estimado (referencia)
+        Promedio histórico real 2019-2025 (Google Earth Engine)
       </div>
     </div>
 
     <div class="section" style="margin-top:0.5rem">
       <div class="section-title">Desviación NDWI vs histórico</div>
+      <div style="font-size:0.58rem;color:var(--texto-dim);margin-bottom:8px;font-family:'Space Mono',monospace">
+        BASELINE REAL · PROMEDIO JUNIO 2019-2025 (GOOGLE EARTH ENGINE)
+      </div>
 
       <div class="desv-card">
         <div class="desv-info">
           <div class="desv-nombre">Ciénaga Grande de Santa Marta</div>
           <div class="desv-valores">
             <span>Actual: <b>-0.015</b></span>
-            <span>Histórico: <b>-0.09</b></span>
+            <span>Histórico jun: <b>0.276</b></span>
           </div>
         </div>
         <div class="desv-delta">
-          <div class="desv-delta-valor humedo">+0.075</div>
-          <div class="desv-delta-label">Más húmedo</div>
+          <div class="desv-delta-valor seco">-0.291</div>
+          <div class="desv-delta-label">Más seco</div>
         </div>
       </div>
 
@@ -1041,11 +1044,11 @@
           <div class="desv-nombre">Ciénaga de Mallorquín</div>
           <div class="desv-valores">
             <span>Actual: <b>-0.246</b></span>
-            <span>Histórico: <b>-0.18</b></span>
+            <span>Histórico jun: <b>-0.118</b></span>
           </div>
         </div>
         <div class="desv-delta">
-          <div class="desv-delta-valor seco">-0.066</div>
+          <div class="desv-delta-valor seco">-0.128</div>
           <div class="desv-delta-label">Más seco</div>
         </div>
       </div>
@@ -1055,17 +1058,17 @@
           <div class="desv-nombre">Ciénaga de Totumo</div>
           <div class="desv-valores">
             <span>Actual: <b>-0.133</b></span>
-            <span>Histórico: <b>-0.14</b></span>
+            <span>Histórico jun: <b>0.065</b></span>
           </div>
         </div>
         <div class="desv-delta">
-          <div class="desv-delta-valor normal">+0.007</div>
-          <div class="desv-delta-label">En rango normal</div>
+          <div class="desv-delta-valor seco">-0.198</div>
+          <div class="desv-delta-label">Más seco</div>
         </div>
       </div>
 
       <div style="font-size:0.6rem;color:var(--texto-dim);line-height:1.5;padding:0 2px;margin-top:4px">
-        Mallorquín muestra el mayor desvío hacia condiciones secas respecto a su histórico — coherente con el inicio de El Niño 2026. Líneas base históricas son estimaciones de referencia; se refinarán con análisis multi-año en GEE (próxima fase).
+        <b style="color:var(--alerta)">Los 3 humedales están por debajo de su promedio histórico de junio</b> — Ciénaga Grande muestra la mayor caída (-0.291). Esta señal regional de secamiento es coherente con la confirmación oficial de El Niño 2026 por el IDEAM (11-jun-2026). Baseline calculado con Sentinel-2 (2019-2025, cloud&lt;40%).
       </div>
     </div>
 
@@ -1140,11 +1143,20 @@
     <div class="section" style="margin-top:0.5rem">
       <div class="section-title">Centro de alertas</div>
 
+      <div class="alerta-item media">
+        <div class="alerta-icon">⚠️</div>
+        <div class="alerta-content">
+          <div class="alerta-titulo">Alerta regional — Tendencia de secamiento</div>
+          <div class="alerta-desc">Los 3 humedales muestran NDWI por debajo de su promedio histórico de junio (2019-2025), coherente con el inicio de El Niño 2026 confirmado por IDEAM.</div>
+          <div class="alerta-umbral">Basado en baseline real GEE · Cienaga Grande: -0.291 vs histórico</div>
+        </div>
+      </div>
+
       <div class="alerta-item">
         <div class="alerta-icon">✅</div>
         <div class="alerta-content">
-          <div class="alerta-titulo">Ciénaga Grande de Santa Marta — Sin alertas</div>
-          <div class="alerta-desc">NDWI dentro de rango normal. Última lectura: -0.015 (01-jun-2026)</div>
+          <div class="alerta-titulo">Ciénaga Grande de Santa Marta — Dentro de umbral</div>
+          <div class="alerta-desc">NDWI: -0.015 (01-jun-2026). Aún dentro del umbral de sequía, pero -0.291 por debajo de su histórico de junio.</div>
           <div class="alerta-umbral">Umbral sequía: NDWI &lt; -0.30</div>
         </div>
       </div>
@@ -1153,7 +1165,7 @@
         <div class="alerta-icon">👁️</div>
         <div class="alerta-content">
           <div class="alerta-titulo">Ciénaga de Mallorquín — Vigilancia activa</div>
-          <div class="alerta-desc">NDWI más bajo de los 3 humedales (-0.246). Cercano a zona de vigilancia ante El Niño 2026.</div>
+          <div class="alerta-desc">NDWI más bajo de los 3 humedales (-0.246). -0.128 por debajo de su histórico de junio (-0.118).</div>
           <div class="alerta-umbral">Umbral vigilancia: NDWI &lt; -0.25 · Umbral sequía: NDWI &lt; -0.35</div>
         </div>
       </div>
@@ -1161,8 +1173,8 @@
       <div class="alerta-item">
         <div class="alerta-icon">✅</div>
         <div class="alerta-content">
-          <div class="alerta-titulo">Ciénaga de Totumo — Sin alertas</div>
-          <div class="alerta-desc">NDWI estable (-0.133). Volcán de lodo activo monitoreado sin anomalías hídricas.</div>
+          <div class="alerta-titulo">Ciénaga de Totumo — Dentro de umbral</div>
+          <div class="alerta-desc">NDWI: -0.133. Volcán de lodo activo sin anomalías. -0.198 por debajo de su histórico de junio (0.065).</div>
           <div class="alerta-umbral">Umbral sequía: NDWI &lt; -0.30</div>
         </div>
       </div>
@@ -1276,7 +1288,7 @@ new Chart(ctx, {
     datasets: [
       { label:'NDWI', data:[-0.08,-0.12,-0.05,-0.02,-0.18,-0.015], borderColor:'#0d7fa5', backgroundColor:'rgba(13,127,165,0.1)', borderWidth:2, pointBackgroundColor:'#0d7fa5', pointRadius:3, tension:0.4, fill:true },
       { label:'NDVI', data:[0.14,0.11,0.18,0.20,0.15,0.169], borderColor:'#1a9e6e', backgroundColor:'rgba(26,158,110,0.08)', borderWidth:2, pointBackgroundColor:'#1a9e6e', pointRadius:3, tension:0.4, fill:true },
-      { label:'NDWI histórico', data:[-0.09,-0.10,-0.09,-0.08,-0.09,-0.09], borderColor:'#6a8a96', borderWidth:1.5, borderDash:[5,4], pointRadius:0, tension:0.3, fill:false }
+      { label:'NDWI histórico (2019-25)', data:[0.412,0.375,0.374,0.344,0.345,0.276], borderColor:'#6a8a96', borderWidth:1.5, borderDash:[5,4], pointRadius:0, tension:0.3, fill:false }
     ]
   },
   options: {
