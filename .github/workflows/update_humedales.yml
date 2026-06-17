@@ -1,0 +1,40 @@
+﻿name: Actualizar datos NDWI humedales
+
+on:
+  schedule:
+    - cron: '0 8 * * 1'
+  workflow_dispatch:
+
+permissions:
+  id-token: write
+  contents: write
+
+jobs:
+  actualizar-humedales:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - id: auth
+        uses: google-github-actions/auth@v2
+        with:
+          workload_identity_provider: ${{ secrets.GEE_WORKLOAD_IDENTITY_PROVIDER }}
+          service_account: ${{ secrets.GEE_SERVICE_ACCOUNT }}
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Instalar dependencias
+        run: pip install earthengine-api
+
+      - name: Ejecutar calibracion
+        run: python scripts/calibrar_trimestre.py
+
+      - name: Commit resultados
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add docs/data/humedales.json
+          git diff --staged --quiet || git commit -m "auto: actualizar NDWI humedales $(date +%Y-%m-%d)"
+          git push
