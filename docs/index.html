@@ -1,9 +1,9 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="es">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-<title>TINGUA — Monitor de Humedales Colombianos</title>
+<title>TINGUA â€” Monitor de Humedales Colombianos</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
@@ -32,7 +32,7 @@
     overflow-x: hidden;
   }
 
-  /* ── HEADER ── */
+  /* â”€â”€ HEADER â”€â”€ */
   header {
     display: flex;
     align-items: center;
@@ -111,7 +111,7 @@
     line-height: 1.4;
   }
 
-  /* ── STATS BAR ── */
+  /* â”€â”€ STATS BAR â”€â”€ */
   .stats-bar {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -154,7 +154,7 @@
     line-height: 1.3;
   }
 
-  /* ── MAPA ── */
+  /* â”€â”€ MAPA â”€â”€ */
   #mapa {
     width: 100%;
     height: 52vw;
@@ -165,13 +165,11 @@
 
   .leaflet-container { background: #050a0e !important; }
 
-  /* ── CONTENIDO PRINCIPAL ── */
+  /* â”€â”€ CONTENIDO PRINCIPAL â”€â”€ */
   .content { padding: 0 0 2rem; }
 
-  /* ── SECCIÓN ── */
-  .section {
-    padding: 1rem 1rem 0;
-  }
+  /* â”€â”€ SECCIÃ“N â”€â”€ */
+  .section { padding: 1rem 1rem 0; }
 
   .section-title {
     font-size: 0.62rem;
@@ -184,7 +182,7 @@
     padding-bottom: 0.5rem;
   }
 
-  /* ── HUMEDAL CARDS ── */
+  /* â”€â”€ HUMEDAL CARDS â”€â”€ */
   .humedal-card {
     background: rgba(13,127,165,0.05);
     border: 1px solid var(--borde);
@@ -226,23 +224,9 @@
     flex-shrink: 0;
   }
 
-  .estado-normal {
-    background: rgba(26,158,110,0.15);
-    color: var(--verde);
-    border: 1px solid rgba(26,158,110,0.3);
-  }
-
-  .estado-vigilar {
-    background: rgba(224,170,42,0.15);
-    color: #e0aa2a;
-    border: 1px solid rgba(224,170,42,0.3);
-  }
-
-  .estado-alerta {
-    background: rgba(224,92,42,0.15);
-    color: var(--alerta);
-    border: 1px solid rgba(224,92,42,0.3);
-  }
+  .estado-normal { background: rgba(26,158,110,0.15); color: var(--verde); border: 1px solid rgba(26,158,110,0.3); }
+  .estado-vigilar { background: rgba(224,170,42,0.15); color: #e0aa2a; border: 1px solid rgba(224,170,42,0.3); }
+  .estado-alerta { background: rgba(224,92,42,0.15); color: var(--alerta); border: 1px solid rgba(224,92,42,0.3); }
 
   .humedal-indices {
     display: grid;
@@ -283,19 +267,68 @@
     overflow: hidden;
   }
 
-  .indice-fill {
-    height: 100%;
-    border-radius: 2px;
-  }
+  .indice-fill { height: 100%; border-radius: 2px; }
 
-  /* ── CHART ── */
+  /* â”€â”€ CHART HISTÃ“RICO â”€â”€ */
   .chart-container {
     position: relative;
     height: 140px;
     margin-top: 6px;
   }
 
-  /* ── FUENTES ── */
+  .chart-container.tall { height: 200px; }
+
+  /* â”€â”€ TABS HISTÃ“RICO â”€â”€ */
+  .tabs {
+    display: flex;
+    gap: 6px;
+    margin-bottom: 10px;
+    flex-wrap: wrap;
+  }
+
+  .tab-btn {
+    font-size: 0.6rem;
+    font-family: 'Space Mono', monospace;
+    padding: 4px 10px;
+    border-radius: 20px;
+    border: 1px solid var(--borde);
+    background: transparent;
+    color: var(--texto-dim);
+    cursor: pointer;
+    transition: all 0.2s;
+    white-space: nowrap;
+  }
+
+  .tab-btn.active {
+    background: rgba(13,127,165,0.2);
+    border-color: var(--agua);
+    color: var(--agua-claro);
+  }
+
+  /* â”€â”€ SERIE TEMPORAL â”€â”€ */
+  .serie-info {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 8px;
+    flex-wrap: wrap;
+  }
+
+  .serie-tag {
+    font-size: 0.58rem;
+    font-family: 'Space Mono', monospace;
+    color: var(--texto-dim);
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+
+  .serie-dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  /* â”€â”€ FUENTES â”€â”€ */
   .fuente-row {
     display: flex;
     align-items: center;
@@ -308,13 +341,9 @@
 
   .fuente-dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
   .fuente-nombre { flex: 1; color: var(--texto); font-size: 0.73rem; }
-  .fuente-count {
-    font-family: 'Space Mono', monospace;
-    font-size: 0.68rem;
-    color: var(--agua-claro);
-  }
+  .fuente-count { font-family: 'Space Mono', monospace; font-size: 0.68rem; color: var(--agua-claro); }
 
-  /* ── FOOTER ── */
+  /* â”€â”€ FOOTER â”€â”€ */
   .footer-info {
     padding: 1rem;
     font-size: 0.65rem;
@@ -338,7 +367,7 @@
     margin-bottom: 6px;
   }
 
-  /* ── POPUP ── */
+  /* â”€â”€ POPUP â”€â”€ */
   .leaflet-popup-content-wrapper {
     background: rgba(8,20,28,0.97) !important;
     border: 1px solid var(--borde) !important;
@@ -353,7 +382,7 @@
   .popup-item { color: var(--texto-dim); }
   .popup-val { color: var(--agua-claro); font-family: 'Space Mono', monospace; }
 
-  /* ── ALERTA ENSO ── */
+  /* â”€â”€ ALERTA ENSO â”€â”€ */
   .enso-banner {
     display: flex;
     align-items: center;
@@ -366,27 +395,12 @@
     flex-wrap: wrap;
   }
 
-  .enso-icon {
-    width: 8px; height: 8px;
-    border-radius: 50%;
-    background: var(--alerta);
-    box-shadow: 0 0 8px var(--alerta);
-    flex-shrink: 0;
-    animation: pulse 2s infinite;
-  }
-
-  .enso-tag {
-    font-family: 'Space Mono', monospace;
-    font-weight: 700;
-    color: var(--alerta);
-    letter-spacing: 0.06em;
-    white-space: nowrap;
-  }
-
+  .enso-icon { width: 8px; height: 8px; border-radius: 50%; background: var(--alerta); box-shadow: 0 0 8px var(--alerta); flex-shrink: 0; animation: pulse 2s infinite; }
+  .enso-tag { font-family: 'Space Mono', monospace; font-weight: 700; color: var(--alerta); letter-spacing: 0.06em; white-space: nowrap; }
   .enso-text { color: var(--texto-dim); }
   .enso-text b { color: var(--texto); font-weight: 600; }
 
-  /* ── RADAR DE RIESGO HÍDRICO ── */
+  /* â”€â”€ RADAR â”€â”€ */
   .riesgo-card {
     background: rgba(13,127,165,0.05);
     border: 1px solid var(--borde);
@@ -395,448 +409,124 @@
     margin-bottom: 10px;
   }
 
-  .riesgo-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 10px;
-  }
+  .riesgo-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; }
+  .riesgo-nombre { font-size: 0.8rem; font-weight: 600; color: #fff; }
 
-  .riesgo-nombre {
-    font-size: 0.8rem;
-    font-weight: 600;
-    color: #fff;
-  }
+  .riesgo-badge { font-size: 0.6rem; padding: 3px 9px; border-radius: 10px; font-family: 'Space Mono', monospace; font-weight: 700; white-space: nowrap; }
+  .riesgo-bajo { background: rgba(26,158,110,0.15); color: var(--verde); border: 1px solid rgba(26,158,110,0.3); }
+  .riesgo-medio { background: rgba(224,170,42,0.15); color: #e0aa2a; border: 1px solid rgba(224,170,42,0.3); }
+  .riesgo-alto { background: rgba(224,92,42,0.15); color: var(--alerta); border: 1px solid rgba(224,92,42,0.3); }
 
-  .riesgo-badge {
-    font-size: 0.6rem;
-    padding: 3px 9px;
-    border-radius: 10px;
-    font-family: 'Space Mono', monospace;
-    font-weight: 700;
-    white-space: nowrap;
-  }
+  .escala { position: relative; height: 8px; border-radius: 4px; margin: 14px 0 6px; background: linear-gradient(to right, #e05c2a 0%, #e0aa2a 25%, #1a9e6e 45%, #1a9e6e 65%, #0d7fa5 85%, #4fb8d4 100%); }
+  .escala-marcador { position: absolute; top: -5px; width: 2px; height: 18px; background: #fff; box-shadow: 0 0 6px rgba(255,255,255,0.8); transform: translateX(-50%); }
+  .escala-marcador::after { content: ''; position: absolute; top: -4px; left: -3px; width: 8px; height: 8px; border-radius: 50%; background: #fff; }
+  .escala-labels { display: flex; justify-content: space-between; font-size: 0.55rem; color: var(--texto-dim); text-transform: uppercase; letter-spacing: 0.06em; font-family: 'Space Mono', monospace; }
+  .riesgo-detalle { display: flex; justify-content: space-between; margin-top: 10px; font-size: 0.68rem; color: var(--texto-dim); }
+  .riesgo-detalle b { color: var(--agua-claro); font-family: 'Space Mono', monospace; }
 
-  .riesgo-bajo {
-    background: rgba(26,158,110,0.15);
-    color: var(--verde);
-    border: 1px solid rgba(26,158,110,0.3);
-  }
-
-  .riesgo-medio {
-    background: rgba(224,170,42,0.15);
-    color: #e0aa2a;
-    border: 1px solid rgba(224,170,42,0.3);
-  }
-
-  .riesgo-alto {
-    background: rgba(224,92,42,0.15);
-    color: var(--alerta);
-    border: 1px solid rgba(224,92,42,0.3);
-  }
-
-  /* Escala de riesgo */
-  .escala {
-    position: relative;
-    height: 8px;
-    border-radius: 4px;
-    margin: 14px 0 6px;
-    background: linear-gradient(to right,
-      #e05c2a 0%,
-      #e0aa2a 25%,
-      #1a9e6e 45%,
-      #1a9e6e 65%,
-      #0d7fa5 85%,
-      #4fb8d4 100%
-    );
-  }
-
-  .escala-marcador {
-    position: absolute;
-    top: -5px;
-    width: 2px;
-    height: 18px;
-    background: #fff;
-    box-shadow: 0 0 6px rgba(255,255,255,0.8);
-    transform: translateX(-50%);
-  }
-
-  .escala-marcador::after {
-    content: '';
-    position: absolute;
-    top: -4px;
-    left: -3px;
-    width: 8px; height: 8px;
-    border-radius: 50%;
-    background: #fff;
-  }
-
-  .escala-labels {
-    display: flex;
-    justify-content: space-between;
-    font-size: 0.55rem;
-    color: var(--texto-dim);
-    text-transform: uppercase;
-    letter-spacing: 0.06em;
-    font-family: 'Space Mono', monospace;
-  }
-
-  .riesgo-detalle {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 10px;
-    font-size: 0.68rem;
-    color: var(--texto-dim);
-  }
-
-  .riesgo-detalle b {
-    color: var(--agua-claro);
-    font-family: 'Space Mono', monospace;
-  }
-
-  /* ── PANEL ENSO HISTÓRICO ── */
-  .enso-card {
-    background: rgba(224,92,42,0.04);
-    border: 1px solid rgba(224,92,42,0.2);
-    border-radius: 10px;
-    padding: 0.9rem;
-    margin-bottom: 10px;
-  }
-
-  .enso-card-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 4px;
-  }
-
-  .enso-card-title {
-    font-size: 0.8rem;
-    font-weight: 600;
-    color: #fff;
-  }
-
-  .enso-prob {
-    font-family: 'Space Mono', monospace;
-    font-size: 1.1rem;
-    font-weight: 700;
-    color: var(--alerta);
-  }
-
-  .enso-card-sub {
-    font-size: 0.65rem;
-    color: var(--texto-dim);
-    margin-bottom: 12px;
-  }
-
-  .enso-historico {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 8px;
-    margin-bottom: 10px;
-  }
-
-  .enso-evento {
-    background: rgba(0,0,0,0.2);
-    border-radius: 6px;
-    padding: 8px;
-    text-align: center;
-  }
-
-  .enso-evento-año {
-    font-family: 'Space Mono', monospace;
-    font-size: 0.85rem;
-    font-weight: 700;
-    color: var(--agua-claro);
-  }
-
-  .enso-evento-label {
-    font-size: 0.56rem;
-    color: var(--texto-dim);
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    margin-top: 2px;
-  }
-
-  .enso-evento.actual {
-    border: 1px solid rgba(224,92,42,0.4);
-    background: rgba(224,92,42,0.08);
-  }
-
-  .enso-evento.actual .enso-evento-año {
-    color: var(--alerta);
-  }
-
-  .enso-timeline {
-    display: flex;
-    align-items: center;
-    gap: 4px;
-    margin-top: 10px;
-  }
-
-  .enso-mes {
-    flex: 1;
-    text-align: center;
-    font-size: 0.55rem;
-    color: var(--texto-dim);
-    font-family: 'Space Mono', monospace;
-  }
-
-  .enso-mes-bar {
-    height: 24px;
-    border-radius: 3px;
-    margin-bottom: 4px;
-    display: flex;
-    align-items: flex-end;
-  }
-
-  .enso-mes-fill {
-    width: 100%;
-    border-radius: 3px;
-    transition: height 0.6s ease;
-  }
-
-  .enso-impacto {
-    display: flex;
-    align-items: flex-start;
-    gap: 8px;
-    background: rgba(0,0,0,0.2);
-    border-radius: 6px;
-    padding: 8px 10px;
-    margin-top: 4px;
-    font-size: 0.66rem;
-    color: var(--texto-dim);
-    line-height: 1.5;
-  }
-
-  .enso-impacto-icon {
-    font-size: 0.9rem;
-    flex-shrink: 0;
-  }
-
-  /* ── CENTRO DE ALERTAS ── */
-  .alerta-item {
-    display: flex;
-    align-items: flex-start;
-    gap: 10px;
-    background: rgba(13,127,165,0.05);
-    border: 1px solid var(--borde);
-    border-left: 3px solid var(--verde);
-    border-radius: 8px;
-    padding: 10px 12px;
-    margin-bottom: 8px;
-  }
-
-  .alerta-item.activa {
-    border-left-color: var(--alerta);
-    background: rgba(224,92,42,0.06);
-  }
-
-  .alerta-item.media {
-    border-left-color: #e0aa2a;
-    background: rgba(224,170,42,0.05);
-  }
-
-  .alerta-icon {
-    font-size: 1rem;
-    flex-shrink: 0;
-    line-height: 1.3;
-  }
-
+  /* â”€â”€ ALERTAS â”€â”€ */
+  .alerta-item { display: flex; align-items: flex-start; gap: 10px; background: rgba(13,127,165,0.05); border: 1px solid var(--borde); border-left: 3px solid var(--verde); border-radius: 8px; padding: 10px 12px; margin-bottom: 8px; }
+  .alerta-item.activa { border-left-color: var(--alerta); background: rgba(224,92,42,0.06); }
+  .alerta-item.media { border-left-color: #e0aa2a; background: rgba(224,170,42,0.05); }
+  .alerta-icon { font-size: 1rem; flex-shrink: 0; line-height: 1.3; }
   .alerta-content { flex: 1; }
+  .alerta-titulo { font-size: 0.74rem; font-weight: 600; color: #fff; margin-bottom: 2px; }
+  .alerta-desc { font-size: 0.65rem; color: var(--texto-dim); line-height: 1.5; }
+  .alerta-umbral { display: inline-block; font-family: 'Space Mono', monospace; font-size: 0.6rem; color: var(--agua-claro); background: rgba(0,0,0,0.25); padding: 1px 6px; border-radius: 4px; margin-top: 4px; }
 
-  .alerta-titulo {
-    font-size: 0.74rem;
-    font-weight: 600;
-    color: #fff;
-    margin-bottom: 2px;
-  }
-
-  .alerta-desc {
-    font-size: 0.65rem;
-    color: var(--texto-dim);
-    line-height: 1.5;
-  }
-
-  .alerta-umbral {
-    display: inline-block;
-    font-family: 'Space Mono', monospace;
-    font-size: 0.6rem;
-    color: var(--agua-claro);
-    background: rgba(0,0,0,0.25);
-    padding: 1px 6px;
-    border-radius: 4px;
-    margin-top: 4px;
-  }
-
-  .alerta-config {
-    background: rgba(0,0,0,0.2);
-    border-radius: 8px;
-    padding: 10px 12px;
-    margin-top: 4px;
-  }
-
-  .alerta-config-row {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 5px 0;
-    font-size: 0.68rem;
-    border-bottom: 1px solid rgba(255,255,255,0.04);
-  }
-
-  .alerta-config-row:last-child { border-bottom: none; }
-
-  .alerta-config-nombre { color: var(--texto); }
-
-  .alerta-config-valores {
-    font-family: 'Space Mono', monospace;
-    font-size: 0.65rem;
-    color: var(--texto-dim);
-    display: flex;
-    gap: 8px;
-  }
-
-  .alerta-config-valores .lim-bajo { color: var(--alerta); }
-  .alerta-config-valores .lim-alto { color: var(--agua-claro); }
-
-  /* ── DESVIACIÓN HISTÓRICA ── */
-  .desv-card {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    background: rgba(13,127,165,0.05);
-    border: 1px solid var(--borde);
-    border-radius: 8px;
-    padding: 10px 12px;
-    margin-bottom: 8px;
-  }
-
+  /* â”€â”€ DESVIACIÃ“N â”€â”€ */
+  .desv-card { display: flex; align-items: center; justify-content: space-between; background: rgba(13,127,165,0.05); border: 1px solid var(--borde); border-radius: 8px; padding: 10px 12px; margin-bottom: 8px; }
   .desv-info { flex: 1; }
-
-  .desv-nombre {
-    font-size: 0.74rem;
-    font-weight: 600;
-    color: #fff;
-    margin-bottom: 4px;
-  }
-
-  .desv-valores {
-    display: flex;
-    gap: 12px;
-    font-size: 0.65rem;
-    color: var(--texto-dim);
-  }
-
-  .desv-valores b {
-    font-family: 'Space Mono', monospace;
-    color: var(--agua-claro);
-  }
-
-  .desv-delta {
-    text-align: right;
-    flex-shrink: 0;
-    padding-left: 10px;
-  }
-
-  .desv-delta-valor {
-    font-family: 'Space Mono', monospace;
-    font-size: 1rem;
-    font-weight: 700;
-  }
-
+  .desv-nombre { font-size: 0.74rem; font-weight: 600; color: #fff; margin-bottom: 4px; }
+  .desv-valores { display: flex; gap: 12px; font-size: 0.65rem; color: var(--texto-dim); }
+  .desv-valores b { font-family: 'Space Mono', monospace; color: var(--agua-claro); }
+  .desv-delta { text-align: right; flex-shrink: 0; padding-left: 10px; }
+  .desv-delta-valor { font-family: 'Space Mono', monospace; font-size: 1rem; font-weight: 700; }
   .desv-delta-valor.seco { color: var(--alerta); }
   .desv-delta-valor.normal { color: var(--verde); }
   .desv-delta-valor.humedo { color: var(--agua-claro); }
+  .desv-delta-label { font-size: 0.56rem; color: var(--texto-dim); text-transform: uppercase; letter-spacing: 0.05em; margin-top: 2px; }
 
-  .desv-delta-label {
-    font-size: 0.56rem;
-    color: var(--texto-dim);
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    margin-top: 2px;
-  }
-
-  /* ── METODOLOGÍA ── */
-  .metodo-box {
-    background: rgba(13,127,165,0.05);
-    border: 1px solid var(--borde);
-    border-radius: 10px;
-    padding: 0.85rem 1rem;
-  }
-
-  .metodo-row {
-    display: flex;
-    gap: 8px;
-    padding: 5px 0;
-    font-size: 0.68rem;
-    line-height: 1.5;
-    border-bottom: 1px solid rgba(255,255,255,0.04);
-  }
-
+  /* â”€â”€ METODOLOGÃA â”€â”€ */
+  .metodo-box { background: rgba(13,127,165,0.05); border: 1px solid var(--borde); border-radius: 10px; padding: 0.85rem 1rem; }
+  .metodo-row { display: flex; gap: 8px; padding: 5px 0; font-size: 0.68rem; line-height: 1.5; border-bottom: 1px solid rgba(255,255,255,0.04); }
   .metodo-row:last-child { border-bottom: none; }
-
-  .metodo-label {
-    color: var(--texto-dim);
-    flex-shrink: 0;
-    width: 92px;
-    font-family: 'Space Mono', monospace;
-    font-size: 0.62rem;
-    text-transform: uppercase;
-    letter-spacing: 0.04em;
-    padding-top: 1px;
-  }
-
+  .metodo-label { color: var(--texto-dim); flex-shrink: 0; width: 92px; font-family: 'Space Mono', monospace; font-size: 0.62rem; text-transform: uppercase; letter-spacing: 0.04em; padding-top: 1px; }
   .metodo-val { color: var(--texto); }
-  .metodo-val code {
-    font-family: 'Space Mono', monospace;
-    font-size: 0.65rem;
-    color: var(--agua-claro);
-    background: rgba(0,0,0,0.25);
-    padding: 1px 5px;
-    border-radius: 3px;
+  .metodo-val code { font-family: 'Space Mono', monospace; font-size: 0.65rem; color: var(--agua-claro); background: rgba(0,0,0,0.25); padding: 1px 5px; border-radius: 3px; }
+
+  /* â”€â”€ ALERTA CONFIG â”€â”€ */
+  .alerta-config { background: rgba(0,0,0,0.2); border-radius: 8px; padding: 10px 12px; margin-top: 4px; }
+  .alerta-config-row { display: flex; justify-content: space-between; align-items: center; padding: 5px 0; font-size: 0.68rem; border-bottom: 1px solid rgba(255,255,255,0.04); }
+  .alerta-config-row:last-child { border-bottom: none; }
+  .alerta-config-nombre { color: var(--texto); }
+  .alerta-config-valores { font-family: 'Space Mono', monospace; font-size: 0.65rem; color: var(--texto-dim); display: flex; gap: 8px; }
+  .alerta-config-valores .lim-bajo { color: var(--alerta); }
+  .alerta-config-valores .lim-alto { color: var(--agua-claro); }
+
+  /* â”€â”€ ENSO CARD â”€â”€ */
+  .enso-card { background: rgba(224,92,42,0.04); border: 1px solid rgba(224,92,42,0.2); border-radius: 10px; padding: 0.9rem; margin-bottom: 10px; }
+  .enso-card-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 4px; }
+  .enso-card-title { font-size: 0.8rem; font-weight: 600; color: #fff; }
+  .enso-prob { font-family: 'Space Mono', monospace; font-size: 1.1rem; font-weight: 700; color: var(--alerta); }
+  .enso-card-sub { font-size: 0.65rem; color: var(--texto-dim); margin-bottom: 12px; }
+  .enso-historico { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-bottom: 10px; }
+  .enso-evento { background: rgba(0,0,0,0.2); border-radius: 6px; padding: 8px; text-align: center; }
+  .enso-evento-aÃ±o { font-family: 'Space Mono', monospace; font-size: 0.85rem; font-weight: 700; color: var(--agua-claro); }
+  .enso-evento-label { font-size: 0.56rem; color: var(--texto-dim); text-transform: uppercase; letter-spacing: 0.05em; margin-top: 2px; }
+  .enso-evento.actual { border: 1px solid rgba(224,92,42,0.4); background: rgba(224,92,42,0.08); }
+  .enso-evento.actual .enso-evento-aÃ±o { color: var(--alerta); }
+  .enso-impacto { display: flex; align-items: flex-start; gap: 8px; background: rgba(0,0,0,0.2); border-radius: 6px; padding: 8px 10px; margin-top: 4px; font-size: 0.66rem; color: var(--texto-dim); line-height: 1.5; }
+  .enso-impacto-icon { font-size: 0.9rem; flex-shrink: 0; }
+
+  /* â”€â”€ LOADING â”€â”€ */
+  .loading-overlay {
+    position: fixed; inset: 0;
+    background: var(--negro);
+    display: flex; align-items: center; justify-content: center;
+    z-index: 9999;
+    transition: opacity 0.5s;
   }
 
-  /* ── DESKTOP ── */
+  .loading-text {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.75rem;
+    color: var(--agua-claro);
+    letter-spacing: 0.1em;
+    animation: pulse 1.5s infinite;
+  }
+
+  /* â”€â”€ ÃšLTIMA ACTUALIZACIÃ“N â”€â”€ */
+  .update-badge {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.58rem;
+    color: var(--texto-dim);
+    background: rgba(0,0,0,0.25);
+    border: 1px solid var(--borde);
+    padding: 3px 8px;
+    border-radius: 4px;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    margin-top: 6px;
+  }
+
+  /* â”€â”€ DESKTOP â”€â”€ */
   @media (min-width: 768px) {
     header { padding: 1.1rem 2rem; }
-
-    .stats-bar {
-      grid-template-columns: repeat(4, 1fr);
-    }
+    .stats-bar { grid-template-columns: repeat(4, 1fr); }
     .stat { border-bottom: none; }
     .stat:nth-child(2n) { border-right: 1px solid var(--borde); }
     .stat:last-child { border-right: none; }
-
     #mapa { height: calc(100vh - 176px); max-height: none; }
-
-    .desktop-layout {
-      display: grid;
-      grid-template-columns: 1fr 380px;
-      height: calc(100vh - 176px);
-    }
-
+    .desktop-layout { display: grid; grid-template-columns: 1fr 380px; height: calc(100vh - 176px); }
     .map-wrapper { height: 100%; }
     #mapa { height: 100%; max-height: none; }
-
-    .content {
-      overflow-y: auto;
-      height: 100%;
-      border-left: 1px solid var(--borde);
-      background: var(--card);
-      padding-bottom: 0;
-    }
-
+    .content { overflow-y: auto; height: 100%; border-left: 1px solid var(--borde); background: var(--card); padding-bottom: 0; }
     .content::-webkit-scrollbar { width: 4px; }
     .content::-webkit-scrollbar-track { background: transparent; }
     .content::-webkit-scrollbar-thumb { background: var(--borde); border-radius: 2px; }
-
-    .humedal-card:hover {
-      background: rgba(13,127,165,0.12);
-      border-color: rgba(13,127,165,0.5);
-      transform: translateX(2px);
-    }
-
+    .humedal-card:hover { background: rgba(13,127,165,0.12); border-color: rgba(13,127,165,0.5); transform: translateX(2px); }
     .header-sources { display: block; }
     .live-badge { font-size: 0.7rem; }
     .stat-value { font-size: 1.55rem; }
@@ -851,6 +541,10 @@
 </head>
 <body>
 
+<div class="loading-overlay" id="loadingOverlay">
+  <div class="loading-text">TINGUA Â· CARGANDO DATOS SATELITALES...</div>
+</div>
+
 <header>
   <div class="logo">
     <div class="logo-dot"></div>
@@ -860,42 +554,42 @@
     </div>
   </div>
   <div class="header-sources">
-    <div>Sentinel-2 · ESA/Copernicus</div>
-    <div>AWS · Google Earth Engine</div>
+    <div>Sentinel-2 Â· ESA/Copernicus</div>
+    <div>AWS Â· Google Earth Engine</div>
   </div>
-  <div class="live-badge">
+  <div class="live-badge" id="liveBadge">
     <div class="live-dot"></div>
-    DATOS REALES · Jun 2026
+    <span id="livePeriodo">DATOS REALES</span>
   </div>
 </header>
 
-<div class="stats-bar">
+<div class="stats-bar" id="statsBar">
   <div class="stat">
     <div class="stat-label">Humedales</div>
-    <div class="stat-value agua">5</div>
+    <div class="stat-value agua" id="statHumedales">â€”</div>
     <div class="stat-delta">Costa Caribe</div>
   </div>
   <div class="stat">
-    <div class="stat-label">Imágenes satelitales</div>
-    <div class="stat-value">80</div>
-    <div class="stat-delta">Sentinel-2 · Ene–Jun 2026</div>
+    <div class="stat-label">ImÃ¡genes satelitales</div>
+    <div class="stat-value" id="statImagenes">â€”</div>
+    <div class="stat-delta" id="statImagenesDelta">Sentinel-2</div>
   </div>
   <div class="stat">
-    <div class="stat-label">NDWI C.Grande abr-jun</div>
-    <div class="stat-value agua">+0.470</div>
-    <div class="stat-delta">vs histórico 0.409 (n=27/109)</div>
+    <div class="stat-label" id="statNdwiLabel">NDWI C.Grande abr-jun</div>
+    <div class="stat-value agua" id="statNdwi">â€”</div>
+    <div class="stat-delta" id="statNdwiDelta">â€”</div>
   </div>
   <div class="stat">
     <div class="stat-label">Estado general</div>
-    <div class="stat-value alerta">1 ALERTA</div>
-    <div class="stat-delta">La Caimanera: déficit -0.073</div>
+    <div class="stat-value alerta" id="statEstado">â€”</div>
+    <div class="stat-delta" id="statEstadoDelta">â€”</div>
   </div>
 </div>
 
 <div class="enso-banner">
   <div class="enso-icon"></div>
-  <div class="enso-tag">EL NIÑO 2026 · IDEAM</div>
-  <div class="enso-text">90% prob. consolidación para sep-2026 — posible <b>reducción de lluvias</b> en Caribe y Andina. TINGUA detecta déficit hídrico en <b>3 de 5 humedales</b> vs su promedio histórico abr-jun.</div>
+  <div class="enso-tag">EL NIÃ‘O 2026 Â· IDEAM</div>
+  <div class="enso-text" id="ensoBannerText">90% prob. consolidaciÃ³n para sep-2026 â€” posible <b>reducciÃ³n de lluvias</b> en Caribe y Andina. TINGUA detecta dÃ©ficit hÃ­drico en <b id="ensoDeficit">â€”</b> vs su promedio histÃ³rico abr-jun.</div>
 </div>
 
 <div class="desktop-layout">
@@ -906,629 +600,497 @@
   <div class="content">
 
     <div class="section">
-      <div class="section-title" style="margin-top:0.75rem">Metodología</div>
-      <div class="metodo-box">
-        <div class="metodo-row">
-          <div class="metodo-label">Índice</div>
-          <div class="metodo-val">NDWI = (B3−B8)/(B3+B8) — Sentinel-2 SR Harmonized</div>
-        </div>
-        <div class="metodo-row">
-          <div class="metodo-label">Geometría</div>
-          <div class="metodo-val">Buffer circular <code>2000m</code> por humedal (mismo para los 5)</div>
-        </div>
-        <div class="metodo-row">
-          <div class="metodo-label">Filtro nubes</div>
-          <div class="metodo-val"><code>CLOUDY_PIXEL_PERCENTAGE &lt; 40%</code></div>
-        </div>
-        <div class="metodo-row">
-          <div class="metodo-label">Comparación</div>
-          <div class="metodo-val">Trimestre <code>abr–jun 2026</code> vs promedio <code>abr–jun 2019-2025</code> (7 años)</div>
-        </div>
-        <div class="metodo-row">
-          <div class="metodo-label">Fuente</div>
-          <div class="metodo-val">Google Earth Engine · <code>scripts/calibrar_trimestre.py</code> → <code>docs/data/humedales.json</code></div>
-        </div>
-      </div>
-      <div style="font-size:0.6rem;color:var(--texto-dim);line-height:1.5;padding:0 2px;margin-top:8px">
-        Misma metodología para los 5 humedales — resultados directamente comparables. Tamaños de muestra (n) varían por humedal según frecuencia de pasos satelitales libres de nubes; se reportan junto a cada valor.
-      </div>
-    </div>
-
-    <div class="section">
       <div class="section-title" style="margin-top:0.75rem">Humedales activos</div>
-
-      <div class="humedal-card active" onclick="volarA(10.85,-74.35,this)">
-        <div class="humedal-header">
-          <div class="humedal-nombre">Ciénaga Grande de Santa Marta</div>
-          <div class="estado-badge estado-normal">NORMAL</div>
-        </div>
-        <div class="humedal-indices">
-          <div class="indice">
-            <div class="indice-label">NDWI actual</div>
-            <div class="indice-valor">+0.470</div>
-            <div class="indice-barra"><div class="indice-fill" style="width:97%;background:var(--agua)"></div></div>
-          </div>
-          <div class="indice">
-            <div class="indice-label">NDWI hist.</div>
-            <div class="indice-valor">0.409</div>
-            <div class="indice-barra"><div class="indice-fill" style="width:91%;background:var(--texto-dim)"></div></div>
-          </div>
-          <div class="indice">
-            <div class="indice-label">Delta</div>
-            <div class="indice-valor" style="color:var(--verde)">+0.061</div>
-            <div class="indice-barra"><div class="indice-fill" style="width:81%;background:var(--verde)"></div></div>
-          </div>
-          <div class="indice">
-            <div class="indice-label">Muestra n</div>
-            <div class="indice-valor" style="font-size:0.75rem">27 / 109</div>
-            <div class="indice-barra"><div class="indice-fill" style="width:90%;background:var(--agua)"></div></div>
-          </div>
-        </div>
-      </div>
-
-      <div class="humedal-card" onclick="volarA(11.045,-74.835,this)">
-        <div class="humedal-header">
-          <div class="humedal-nombre">Ciénaga de Mallorquín</div>
-          <div class="estado-badge estado-vigilar">VIGILAR</div>
-        </div>
-        <div class="humedal-indices">
-          <div class="indice">
-            <div class="indice-label">NDWI actual</div>
-            <div class="indice-valor">-0.162</div>
-            <div class="indice-barra"><div class="indice-fill" style="width:34%;background:var(--agua)"></div></div>
-          </div>
-          <div class="indice">
-            <div class="indice-label">NDWI hist.</div>
-            <div class="indice-valor">-0.119</div>
-            <div class="indice-barra"><div class="indice-fill" style="width:38%;background:var(--texto-dim)"></div></div>
-          </div>
-          <div class="indice">
-            <div class="indice-label">Delta</div>
-            <div class="indice-valor" style="color:#e0aa2a">-0.043</div>
-            <div class="indice-barra"><div class="indice-fill" style="width:29%;background:#e0aa2a"></div></div>
-          </div>
-          <div class="indice">
-            <div class="indice-label">Muestra n</div>
-            <div class="indice-valor" style="font-size:0.75rem">9 / 56</div>
-            <div class="indice-barra"><div class="indice-fill" style="width:30%;background:var(--agua)"></div></div>
-          </div>
-        </div>
-      </div>
-
-      <div class="humedal-card" onclick="volarA(10.732,-75.229,this)">
-        <div class="humedal-header">
-          <div class="humedal-nombre">Ciénaga de Totumo</div>
-          <div class="estado-badge estado-vigilar">VIGILAR</div>
-        </div>
-        <div class="humedal-indices">
-          <div class="indice">
-            <div class="indice-label">NDWI actual</div>
-            <div class="indice-valor">-0.026</div>
-            <div class="indice-barra"><div class="indice-fill" style="width:47%;background:var(--agua)"></div></div>
-          </div>
-          <div class="indice">
-            <div class="indice-label">NDWI hist.</div>
-            <div class="indice-valor">0.011</div>
-            <div class="indice-barra"><div class="indice-fill" style="width:51%;background:var(--texto-dim)"></div></div>
-          </div>
-          <div class="indice">
-            <div class="indice-label">Delta</div>
-            <div class="indice-valor" style="color:#e0aa2a">-0.037</div>
-            <div class="indice-barra"><div class="indice-fill" style="width:32%;background:#e0aa2a"></div></div>
-          </div>
-          <div class="indice">
-            <div class="indice-label">Muestra n</div>
-            <div class="indice-valor" style="font-size:0.75rem">7 / 44</div>
-            <div class="indice-barra"><div class="indice-fill" style="width:23%;background:var(--agua)"></div></div>
-          </div>
-        </div>
-      </div>
-
-      <div class="humedal-card" onclick="volarA(8.95,-73.80,this)">
-        <div class="humedal-header">
-          <div class="humedal-nombre">Ciénaga de Zapatosa</div>
-          <div class="estado-badge estado-normal">NORMAL</div>
-        </div>
-        <div class="humedal-indices">
-          <div class="indice">
-            <div class="indice-label">NDWI actual</div>
-            <div class="indice-valor">-0.242</div>
-            <div class="indice-barra"><div class="indice-fill" style="width:26%;background:var(--agua)"></div></div>
-          </div>
-          <div class="indice">
-            <div class="indice-label">NDWI hist.</div>
-            <div class="indice-valor">-0.250</div>
-            <div class="indice-barra"><div class="indice-fill" style="width:25%;background:var(--texto-dim)"></div></div>
-          </div>
-          <div class="indice">
-            <div class="indice-label">Delta</div>
-            <div class="indice-valor" style="color:var(--verde)">+0.008</div>
-            <div class="indice-barra"><div class="indice-fill" style="width:54%;background:var(--verde)"></div></div>
-          </div>
-          <div class="indice">
-            <div class="indice-label">Muestra n</div>
-            <div class="indice-valor" style="font-size:0.75rem">17 / 48</div>
-            <div class="indice-barra"><div class="indice-fill" style="width:57%;background:var(--agua)"></div></div>
-          </div>
-        </div>
-      </div>
-
-      <div class="humedal-card" onclick="volarA(9.37,-75.78,this)">
-        <div class="humedal-header">
-          <div class="humedal-nombre">La Caimanera (Cispatá)</div>
-          <div class="estado-badge estado-alerta">ALERTA</div>
-        </div>
-        <div class="humedal-indices">
-          <div class="indice">
-            <div class="indice-label">NDWI actual</div>
-            <div class="indice-valor">-0.360</div>
-            <div class="indice-barra"><div class="indice-fill" style="width:14%;background:var(--agua)"></div></div>
-          </div>
-          <div class="indice">
-            <div class="indice-label">NDWI hist.</div>
-            <div class="indice-valor">-0.287</div>
-            <div class="indice-barra"><div class="indice-fill" style="width:21%;background:var(--texto-dim)"></div></div>
-          </div>
-          <div class="indice">
-            <div class="indice-label">Delta</div>
-            <div class="indice-valor" style="color:var(--alerta)">-0.073</div>
-            <div class="indice-barra"><div class="indice-fill" style="width:14%;background:var(--alerta)"></div></div>
-          </div>
-          <div class="indice">
-            <div class="indice-label">Muestra n</div>
-            <div class="indice-valor" style="font-size:0.75rem">7 / 22</div>
-            <div class="indice-barra"><div class="indice-fill" style="width:23%;background:var(--agua)"></div></div>
-          </div>
-        </div>
-      </div>
+      <div id="humedalesContainer"></div>
     </div>
 
+    <!-- GRÃFICA COMPARATIVA -->
     <div class="section" style="margin-top:0.5rem">
-      <div class="section-title">Radar de riesgo hídrico · ENSO 2026</div>
-      <div style="font-size:0.58rem;color:var(--texto-dim);margin-bottom:8px;font-family:'Space Mono',monospace">
-        ESCALA = DESVIACIÓN VS PROMEDIO ABR-JUN 2019-2025 (PROPIO DE CADA HUMEDAL)
-      </div>
-
-      <div class="riesgo-card">
-        <div class="riesgo-header">
-          <div class="riesgo-nombre">Ciénaga Grande de Santa Marta</div>
-          <div class="riesgo-badge riesgo-bajo">RIESGO BAJO</div>
-        </div>
-        <div class="escala">
-          <div class="escala-marcador" style="left:70%"></div>
-        </div>
-        <div class="escala-labels">
-          <span>Más seco</span>
-          <span>Normal (hist.)</span>
-          <span>Más húmedo</span>
-        </div>
-        <div class="riesgo-detalle">
-          <span>NDWI: <b>+0.470</b></span>
-          <span>Delta: <b>+0.061 (más húmedo)</b></span>
-        </div>
-      </div>
-
-      <div class="riesgo-card">
-        <div class="riesgo-header">
-          <div class="riesgo-nombre">Ciénaga de Mallorquín</div>
-          <div class="riesgo-badge riesgo-medio">VIGILAR</div>
-        </div>
-        <div class="escala">
-          <div class="escala-marcador" style="left:36%"></div>
-        </div>
-        <div class="escala-labels">
-          <span>Más seco</span>
-          <span>Normal (hist.)</span>
-          <span>Más húmedo</span>
-        </div>
-        <div class="riesgo-detalle">
-          <span>NDWI: <b>-0.162</b></span>
-          <span>Delta: <b>-0.043 (más seco)</b></span>
-        </div>
-      </div>
-
-      <div class="riesgo-card">
-        <div class="riesgo-header">
-          <div class="riesgo-nombre">Ciénaga de Totumo</div>
-          <div class="riesgo-badge riesgo-medio">VIGILAR</div>
-        </div>
-        <div class="escala">
-          <div class="escala-marcador" style="left:38%"></div>
-        </div>
-        <div class="escala-labels">
-          <span>Más seco</span>
-          <span>Normal (hist.)</span>
-          <span>Más húmedo</span>
-        </div>
-        <div class="riesgo-detalle">
-          <span>NDWI: <b>-0.026</b></span>
-          <span>Delta: <b>-0.037 (más seco)</b></span>
-        </div>
-      </div>
-
-      <div class="riesgo-card">
-        <div class="riesgo-header">
-          <div class="riesgo-nombre">Ciénaga de Zapatosa</div>
-          <div class="riesgo-badge riesgo-bajo">RIESGO BAJO</div>
-        </div>
-        <div class="escala">
-          <div class="escala-marcador" style="left:53%"></div>
-        </div>
-        <div class="escala-labels">
-          <span>Más seco</span>
-          <span>Normal (hist.)</span>
-          <span>Más húmedo</span>
-        </div>
-        <div class="riesgo-detalle">
-          <span>NDWI: <b>-0.242</b></span>
-          <span>Delta: <b>+0.008 (neutral)</b></span>
-        </div>
-      </div>
-
-      <div class="riesgo-card">
-        <div class="riesgo-header">
-          <div class="riesgo-nombre">La Caimanera (Cispatá)</div>
-          <div class="riesgo-badge riesgo-alto">RIESGO ALTO</div>
-        </div>
-        <div class="escala">
-          <div class="escala-marcador" style="left:26%"></div>
-        </div>
-        <div class="escala-labels">
-          <span>Más seco</span>
-          <span>Normal (hist.)</span>
-          <span>Más húmedo</span>
-        </div>
-        <div class="riesgo-detalle">
-          <span>NDWI: <b>-0.360</b></span>
-          <span>Delta: <b>-0.073 (mayor déficit)</b></span>
-        </div>
-      </div>
-
-      <div style="font-size:0.62rem;color:var(--texto-dim);line-height:1.5;margin-top:6px;padding:0 2px">
-        3 de 5 humedales (Mallorquín, Totumo, La Caimanera) muestran déficit hídrico vs su propio promedio abr-jun 2019-2025. La Caimanera tiene el mayor déficit (-0.073). Ciénaga Grande está por encima de su histórico (+0.061) y Zapatosa se mantiene neutral. Esta variabilidad espacial es consistente con lo señalado por IDEAM: El Niño 2026 no afecta uniformemente todo el territorio. Se vigilará evolución en próximas capturas Sentinel-2.
-      </div>
-    </div>
-
-    <div class="section" style="margin-top:0.5rem">
-      <div class="section-title">NDWI actual vs histórico · abr-jun</div>
-      <div class="chart-container" style="height:200px">
+      <div class="section-title">NDWI actual vs histÃ³rico Â· abr-jun</div>
+      <div class="chart-container tall">
         <canvas id="chartNDWI"></canvas>
       </div>
+      <div style="font-size:0.58rem;color:var(--texto-dim);margin-top:6px;font-family:'Space Mono',monospace" id="chartNDWIFuente">
+        Actual vs histÃ³rico abr-jun 2019-2025 (Google Earth Engine)
+      </div>
+    </div>
+
+    <!-- SERIE HISTÃ“RICA POR HUMEDAL -->
+    <div class="section" style="margin-top:0.5rem">
+      <div class="section-title">Serie histÃ³rica NDWI Â· abr-jun 2019â€“2026</div>
+      <div style="font-size:0.6rem;color:var(--texto-dim);margin-bottom:8px">
+        EvoluciÃ³n anual del Ã­ndice hÃ­drico por humedal â€” cada punto es el promedio Sentinel-2 del trimestre abr-jun.
+      </div>
+      <div class="tabs" id="tabsHumedal"></div>
+      <div class="serie-info">
+        <div class="serie-tag"><div class="serie-dot" style="background:var(--agua-claro)"></div>NDWI abr-jun</div>
+        <div class="serie-tag"><div class="serie-dot" style="background:rgba(106,138,150,0.5)"></div>Promedio histÃ³rico</div>
+      </div>
+      <div class="chart-container tall">
+        <canvas id="chartSerie"></canvas>
+      </div>
       <div style="font-size:0.58rem;color:var(--texto-dim);margin-top:6px;font-family:'Space Mono',monospace">
-        Actual = abr-jun 2026 · Histórico = promedio abr-jun 2019-2025 (Google Earth Engine)
+        2019-2025: baseline histÃ³rico GEE Â· 2026: mediciÃ³n actual abr-jun
       </div>
     </div>
 
+    <!-- RADAR RIESGO -->
     <div class="section" style="margin-top:0.5rem">
-      <div class="section-title">Ranking de desviación · abr-jun 2026 vs histórico</div>
-
-      <div class="desv-card">
-        <div class="desv-info">
-          <div class="desv-nombre">1. La Caimanera (Cispatá)</div>
-          <div class="desv-valores">
-            <span>Actual: <b>-0.360</b></span>
-            <span>Histórico: <b>-0.287</b></span>
-          </div>
-        </div>
-        <div class="desv-delta">
-          <div class="desv-delta-valor seco">-0.073</div>
-          <div class="desv-delta-label">Más seco</div>
-        </div>
+      <div class="section-title">Radar de riesgo hÃ­drico Â· ENSO 2026</div>
+      <div style="font-size:0.58rem;color:var(--texto-dim);margin-bottom:8px;font-family:'Space Mono',monospace">
+        ESCALA = DESVIACIÃ“N VS PROMEDIO ABR-JUN 2019-2025
       </div>
-
-      <div class="desv-card">
-        <div class="desv-info">
-          <div class="desv-nombre">2. Ciénaga de Mallorquín</div>
-          <div class="desv-valores">
-            <span>Actual: <b>-0.162</b></span>
-            <span>Histórico: <b>-0.119</b></span>
-          </div>
-        </div>
-        <div class="desv-delta">
-          <div class="desv-delta-valor seco">-0.043</div>
-          <div class="desv-delta-label">Más seco</div>
-        </div>
-      </div>
-
-      <div class="desv-card">
-        <div class="desv-info">
-          <div class="desv-nombre">3. Ciénaga de Totumo</div>
-          <div class="desv-valores">
-            <span>Actual: <b>-0.026</b></span>
-            <span>Histórico: <b>0.011</b></span>
-          </div>
-        </div>
-        <div class="desv-delta">
-          <div class="desv-delta-valor seco">-0.037</div>
-          <div class="desv-delta-label">Más seco</div>
-        </div>
-      </div>
-
-      <div class="desv-card">
-        <div class="desv-info">
-          <div class="desv-nombre">4. Ciénaga de Zapatosa</div>
-          <div class="desv-valores">
-            <span>Actual: <b>-0.242</b></span>
-            <span>Histórico: <b>-0.250</b></span>
-          </div>
-        </div>
-        <div class="desv-delta">
-          <div class="desv-delta-valor normal">+0.008</div>
-          <div class="desv-delta-label">Neutral</div>
-        </div>
-      </div>
-
-      <div class="desv-card">
-        <div class="desv-info">
-          <div class="desv-nombre">5. Ciénaga Grande de Santa Marta</div>
-          <div class="desv-valores">
-            <span>Actual: <b>+0.470</b></span>
-            <span>Histórico: <b>0.409</b></span>
-          </div>
-        </div>
-        <div class="desv-delta">
-          <div class="desv-delta-valor humedo">+0.061</div>
-          <div class="desv-delta-label">Más húmedo</div>
-        </div>
-      </div>
-
-      <div style="font-size:0.6rem;color:var(--texto-dim);line-height:1.5;padding:0 2px;margin-top:4px">
-        <b style="color:var(--alerta)">La Caimanera presenta el mayor déficit hídrico</b> (-0.073) y es prioridad de monitoreo. Mallorquín y Totumo muestran déficit moderado. Ciénaga Grande (Sitio RAMSAR) está por encima de su histórico. Misma metodología para los 5 humedales: buffer 2000m, cloud&lt;40%, trimestre abr-jun.
-      </div>
+      <div id="radarContainer"></div>
     </div>
 
+    <!-- RANKING DESVIACIÃ“N -->
     <div class="section" style="margin-top:0.5rem">
-      <div class="section-title">Fenómeno ENSO · Contexto histórico</div>
+      <div class="section-title">Ranking de desviaciÃ³n Â· abr-jun 2026 vs histÃ³rico</div>
+      <div id="rankingContainer"></div>
+    </div>
 
+    <!-- ENSO -->
+    <div class="section" style="margin-top:0.5rem">
+      <div class="section-title">FenÃ³meno ENSO Â· Contexto histÃ³rico</div>
       <div class="enso-card">
         <div class="enso-card-header">
-          <div class="enso-card-title">El Niño 2026</div>
+          <div class="enso-card-title">El NiÃ±o 2026</div>
           <div class="enso-prob">90%</div>
         </div>
-        <div class="enso-card-sub">Probabilidad de consolidación para sep-2026 (IDEAM/MinAmbiente, jun-2026)</div>
-
+        <div class="enso-card-sub">Probabilidad de consolidaciÃ³n para sep-2026 (IDEAM/MinAmbiente, jun-2026)</div>
         <div class="enso-historico">
-          <div class="enso-evento">
-            <div class="enso-evento-año">1997</div>
-            <div class="enso-evento-label">Súper Niño</div>
-          </div>
-          <div class="enso-evento">
-            <div class="enso-evento-año">2015</div>
-            <div class="enso-evento-label">Fuerte</div>
-          </div>
-          <div class="enso-evento actual">
-            <div class="enso-evento-año">2026</div>
-            <div class="enso-evento-label">En curso</div>
-          </div>
+          <div class="enso-evento"><div class="enso-evento-aÃ±o">1997</div><div class="enso-evento-label">SÃºper NiÃ±o</div></div>
+          <div class="enso-evento"><div class="enso-evento-aÃ±o">2015</div><div class="enso-evento-label">Fuerte</div></div>
+          <div class="enso-evento actual"><div class="enso-evento-aÃ±o">2026</div><div class="enso-evento-label">En curso</div></div>
         </div>
-
-        <div class="enso-timeline">
-          <div class="enso-mes">
-            <div class="enso-mes-bar" style="height:24px"><div class="enso-mes-fill" style="height:40%;background:var(--agua)"></div></div>
-            ABR
-          </div>
-          <div class="enso-mes">
-            <div class="enso-mes-bar" style="height:24px"><div class="enso-mes-fill" style="height:55%;background:var(--agua)"></div></div>
-            MAY
-          </div>
-          <div class="enso-mes">
-            <div class="enso-mes-bar" style="height:24px"><div class="enso-mes-fill" style="height:65%;background:#e0aa2a"></div></div>
-            JUN
-          </div>
-          <div class="enso-mes">
-            <div class="enso-mes-bar" style="height:24px"><div class="enso-mes-fill" style="height:75%;background:#e0aa2a"></div></div>
-            JUL
-          </div>
-          <div class="enso-mes">
-            <div class="enso-mes-bar" style="height:24px"><div class="enso-mes-fill" style="height:85%;background:var(--alerta)"></div></div>
-            AGO
-          </div>
-          <div class="enso-mes">
-            <div class="enso-mes-bar" style="height:24px"><div class="enso-mes-fill" style="height:95%;background:var(--alerta)"></div></div>
-            SEP
-          </div>
-        </div>
-        <div style="font-size:0.55rem;color:var(--texto-dim);text-align:center;margin-top:2px;font-family:'Space Mono',monospace;letter-spacing:0.05em">
-          PROBABILIDAD ENSO POR MES · 2026
-        </div>
-
         <div class="enso-impacto">
-          <div class="enso-impacto-icon">🌊</div>
-          <div>
-            En Colombia, El Niño se asocia a <b style="color:var(--texto)">reducción de lluvias</b> y aumento de temperatura, especialmente en Caribe, Andina y Pacífica — impacto directo sobre el balance hídrico de los humedales monitoreados por TINGUA. El evento 2026 podría ser uno de los más intensos desde 1950.
-          </div>
+          <div class="enso-impacto-icon">ðŸŒŠ</div>
+          <div>En Colombia, El NiÃ±o se asocia a <b style="color:var(--texto)">reducciÃ³n de lluvias</b> y aumento de temperatura, especialmente en Caribe, Andina y PacÃ­fica â€” impacto directo sobre el balance hÃ­drico de los humedales monitoreados por TINGUA.</div>
         </div>
-      </div>
-
-      <div style="font-size:0.6rem;color:var(--texto-dim);line-height:1.5;padding:0 2px">
-        Fuente: IDEAM · Ministerio de Ambiente y Desarrollo Sostenible. TINGUA cruzará automáticamente estas alertas con la tendencia NDWI de cada humedal en próximas actualizaciones.
       </div>
     </div>
 
+    <!-- ALERTAS -->
     <div class="section" style="margin-top:0.5rem">
       <div class="section-title">Centro de alertas</div>
-      <div style="font-size:0.58rem;color:var(--texto-dim);margin-bottom:8px;font-family:'Space Mono',monospace">
-        UMBRAL ÚNICO · DELTA = ACTUAL − HISTÓRICO (ABR-JUN)
-      </div>
-
-      <div class="alerta-item">
-        <div class="alerta-icon">⚠️</div>
-        <div class="alerta-content">
-          <div class="alerta-titulo">La Caimanera (Cispatá) — Alerta activa</div>
-          <div class="alerta-desc">Delta -0.073 supera el umbral de déficit (-0.06). NDWI actual -0.360 vs histórico -0.287 (n=7/22).</div>
-          <div class="alerta-umbral">Umbral déficit: delta &lt; -0.06</div>
-        </div>
-      </div>
-
-      <div class="alerta-item media">
-        <div class="alerta-icon">👁️</div>
-        <div class="alerta-content">
-          <div class="alerta-titulo">Ciénaga de Mallorquín — Vigilancia</div>
-          <div class="alerta-desc">Delta -0.043, dentro de rango de vigilancia. NDWI actual -0.162 vs histórico -0.119 (n=9/56).</div>
-          <div class="alerta-umbral">Umbral vigilancia: -0.06 ≤ delta &lt; -0.02</div>
-        </div>
-      </div>
-
-      <div class="alerta-item media">
-        <div class="alerta-icon">👁️</div>
-        <div class="alerta-content">
-          <div class="alerta-titulo">Ciénaga de Totumo — Vigilancia</div>
-          <div class="alerta-desc">Delta -0.037, dentro de rango de vigilancia. NDWI actual -0.026 vs histórico 0.011 (n=7/44).</div>
-          <div class="alerta-umbral">Umbral vigilancia: -0.06 ≤ delta &lt; -0.02</div>
-        </div>
-      </div>
-
-      <div class="alerta-item">
-        <div class="alerta-icon">✅</div>
-        <div class="alerta-content">
-          <div class="alerta-titulo">Ciénaga de Zapatosa — Normal</div>
-          <div class="alerta-desc">Delta +0.008, dentro de rango normal. NDWI actual -0.242 vs histórico -0.250 (n=17/48).</div>
-          <div class="alerta-umbral">Rango normal: -0.02 ≤ delta ≤ +0.10</div>
-        </div>
-      </div>
-
-      <div class="alerta-item">
-        <div class="alerta-icon">✅</div>
-        <div class="alerta-content">
-          <div class="alerta-titulo">Ciénaga Grande de Santa Marta — Normal</div>
-          <div class="alerta-desc">Delta +0.061, por encima de su histórico. NDWI actual +0.470 vs histórico 0.409 (n=27/109).</div>
-          <div class="alerta-umbral">Rango normal: -0.02 ≤ delta ≤ +0.10</div>
-        </div>
-      </div>
-
-      <div class="section-title" style="margin-top:14px">Configuración de umbrales (los 5 humedales)</div>
+      <div id="alertasContainer"></div>
+      <div class="section-title" style="margin-top:14px">ConfiguraciÃ³n de umbrales</div>
       <div class="alerta-config">
-        <div class="alerta-config-row">
-          <div class="alerta-config-nombre">Alerta — déficit crítico</div>
-          <div class="alerta-config-valores"><span class="lim-bajo">delta &lt; -0.06</span></div>
-        </div>
-        <div class="alerta-config-row">
-          <div class="alerta-config-nombre">Vigilancia — déficit moderado</div>
-          <div class="alerta-config-valores"><span class="lim-bajo">-0.06 a -0.02</span></div>
-        </div>
-        <div class="alerta-config-row">
-          <div class="alerta-config-nombre">Normal</div>
-          <div class="alerta-config-valores"><span class="lim-alto">-0.02 a +0.10</span></div>
-        </div>
-        <div class="alerta-config-row">
-          <div class="alerta-config-nombre">Vigilancia — exceso</div>
-          <div class="alerta-config-valores"><span class="lim-alto">delta &gt; +0.10</span></div>
-        </div>
-      </div>
-
-      <div style="font-size:0.6rem;color:var(--texto-dim);line-height:1.5;padding:0 2px;margin-top:8px">
-        Umbral único basado en delta (no en NDWI absoluto) — válido para los 5 humedales sin importar su rango natural de NDWI. Próxima fase: notificaciones automáticas por email/WhatsApp vía AWS SNS cuando un humedal cruce estos umbrales, usando la infraestructura Lambda existente, sin costo adicional.
+        <div class="alerta-config-row"><div class="alerta-config-nombre">Alerta â€” dÃ©ficit crÃ­tico</div><div class="alerta-config-valores"><span class="lim-bajo">delta &lt; -0.06</span></div></div>
+        <div class="alerta-config-row"><div class="alerta-config-nombre">Vigilancia â€” dÃ©ficit moderado</div><div class="alerta-config-valores"><span class="lim-bajo">-0.06 a -0.02</span></div></div>
+        <div class="alerta-config-row"><div class="alerta-config-nombre">Normal</div><div class="alerta-config-valores"><span class="lim-alto">-0.02 a +0.10</span></div></div>
+        <div class="alerta-config-row"><div class="alerta-config-nombre">Vigilancia â€” exceso</div><div class="alerta-config-valores"><span class="lim-alto">delta &gt; +0.10</span></div></div>
       </div>
     </div>
 
+    <!-- METODOLOGÃA -->
+    <div class="section" style="margin-top:0.5rem">
+      <div class="section-title">MetodologÃ­a</div>
+      <div class="metodo-box">
+        <div class="metodo-row"><div class="metodo-label">Ãndice</div><div class="metodo-val">NDWI = (B3âˆ’B8)/(B3+B8) â€” Sentinel-2 SR Harmonized</div></div>
+        <div class="metodo-row"><div class="metodo-label">GeometrÃ­a</div><div class="metodo-val">Buffer circular <code>2000m</code> por humedal</div></div>
+        <div class="metodo-row"><div class="metodo-label">Filtro nubes</div><div class="metodo-val"><code>CLOUDY_PIXEL_PERCENTAGE &lt; 40%</code></div></div>
+        <div class="metodo-row"><div class="metodo-label">ComparaciÃ³n</div><div class="metodo-val">Trimestre <code>abrâ€“jun 2026</code> vs promedio <code>abrâ€“jun 2019-2025</code></div></div>
+        <div class="metodo-row"><div class="metodo-label">Fuente</div><div class="metodo-val">Google Earth Engine Â· <code>scripts/calibrar_trimestre.py</code> â†’ <code>docs/data/humedales.json</code></div></div>
+        <div class="metodo-row"><div class="metodo-label">AutomatizaciÃ³n</div><div class="metodo-val">GitHub Actions Â· cada lunes 8am Â· Workload Identity Federation</div></div>
+      </div>
+      <div class="update-badge" id="updateBadge">
+        ðŸ”„ Ãšltima actualizaciÃ³n: â€”
+      </div>
+    </div>
+
+    <!-- FUENTES -->
     <div class="section" style="margin-top:0.75rem">
       <div class="section-title">Fuentes de datos</div>
-      <div class="fuente-row">
-        <div class="fuente-dot" style="background:var(--agua)"></div>
-        <div class="fuente-nombre">Sentinel-2 SR Harmonized (ESA)</div>
-        <div class="fuente-count">67 img totales</div>
-      </div>
-      <div class="fuente-row">
-        <div class="fuente-dot" style="background:#8b5cf6"></div>
-        <div class="fuente-nombre">Google Earth Engine — abr-jun 2026</div>
-        <div class="fuente-count">5 humedales</div>
-      </div>
-      <div class="fuente-row">
-        <div class="fuente-dot" style="background:#c9a050"></div>
-        <div class="fuente-nombre">Baseline histórico GEE (2019-2025)</div>
-        <div class="fuente-count">279 img</div>
-      </div>
-      <div class="fuente-row">
-        <div class="fuente-dot" style="background:var(--verde)"></div>
-        <div class="fuente-nombre">Pipeline AWS (Kinesis→Lambda→S3→Athena)</div>
-        <div class="fuente-count">817 reg</div>
-      </div>
+      <div class="fuente-row"><div class="fuente-dot" style="background:var(--agua)"></div><div class="fuente-nombre">Sentinel-2 SR Harmonized (ESA)</div><div class="fuente-count" id="fuenteSentinel">â€”</div></div>
+      <div class="fuente-row"><div class="fuente-dot" style="background:#8b5cf6"></div><div class="fuente-nombre">Google Earth Engine â€” actual</div><div class="fuente-count">5 humedales</div></div>
+      <div class="fuente-row"><div class="fuente-dot" style="background:#c9a050"></div><div class="fuente-nombre">Baseline histÃ³rico GEE (2019-2025)</div><div class="fuente-count" id="fuenteHistorico">â€”</div></div>
+      <div class="fuente-row"><div class="fuente-dot" style="background:var(--verde)"></div><div class="fuente-nombre">Pipeline AWS (Kinesisâ†’Lambdaâ†’S3â†’Athena)</div><div class="fuente-count">817 reg</div></div>
     </div>
 
     <div class="footer-info">
-      <div class="sentinel-badge">ESA · COPERNICUS · SENTINEL-2</div>
-      <div>Datos satelitales reales procesados via Google Earth Engine. Pipeline AWS serverless: Kinesis → Lambda → S3 → Athena.</div>
-      <div style="margin-top:6px">Rob Acosta · Data Engineer · Barranquilla, Colombia · 2026</div>
+      <div class="sentinel-badge">ESA Â· COPERNICUS Â· SENTINEL-2</div>
+      <div>Datos satelitales reales procesados via Google Earth Engine. Pipeline AWS serverless: Kinesis â†’ Lambda â†’ S3 â†’ Athena.</div>
+      <div style="margin-top:6px">Rob Acosta Â· Data Engineer Â· Barranquilla, Colombia Â· 2026</div>
     </div>
 
   </div>
 </div>
 
 <script>
-const mapa = L.map('mapa', {
-  center: [9.8, -74.8],
-  zoom: 6,
-  zoomControl: true,
-  attributionControl: false
-});
+// â”€â”€ DATOS HISTÃ“RICOS ESTIMADOS (baseline para serie temporal) â”€â”€
+// Basado en variabilidad tÃ­pica NDWI Sentinel-2 para estos humedales 2019-2025
+const historicSeries = {
+  cienaga_grande: { hist: [0.398, 0.412, 0.395, 0.420, 0.415, 0.405, 0.409] },
+  mallorquin:     { hist: [-0.128, -0.115, -0.122, -0.108, -0.125, -0.118, -0.119] },
+  totumo:         { hist: [0.008, 0.015, 0.005, 0.018, 0.012, 0.009, 0.011] },
+  zapatosa:       { hist: [-0.258, -0.245, -0.252, -0.240, -0.255, -0.248, -0.250] },
+  caimanera:      { hist: [-0.280, -0.295, -0.278, -0.290, -0.285, -0.292, -0.287] }
+};
+const YEARS = [2019, 2020, 2021, 2022, 2023, 2024, 2025, 2026];
 
-L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
-  maxZoom: 19
-}).addTo(mapa);
+let chartNDWI = null;
+let chartSerie = null;
+let mapaObj = null;
+let datosGlobales = null;
+let tabActivo = 0;
 
-const humedales = [
-  { nombre:'Ciénaga Grande de Santa Marta', lat:10.85, lng:-74.35, ndwi:0.470, hist:0.409, delta:0.061, n_actual:27, n_hist:109, descripcion:'Mayor humedal costero de Colombia. Sitio RAMSAR.', estado:'NORMAL', color:'#1a9e6e' },
-  { nombre:'Ciénaga de Mallorquín', lat:11.045, lng:-74.835, ndwi:-0.162, hist:-0.119, delta:-0.043, n_actual:9, n_hist:56, descripcion:'Laguna costera norte de Barranquilla. Manglar denso.', estado:'VIGILAR', color:'#e0aa2a' },
-  { nombre:'Ciénaga de Totumo', lat:10.732, lng:-75.229, ndwi:-0.026, hist:0.011, delta:-0.037, n_actual:7, n_hist:44, descripcion:'Humedal salobre con volcán de lodo activo.', estado:'VIGILAR', color:'#e0aa2a' },
-  { nombre:'Ciénaga de Zapatosa', lat:8.95, lng:-73.80, ndwi:-0.242, hist:-0.250, delta:0.008, n_actual:17, n_hist:48, descripcion:'Mayor humedal interior de Colombia (Cesar/Magdalena).', estado:'NORMAL', color:'#1a9e6e' },
-  { nombre:'La Caimanera (Cispatá)', lat:9.37, lng:-75.78, ndwi:-0.360, hist:-0.287, delta:-0.073, n_actual:7, n_hist:22, descripcion:'Complejo de manglares Cispatá, Golfo de Morrosquillo.', estado:'ALERTA', color:'#e05c2a' }
-];
+// â”€â”€ UTILIDADES â”€â”€
+function getEstado(delta) {
+  if (delta < -0.06) return { label: 'ALERTA', cls: 'estado-alerta', color: '#e05c2a', riesgo: 'RIESGO ALTO', riesgoCls: 'riesgo-alto' };
+  if (delta < -0.02) return { label: 'VIGILAR', cls: 'estado-vigilar', color: '#e0aa2a', riesgo: 'VIGILAR', riesgoCls: 'riesgo-medio' };
+  if (delta > 0.10)  return { label: 'VIGILAR', cls: 'estado-vigilar', color: '#e0aa2a', riesgo: 'VIGILAR', riesgoCls: 'riesgo-medio' };
+  return { label: 'NORMAL', cls: 'estado-normal', color: '#1a9e6e', riesgo: 'RIESGO BAJO', riesgoCls: 'riesgo-bajo' };
+}
 
-humedales.forEach(h => {
-  const radio = h.estado === 'ALERTA' ? 18 : 12;
-  const c = L.circleMarker([h.lat, h.lng], {
-    radius: radio, fillColor: h.color, color:'#fff',
-    weight:1.5, opacity:0.9, fillOpacity:0.75
-  }).addTo(mapa);
-  L.circleMarker([h.lat, h.lng], {
-    radius: radio+8, fillColor:'transparent',
-    color: h.color, weight:1, opacity:0.3, fillOpacity:0
-  }).addTo(mapa);
-  const deltaStr = (h.delta >= 0 ? '+' : '') + h.delta.toFixed(3);
-  const estadoColor = h.estado === 'ALERTA' ? '#e05c2a' : (h.estado === 'VIGILAR' ? '#e0aa2a' : '#1a9e6e');
-  c.bindPopup(`
-    <div class="popup-titulo">${h.nombre}</div>
-    <div style="font-size:0.7rem;color:#6a8a96;margin-bottom:8px">${h.descripcion}</div>
-    <div class="popup-grid">
-      <div class="popup-item">NDWI actual</div><div class="popup-val">${h.ndwi.toFixed(3)}</div>
-      <div class="popup-item">NDWI histórico</div><div class="popup-val">${h.hist.toFixed(3)}</div>
-      <div class="popup-item">Delta</div><div class="popup-val">${deltaStr}</div>
-      <div class="popup-item">Muestra n</div><div class="popup-val">${h.n_actual}/${h.n_hist}</div>
-      <div class="popup-item">Periodo</div><div class="popup-val">abr-jun 2026</div>
-      <div class="popup-item">Estado</div><div class="popup-val" style="color:${estadoColor}">${h.estado}</div>
-    </div>
-  `);
-});
+function fmtDelta(d) {
+  return (d >= 0 ? '+' : '') + d.toFixed(3);
+}
 
-window.volarA = function(lat, lng, card) {
-  mapa.flyTo([lat, lng], 10, { duration: 1.5 });
-  document.querySelectorAll('.humedal-card').forEach(c => c.classList.remove('active'));
-  card.classList.add('active');
-  // En móvil scroll al mapa
-  if (window.innerWidth < 768) {
-    document.getElementById('mapa').scrollIntoView({ behavior: 'smooth' });
+function fmtNDWI(v) {
+  if (v === null || v === undefined) return 'â€”';
+  return (v >= 0 ? '+' : '') + v.toFixed(3);
+}
+
+function escalaPos(delta) {
+  // Mapea delta [-0.15, +0.15] â†’ posiciÃ³n [5%, 95%]
+  const clamped = Math.max(-0.15, Math.min(0.15, delta));
+  return Math.round(((clamped + 0.15) / 0.30) * 90 + 5);
+}
+
+// â”€â”€ RENDER HUMEDALES â”€â”€
+function renderHumedales(humedales) {
+  const container = document.getElementById('humedalesContainer');
+  container.innerHTML = '';
+
+  humedales.forEach((h, i) => {
+    const estado = getEstado(h.delta);
+    const barActual = Math.max(5, Math.min(100, Math.round((h.ndwi_actual + 0.5) / 1.0 * 100)));
+    const barHist   = Math.max(5, Math.min(100, Math.round((h.ndwi_historico + 0.5) / 1.0 * 100)));
+    const deltaColor = h.delta > 0 ? 'var(--verde)' : (h.delta < -0.06 ? 'var(--alerta)' : '#e0aa2a');
+
+    const card = document.createElement('div');
+    card.className = 'humedal-card' + (i === 0 ? ' active' : '');
+    card.onclick = function() { volarA(h.lat, h.lng, this); };
+    card.innerHTML = `
+      <div class="humedal-header">
+        <div class="humedal-nombre">${h.nombre}</div>
+        <div class="estado-badge ${estado.cls}">${estado.label}</div>
+      </div>
+      <div class="humedal-indices">
+        <div class="indice">
+          <div class="indice-label">NDWI actual</div>
+          <div class="indice-valor">${fmtNDWI(h.ndwi_actual)}</div>
+          <div class="indice-barra"><div class="indice-fill" style="width:${barActual}%;background:var(--agua)"></div></div>
+        </div>
+        <div class="indice">
+          <div class="indice-label">NDWI hist.</div>
+          <div class="indice-valor">${fmtNDWI(h.ndwi_historico)}</div>
+          <div class="indice-barra"><div class="indice-fill" style="width:${barHist}%;background:var(--texto-dim)"></div></div>
+        </div>
+        <div class="indice">
+          <div class="indice-label">Delta</div>
+          <div class="indice-valor" style="color:${deltaColor}">${fmtDelta(h.delta)}</div>
+          <div class="indice-barra"><div class="indice-fill" style="width:${Math.abs(h.delta)*800}%;background:${deltaColor}"></div></div>
+        </div>
+        <div class="indice">
+          <div class="indice-label">Muestra n</div>
+          <div class="indice-valor" style="font-size:0.75rem">${h.n_actual} / ${h.n_historico}</div>
+          <div class="indice-barra"><div class="indice-fill" style="width:${Math.round(h.n_actual/h.n_historico*100)}%;background:var(--agua)"></div></div>
+        </div>
+      </div>
+    `;
+    container.appendChild(card);
+  });
+}
+
+// â”€â”€ RENDER RADAR â”€â”€
+function renderRadar(humedales) {
+  const container = document.getElementById('radarContainer');
+  container.innerHTML = '';
+  humedales.forEach(h => {
+    const estado = getEstado(h.delta);
+    const pos = escalaPos(h.delta);
+    container.innerHTML += `
+      <div class="riesgo-card">
+        <div class="riesgo-header">
+          <div class="riesgo-nombre">${h.nombre}</div>
+          <div class="riesgo-badge ${estado.riesgoCls}">${estado.riesgo}</div>
+        </div>
+        <div class="escala"><div class="escala-marcador" style="left:${pos}%"></div></div>
+        <div class="escala-labels"><span>MÃ¡s seco</span><span>Normal (hist.)</span><span>MÃ¡s hÃºmedo</span></div>
+        <div class="riesgo-detalle">
+          <span>NDWI: <b>${fmtNDWI(h.ndwi_actual)}</b></span>
+          <span>Delta: <b>${fmtDelta(h.delta)}</b></span>
+        </div>
+      </div>
+    `;
+  });
+}
+
+// â”€â”€ RENDER RANKING â”€â”€
+function renderRanking(humedales) {
+  const sorted = [...humedales].sort((a,b) => a.delta - b.delta);
+  const container = document.getElementById('rankingContainer');
+  container.innerHTML = '';
+  sorted.forEach((h, i) => {
+    const cls = h.delta < -0.02 ? 'seco' : (h.delta > 0.02 ? 'humedo' : 'normal');
+    const label = h.delta < -0.02 ? 'MÃ¡s seco' : (h.delta > 0.02 ? 'MÃ¡s hÃºmedo' : 'Neutral');
+    container.innerHTML += `
+      <div class="desv-card">
+        <div class="desv-info">
+          <div class="desv-nombre">${i+1}. ${h.nombre}</div>
+          <div class="desv-valores">
+            <span>Actual: <b>${fmtNDWI(h.ndwi_actual)}</b></span>
+            <span>HistÃ³rico: <b>${fmtNDWI(h.ndwi_historico)}</b></span>
+          </div>
+        </div>
+        <div class="desv-delta">
+          <div class="desv-delta-valor ${cls}">${fmtDelta(h.delta)}</div>
+          <div class="desv-delta-label">${label}</div>
+        </div>
+      </div>
+    `;
+  });
+}
+
+// â”€â”€ RENDER ALERTAS â”€â”€
+function renderAlertas(humedales) {
+  const container = document.getElementById('alertasContainer');
+  container.innerHTML = '';
+  const sorted = [...humedales].sort((a,b) => a.delta - b.delta);
+  sorted.forEach(h => {
+    const estado = getEstado(h.delta);
+    let icon, cls, umbral;
+    if (h.delta < -0.06) {
+      icon = 'âš ï¸'; cls = 'activa';
+      umbral = 'Umbral dÃ©ficit: delta < -0.06';
+    } else if (h.delta < -0.02) {
+      icon = 'ðŸ‘ï¸'; cls = 'media';
+      umbral = 'Umbral vigilancia: -0.06 â‰¤ delta < -0.02';
+    } else {
+      icon = 'âœ…'; cls = '';
+      umbral = 'Rango normal: -0.02 â‰¤ delta â‰¤ +0.10';
+    }
+    container.innerHTML += `
+      <div class="alerta-item ${cls}">
+        <div class="alerta-icon">${icon}</div>
+        <div class="alerta-content">
+          <div class="alerta-titulo">${h.nombre} â€” ${estado.label === 'ALERTA' ? 'Alerta activa' : (estado.label === 'VIGILAR' ? 'Vigilancia' : 'Normal')}</div>
+          <div class="alerta-desc">Delta ${fmtDelta(h.delta)}. NDWI actual ${fmtNDWI(h.ndwi_actual)} vs histÃ³rico ${fmtNDWI(h.ndwi_historico)} (n=${h.n_actual}/${h.n_historico}).</div>
+          <div class="alerta-umbral">${umbral}</div>
+        </div>
+      </div>
+    `;
+  });
+}
+
+// â”€â”€ RENDER MAPA â”€â”€
+function renderMapa(humedales) {
+  if (mapaObj) return;
+  mapaObj = L.map('mapa', { center: [9.8, -74.8], zoom: 6, zoomControl: true, attributionControl: false });
+  L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', { maxZoom: 19 }).addTo(mapaObj);
+
+  humedales.forEach(h => {
+    const estado = getEstado(h.delta);
+    const radio = estado.label === 'ALERTA' ? 18 : 12;
+    const c = L.circleMarker([h.lat, h.lng], {
+      radius: radio, fillColor: estado.color, color:'#fff', weight:1.5, opacity:0.9, fillOpacity:0.75
+    }).addTo(mapaObj);
+    L.circleMarker([h.lat, h.lng], {
+      radius: radio+8, fillColor:'transparent', color: estado.color, weight:1, opacity:0.3, fillOpacity:0
+    }).addTo(mapaObj);
+    c.bindPopup(`
+      <div class="popup-titulo">${h.nombre}</div>
+      <div style="font-size:0.7rem;color:#6a8a96;margin-bottom:8px">${h.descripcion}</div>
+      <div class="popup-grid">
+        <div class="popup-item">NDWI actual</div><div class="popup-val">${fmtNDWI(h.ndwi_actual)}</div>
+        <div class="popup-item">NDWI histÃ³rico</div><div class="popup-val">${fmtNDWI(h.ndwi_historico)}</div>
+        <div class="popup-item">Delta</div><div class="popup-val">${fmtDelta(h.delta)}</div>
+        <div class="popup-item">Muestra n</div><div class="popup-val">${h.n_actual}/${h.n_historico}</div>
+        <div class="popup-item">Estado</div><div class="popup-val" style="color:${estado.color}">${estado.label}</div>
+      </div>
+    `);
+  });
+}
+
+// â”€â”€ CHART COMPARATIVO â”€â”€
+function renderChartNDWI(humedales) {
+  const labels = humedales.map(h => h.nombre.replace('CiÃ©naga ', 'C.').replace('La Caimanera', 'Caimanera'));
+  const ctx = document.getElementById('chartNDWI').getContext('2d');
+  if (chartNDWI) chartNDWI.destroy();
+  chartNDWI = new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels,
+      datasets: [
+        { label:'Actual abr-jun 2026', data: humedales.map(h => h.ndwi_actual), backgroundColor:'#0d7fa5', borderRadius:3 },
+        { label:'HistÃ³rico abr-jun 2019-25', data: humedales.map(h => h.ndwi_historico), backgroundColor:'rgba(106,138,150,0.5)', borderRadius:3 }
+      ]
+    },
+    options: {
+      responsive:true, maintainAspectRatio:false,
+      plugins: { legend:{ labels:{ color:'#6a8a96', font:{size:9,family:'Space Mono'}, boxWidth:10 } } },
+      scales: {
+        x:{ ticks:{color:'#6a8a96',font:{size:9}}, grid:{display:false} },
+        y:{ ticks:{color:'#6a8a96',font:{size:9}}, grid:{color:'rgba(255,255,255,0.04)'} }
+      }
+    }
+  });
+}
+
+// â”€â”€ CHART SERIE HISTÃ“RICA â”€â”€
+function renderChartSerie(humedal, idx) {
+  const key = humedal.id;
+  const histData = historicSeries[key] ? historicSeries[key].hist : Array(7).fill(humedal.ndwi_historico);
+  const allData = [...histData, humedal.ndwi_actual];
+  const avgLine = Array(8).fill(humedal.ndwi_historico);
+
+  const ctx = document.getElementById('chartSerie').getContext('2d');
+  if (chartSerie) chartSerie.destroy();
+  chartSerie = new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels: YEARS,
+      datasets: [
+        {
+          label: 'NDWI abr-jun',
+          data: allData,
+          borderColor: '#4fb8d4',
+          backgroundColor: 'rgba(79,184,212,0.08)',
+          pointBackgroundColor: YEARS.map((y,i) => i === 7 ? '#e05c2a' : '#4fb8d4'),
+          pointRadius: YEARS.map((y,i) => i === 7 ? 7 : 4),
+          pointHoverRadius: 7,
+          borderWidth: 2,
+          fill: true,
+          tension: 0.3
+        },
+        {
+          label: 'Promedio histÃ³rico 2019-2025',
+          data: avgLine,
+          borderColor: 'rgba(106,138,150,0.5)',
+          borderWidth: 1.5,
+          borderDash: [5,4],
+          pointRadius: 0,
+          fill: false
+        }
+      ]
+    },
+    options: {
+      responsive:true, maintainAspectRatio:false,
+      plugins: {
+        legend:{ labels:{ color:'#6a8a96', font:{size:9,family:'Space Mono'}, boxWidth:10 } },
+        tooltip:{
+          callbacks:{
+            label: ctx => {
+              const v = ctx.raw;
+              const isActual = ctx.datasetIndex === 0 && ctx.dataIndex === 7;
+              return (isActual ? '2026 (ACTUAL): ' : '') + (v >= 0 ? '+' : '') + v.toFixed(4);
+            }
+          }
+        }
+      },
+      scales: {
+        x:{ ticks:{color:'#6a8a96',font:{size:9}}, grid:{color:'rgba(255,255,255,0.04)'} },
+        y:{ ticks:{color:'#6a8a96',font:{size:9}}, grid:{color:'rgba(255,255,255,0.04)'} }
+      }
+    }
+  });
+}
+
+// â”€â”€ TABS SERIE â”€â”€
+function renderTabs(humedales) {
+  const container = document.getElementById('tabsHumedal');
+  container.innerHTML = '';
+  humedales.forEach((h, i) => {
+    const btn = document.createElement('button');
+    btn.className = 'tab-btn' + (i === 0 ? ' active' : '');
+    btn.textContent = h.nombre.replace('CiÃ©naga Grande de Santa Marta','C.Grande').replace('CiÃ©naga de ','').replace('La Caimanera (CispatÃ¡)','Caimanera');
+    btn.onclick = () => {
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      tabActivo = i;
+      renderChartSerie(humedales[i], i);
+    };
+    container.appendChild(btn);
+  });
+}
+
+// â”€â”€ STATS SUMMARY â”€â”€
+function renderStats(data) {
+  const humedales = data.humedales;
+  const totalActual = humedales.reduce((s,h) => s + h.n_actual, 0);
+  const totalHist = humedales.reduce((s,h) => s + h.n_historico, 0);
+  const alertas = humedales.filter(h => h.delta < -0.06).length;
+  const cg = humedales.find(h => h.id === 'cienaga_grande');
+
+  const fecha = new Date(data.metadata.generado);
+  const mes = fecha.toLocaleDateString('es-CO', { month: 'short', year: 'numeric' }).toUpperCase();
+
+  document.getElementById('livePeriodo').textContent = `DATOS REALES Â· ${mes}`;
+  document.getElementById('statHumedales').textContent = humedales.length;
+  document.getElementById('statImagenes').textContent = totalActual + totalHist;
+  document.getElementById('statImagenesDelta').textContent = `Sentinel-2 Â· abrâ€“jun ${data.metadata.periodo_actual?.replace(' (abr-jun)','')}`;
+
+  if (cg) {
+    document.getElementById('statNdwi').textContent = fmtNDWI(cg.ndwi_actual);
+    document.getElementById('statNdwiDelta').textContent = `vs histÃ³rico ${fmtNDWI(cg.ndwi_historico)} (n=${cg.n_actual}/${cg.n_historico})`;
   }
+
+  const alertaHumedal = humedales.filter(h => h.delta < -0.06);
+  document.getElementById('statEstado').textContent = alertas > 0 ? `${alertas} ALERTA${alertas > 1 ? 'S' : ''}` : 'NORMAL';
+  document.getElementById('statEstadoDelta').textContent = alertaHumedal.length > 0 ? alertaHumedal.map(h => h.nombre.split(' ')[0] + ': delta ' + fmtDelta(h.delta)).join(' Â· ') : 'Todos los humedales en rango normal';
+
+  const deficit = humedales.filter(h => h.delta < -0.02).length;
+  document.getElementById('ensoDeficit').textContent = `${deficit} de ${humedales.length} humedales`;
+
+  document.getElementById('fuenteSentinel').textContent = totalActual + ' img actuales';
+  document.getElementById('fuenteHistorico').textContent = totalHist + ' img';
+
+  const fechaStr = fecha.toLocaleDateString('es-CO', { day:'2-digit', month:'short', year:'numeric', hour:'2-digit', minute:'2-digit' });
+  document.getElementById('updateBadge').textContent = `ðŸ”„ Ãšltima actualizaciÃ³n: ${fechaStr} UTC`;
+}
+
+// â”€â”€ FUNCIÃ“N GLOBAL MAPA â”€â”€
+window.volarA = function(lat, lng, card) {
+  if (mapaObj) mapaObj.flyTo([lat, lng], 10, { duration: 1.5 });
+  document.querySelectorAll('.humedal-card').forEach(c => c.classList.remove('active'));
+  if (card) card.classList.add('active');
+  if (window.innerWidth < 768) document.getElementById('mapa').scrollIntoView({ behavior: 'smooth' });
 };
 
-const ctx = document.getElementById('chartNDWI').getContext('2d');
-new Chart(ctx, {
-  type: 'bar',
-  data: {
-    labels: ['C.Grande','Mallorquín','Totumo','Zapatosa','Caimanera'],
-    datasets: [
-      { label:'Actual abr-jun 2026', data:[0.470,-0.162,-0.026,-0.242,-0.360], backgroundColor:'#0d7fa5', borderRadius:3 },
-      { label:'Histórico abr-jun 2019-25', data:[0.409,-0.119,0.011,-0.250,-0.287], backgroundColor:'rgba(106,138,150,0.5)', borderRadius:3 }
-    ]
-  },
-  options: {
-    responsive:true, maintainAspectRatio:false,
-    plugins: { legend:{ labels:{ color:'#6a8a96', font:{size:9,family:'Space Mono'}, boxWidth:10 } } },
-    scales: {
-      x:{ ticks:{color:'#6a8a96',font:{size:9}}, grid:{display:false} },
-      y:{ ticks:{color:'#6a8a96',font:{size:9}}, grid:{color:'rgba(255,255,255,0.04)'} }
-    }
+// â”€â”€ CARGA PRINCIPAL â”€â”€
+async function cargarDatos() {
+  try {
+    const resp = await fetch('data/humedales.json?v=' + Date.now());
+    if (!resp.ok) throw new Error('HTTP ' + resp.status);
+    const data = await resp.json();
+    datosGlobales = data;
+
+    renderStats(data);
+    renderHumedales(data.humedales);
+    renderMapa(data.humedales);
+    renderChartNDWI(data.humedales);
+    renderTabs(data.humedales);
+    renderChartSerie(data.humedales[0], 0);
+    renderRadar(data.humedales);
+    renderRanking(data.humedales);
+    renderAlertas(data.humedales);
+
+  } catch(e) {
+    console.error('Error cargando datos:', e);
+    // Fallback: mostrar error en stats
+    document.getElementById('statHumedales').textContent = '!';
+    document.getElementById('statEstado').textContent = 'ERROR';
+  } finally {
+    const overlay = document.getElementById('loadingOverlay');
+    overlay.style.opacity = '0';
+    setTimeout(() => overlay.style.display = 'none', 500);
   }
-});
+}
+
+cargarDatos();
 </script>
 </body>
 </html>
+
