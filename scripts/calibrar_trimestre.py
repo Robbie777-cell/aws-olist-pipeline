@@ -4,8 +4,7 @@ from datetime import datetime, timezone
 
 GEE_PROJECT = "tingua-earth-engine"
 BUFFER_M = 2000
-CLOUD_MAX = 40
-AÃ‘O_ACTUAL = 2026
+CLOUD_MANIO_ACTUAL = 2026
 MES_INICIO = 4   # abril
 MES_FIN = 6      # junio
 
@@ -49,7 +48,7 @@ def main():
             "fuente": "Sentinel-2 SR Harmonized (COPERNICUS/S2_SR_HARMONIZED)",
             "metodologia": f"Buffer circular {BUFFER_M}m por humedal, filtro cloud<{CLOUD_MAX}%, NDWI=(B3-B8)/(B3+B8), ventana trimestral abr-jun",
             "periodo_historico": "2019-2025 (abr-jun)",
-            "periodo_actual": f"{AÃ‘O_ACTUAL} (abr-jun)",
+            "periodo_ANIO_ACTUAL} (abr-jun)",
             "generado": datetime.now(timezone.utc).isoformat(),
             "proyecto": "TINGUA"
         },
@@ -65,8 +64,8 @@ def main():
         print(w["nombre"])
         geom = ee.Geometry.Point([w["lng"], w["lat"]]).buffer(BUFFER_M)
 
-        val_actual, n_actual = ndwi_promedio(geom, AÃ‘O_ACTUAL, AÃ‘O_ACTUAL, MES_INICIO, MES_FIN)
-        print(f"  Actual abr-jun {AÃ‘O_ACTUAL}: {val_actual} (n={n_actual})")
+        val_actual, n_actual = ndwi_promedio(geom, ANIO_ACTUAL, ANIO_ACTUAL, MES_INICIO, MES_FIN)
+        print(f"  ANIO_ACTUAL}: {val_actual} (n={n_actual})")
 
         val_hist, n_hist = ndwi_promedio(geom, 2019, 2025, MES_INICIO, MES_FIN)
         print(f"  Hist abr-jun 2019-2025: {val_hist} (n={n_hist})")
@@ -96,4 +95,5 @@ def main():
 
 if __name__ == "__main__":
     main()
+
 
