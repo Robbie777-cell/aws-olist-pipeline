@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-<title>TINGUA &mdash; Monitor de Humedales Colombianos</title>
+<title>TINGUA — Monitor de Humedales Colombianos</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 <link href="https://api.mapbox.com/mapbox-gl-js/v3.3.0/mapbox-gl.css" rel="stylesheet">
@@ -32,7 +32,7 @@
     overflow-x: hidden;
   }
 
-  /* &#9472;&#9472; HEADER &#9472;&#9472; */
+  /* ── HEADER ── */
   header {
     display: flex;
     align-items: center;
@@ -111,7 +111,7 @@
     line-height: 1.4;
   }
 
-  /* &#9472;&#9472; STATS BAR &#9472;&#9472; */
+  /* ── STATS BAR ── */
   .stats-bar {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -154,7 +154,7 @@
     line-height: 1.3;
   }
 
-  /* &#9472;&#9472; MAPA &#9472;&#9472; */
+  /* ── MAPA ── */
   #mapa {
     width: 100%;
     height: 52vw;
@@ -165,10 +165,10 @@
 
   
 
-  /* &#9472;&#9472; CONTENIDO PRINCIPAL &#9472;&#9472; */
+  /* ── CONTENIDO PRINCIPAL ── */
   .content { padding: 0 0 2rem; }
 
-  /* &#9472;&#9472; SECCI&Oacute;N &#9472;&#9472; */
+  /* ── SECCIÓN ── */
   .section { padding: 1rem 1rem 0; }
 
   .section-title {
@@ -182,7 +182,7 @@
     padding-bottom: 0.5rem;
   }
 
-  /* &#9472;&#9472; HUMEDAL CARDS &#9472;&#9472; */
+  /* ── HUMEDAL CARDS ── */
   .humedal-card {
     background: rgba(13,127,165,0.05);
     border: 1px solid var(--borde);
@@ -269,7 +269,7 @@
 
   .indice-fill { height: 100%; border-radius: 2px; }
 
-  /* &#9472;&#9472; CHART HIST&Oacute;RICO &#9472;&#9472; */
+  /* ── CHART HISTÓRICO ── */
   .chart-container {
     position: relative;
     height: 140px;
@@ -278,7 +278,7 @@
 
   .chart-container.tall { height: 200px; }
 
-  /* &#9472;&#9472; TABS HIST&Oacute;RICO &#9472;&#9472; */
+  /* ── TABS HISTÓRICO ── */
   .tabs {
     display: flex;
     gap: 6px;
@@ -305,7 +305,7 @@
     color: var(--agua-claro);
   }
 
-  /* &#9472;&#9472; SERIE TEMPORAL &#9472;&#9472; */
+  /* ── SERIE TEMPORAL ── */
   .serie-info {
     display: flex;
     gap: 12px;
@@ -328,7 +328,7 @@
     flex-shrink: 0;
   }
 
-  /* &#9472;&#9472; FUENTES &#9472;&#9472; */
+  /* ── FUENTES ── */
   .fuente-row {
     display: flex;
     align-items: center;
@@ -343,7 +343,7 @@
   .fuente-nombre { flex: 1; color: var(--texto); font-size: 0.73rem; }
   .fuente-count { font-family: 'Space Mono', monospace; font-size: 0.68rem; color: var(--agua-claro); }
 
-  /* &#9472;&#9472; FOOTER &#9472;&#9472; */
+  /* ── FOOTER ── */
   .footer-info {
     padding: 1rem;
     font-size: 0.65rem;
@@ -367,7 +367,7 @@
     margin-bottom: 6px;
   }
 
-  /* &#9472;&#9472; POPUP &#9472;&#9472; */
+  /* ── POPUP ── */
 .popup-titulo { font-size: 0.88rem; font-weight: 600; color: #fff; margin-bottom: 8px; }
   .popup-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5px; font-size: 0.73rem; }
   .popup-item { color: var(--texto-dim); }
@@ -385,7 +385,7 @@
   .mapboxgl-ctrl-logo { display: none !important; }
   .mapboxgl-ctrl-attrib { display: none !important; }
 
-  /* &#9472;&#9472; ALERTA ENSO &#9472;&#9472; */
+  /* ── ALERTA ENSO ── */
   .enso-banner {
     display: flex;
     align-items: center;
@@ -403,7 +403,7 @@
   .enso-text { color: var(--texto-dim); }
   .enso-text b { color: var(--texto); font-weight: 600; }
 
-  /* &#9472;&#9472; RADAR &#9472;&#9472; */
+  /* ── RADAR ── */
   .riesgo-card {
     background: rgba(13,127,165,0.05);
     border: 1px solid var(--borde);
@@ -427,7 +427,7 @@
   .riesgo-detalle { display: flex; justify-content: space-between; margin-top: 10px; font-size: 0.68rem; color: var(--texto-dim); }
   .riesgo-detalle b { color: var(--agua-claro); font-family: 'Space Mono', monospace; }
 
-  /* &#9472;&#9472; ALERTAS &#9472;&#9472; */
+  /* ── ALERTAS ── */
   .alerta-item { display: flex; align-items: flex-start; gap: 10px; background: rgba(13,127,165,0.05); border: 1px solid var(--borde); border-left: 3px solid var(--verde); border-radius: 8px; padding: 10px 12px; margin-bottom: 8px; }
   .alerta-item.activa { border-left-color: var(--alerta); background: rgba(224,92,42,0.06); }
   .alerta-item.media { border-left-color: #e0aa2a; background: rgba(224,170,42,0.05); }
@@ -437,7 +437,7 @@
   .alerta-desc { font-size: 0.65rem; color: var(--texto-dim); line-height: 1.5; }
   .alerta-umbral { display: inline-block; font-family: 'Space Mono', monospace; font-size: 0.6rem; color: var(--agua-claro); background: rgba(0,0,0,0.25); padding: 1px 6px; border-radius: 4px; margin-top: 4px; }
 
-  /* &#9472;&#9472; DESVIACI&Oacute;N &#9472;&#9472; */
+  /* ── DESVIACIÓN ── */
   .desv-card { display: flex; align-items: center; justify-content: space-between; background: rgba(13,127,165,0.05); border: 1px solid var(--borde); border-radius: 8px; padding: 10px 12px; margin-bottom: 8px; }
   .desv-info { flex: 1; }
   .desv-nombre { font-size: 0.74rem; font-weight: 600; color: #fff; margin-bottom: 4px; }
@@ -450,7 +450,7 @@
   .desv-delta-valor.humedo { color: var(--agua-claro); }
   .desv-delta-label { font-size: 0.56rem; color: var(--texto-dim); text-transform: uppercase; letter-spacing: 0.05em; margin-top: 2px; }
 
-  /* &#9472;&#9472; METODOLOG&Iacute;A &#9472;&#9472; */
+  /* ── METODOLOGÍA ── */
   .metodo-box { background: rgba(13,127,165,0.05); border: 1px solid var(--borde); border-radius: 10px; padding: 0.85rem 1rem; }
   .metodo-row { display: flex; gap: 8px; padding: 5px 0; font-size: 0.68rem; line-height: 1.5; border-bottom: 1px solid rgba(255,255,255,0.04); }
   .metodo-row:last-child { border-bottom: none; }
@@ -458,7 +458,7 @@
   .metodo-val { color: var(--texto); }
   .metodo-val code { font-family: 'Space Mono', monospace; font-size: 0.65rem; color: var(--agua-claro); background: rgba(0,0,0,0.25); padding: 1px 5px; border-radius: 3px; }
 
-  /* &#9472;&#9472; ALERTA CONFIG &#9472;&#9472; */
+  /* ── ALERTA CONFIG ── */
   .alerta-config { background: rgba(0,0,0,0.2); border-radius: 8px; padding: 10px 12px; margin-top: 4px; }
   .alerta-config-row { display: flex; justify-content: space-between; align-items: center; padding: 5px 0; font-size: 0.68rem; border-bottom: 1px solid rgba(255,255,255,0.04); }
   .alerta-config-row:last-child { border-bottom: none; }
@@ -467,7 +467,7 @@
   .alerta-config-valores .lim-bajo { color: var(--alerta); }
   .alerta-config-valores .lim-alto { color: var(--agua-claro); }
 
-  /* &#9472;&#9472; ENSO CARD &#9472;&#9472; */
+  /* ── ENSO CARD ── */
   .enso-card { background: rgba(224,92,42,0.04); border: 1px solid rgba(224,92,42,0.2); border-radius: 10px; padding: 0.9rem; margin-bottom: 10px; }
   .enso-card-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 4px; }
   .enso-card-title { font-size: 0.8rem; font-weight: 600; color: #fff; }
@@ -475,14 +475,14 @@
   .enso-card-sub { font-size: 0.65rem; color: var(--texto-dim); margin-bottom: 12px; }
   .enso-historico { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-bottom: 10px; }
   .enso-evento { background: rgba(0,0,0,0.2); border-radius: 6px; padding: 8px; text-align: center; }
-  .enso-evento-a&ntilde;o { font-family: 'Space Mono', monospace; font-size: 0.85rem; font-weight: 700; color: var(--agua-claro); }
+  .enso-evento-año { font-family: 'Space Mono', monospace; font-size: 0.85rem; font-weight: 700; color: var(--agua-claro); }
   .enso-evento-label { font-size: 0.56rem; color: var(--texto-dim); text-transform: uppercase; letter-spacing: 0.05em; margin-top: 2px; }
   .enso-evento.actual { border: 1px solid rgba(224,92,42,0.4); background: rgba(224,92,42,0.08); }
-  .enso-evento.actual .enso-evento-a&ntilde;o { color: var(--alerta); }
+  .enso-evento.actual .enso-evento-año { color: var(--alerta); }
   .enso-impacto { display: flex; align-items: flex-start; gap: 8px; background: rgba(0,0,0,0.2); border-radius: 6px; padding: 8px 10px; margin-top: 4px; font-size: 0.66rem; color: var(--texto-dim); line-height: 1.5; }
   .enso-impacto-icon { font-size: 0.9rem; flex-shrink: 0; }
 
-  /* &#9472;&#9472; LOADING &#9472;&#9472; */
+  /* ── LOADING ── */
   .loading-overlay {
     position: fixed; inset: 0;
     background: var(--negro);
@@ -499,7 +499,7 @@
     animation: pulse 1.5s infinite;
   }
 
-  /* &#9472;&#9472; &Uacute;LTIMA ACTUALIZACI&Oacute;N &#9472;&#9472; */
+  /* ── ÚLTIMA ACTUALIZACIÓN ── */
   .update-badge {
     font-family: 'Space Mono', monospace;
     font-size: 0.58rem;
@@ -514,7 +514,7 @@
     margin-top: 6px;
   }
 
-  /* &#9472;&#9472; DESKTOP &#9472;&#9472; */
+  /* ── DESKTOP ── */
   @media (min-width: 768px) {
     header { padding: 1.1rem 2rem; }
     .stats-bar { grid-template-columns: repeat(4, 1fr); }
@@ -545,7 +545,7 @@
 <body>
 
 <div class="loading-overlay" id="loadingOverlay">
-  <div class="loading-text">TINGUA &middot; CARGANDO DATOS SATELITALES...</div>
+  <div class="loading-text">TINGUA · CARGANDO DATOS SATELITALES...</div>
 </div>
 
 <header>
@@ -557,8 +557,8 @@
     </div>
   </div>
   <div class="header-sources">
-    <div>Sentinel-2 &middot; ESA/Copernicus</div>
-    <div>AWS &middot; Google Earth Engine</div>
+    <div>Sentinel-2 · ESA/Copernicus</div>
+    <div>AWS · Google Earth Engine</div>
   </div>
   <div class="live-badge" id="liveBadge">
     <div class="live-dot"></div>
@@ -569,30 +569,30 @@
 <div class="stats-bar" id="statsBar">
   <div class="stat">
     <div class="stat-label">Humedales</div>
-    <div class="stat-value agua" id="statHumedales">&mdash;</div>
+    <div class="stat-value agua" id="statHumedales">—</div>
     <div class="stat-delta">Costa Caribe</div>
   </div>
   <div class="stat">
-    <div class="stat-label">Im&aacute;genes satelitales</div>
-    <div class="stat-value" id="statImagenes">&mdash;</div>
+    <div class="stat-label">Imágenes satelitales</div>
+    <div class="stat-value" id="statImagenes">—</div>
     <div class="stat-delta" id="statImagenesDelta">Sentinel-2</div>
   </div>
   <div class="stat">
     <div class="stat-label" id="statNdwiLabel">NDWI C.Grande abr-jun</div>
-    <div class="stat-value agua" id="statNdwi">&mdash;</div>
-    <div class="stat-delta" id="statNdwiDelta">&mdash;</div>
+    <div class="stat-value agua" id="statNdwi">—</div>
+    <div class="stat-delta" id="statNdwiDelta">—</div>
   </div>
   <div class="stat">
     <div class="stat-label">Estado general</div>
-    <div class="stat-value alerta" id="statEstado">&mdash;</div>
-    <div class="stat-delta" id="statEstadoDelta">&mdash;</div>
+    <div class="stat-value alerta" id="statEstado">—</div>
+    <div class="stat-delta" id="statEstadoDelta">—</div>
   </div>
 </div>
 
 <div class="enso-banner">
   <div class="enso-icon"></div>
-  <div class="enso-tag">EL NI&Ntilde;O 2026 &middot; IDEAM</div>
-  <div class="enso-text" id="ensoBannerText">90% prob. consolidaci&oacute;n para sep-2026 &mdash; posible <b>reducci&oacute;n de lluvias</b> en Caribe y Andina. TINGUA detecta d&eacute;ficit h&iacute;drico en <b id="ensoDeficit">&mdash;</b> vs su promedio hist&oacute;rico abr-jun.</div>
+  <div class="enso-tag">EL NIÑO 2026 · IDEAM</div>
+  <div class="enso-text" id="ensoBannerText">90% prob. consolidación para sep-2026 — posible <b>reducción de lluvias</b> en Caribe y Andina. TINGUA detecta déficit hídrico en <b id="ensoDeficit">—</b> vs su promedio histórico abr-jun.</div>
 </div>
 
 <div class="desktop-layout">
@@ -607,68 +607,68 @@
       <div id="humedalesContainer"></div>
     </div>
 
-    <!-- GR&Aacute;FICA COMPARATIVA -->
+    <!-- GRÁFICA COMPARATIVA -->
     <div class="section" style="margin-top:0.5rem">
-      <div class="section-title">NDWI actual vs hist&oacute;rico &middot; abr-jun</div>
+      <div class="section-title">NDWI actual vs histórico · abr-jun</div>
       <div class="chart-container tall">
         <canvas id="chartNDWI"></canvas>
       </div>
       <div style="font-size:0.58rem;color:var(--texto-dim);margin-top:6px;font-family:'Space Mono',monospace" id="chartNDWIFuente">
-        Actual vs hist&oacute;rico abr-jun 2019-2025 (Google Earth Engine)
+        Actual vs histórico abr-jun 2019-2025 (Google Earth Engine)
       </div>
     </div>
 
-    <!-- SERIE HIST&Oacute;RICA POR HUMEDAL -->
+    <!-- SERIE HISTÓRICA POR HUMEDAL -->
     <div class="section" style="margin-top:0.5rem">
-      <div class="section-title">Serie hist&oacute;rica NDWI &middot; abr-jun 2019&ndash;2026</div>
+      <div class="section-title">Serie histórica NDWI · abr-jun 2019–2026</div>
       <div style="font-size:0.6rem;color:var(--texto-dim);margin-bottom:8px">
-        Evoluci&oacute;n anual del &iacute;ndice h&iacute;drico por humedal &mdash; cada punto es el promedio Sentinel-2 del trimestre abr-jun.
+        Evolución anual del índice hídrico por humedal — cada punto es el promedio Sentinel-2 del trimestre abr-jun.
       </div>
       <div class="tabs" id="tabsHumedal"></div>
       <div class="serie-info">
         <div class="serie-tag"><div class="serie-dot" style="background:var(--agua-claro)"></div>NDWI abr-jun</div>
-        <div class="serie-tag"><div class="serie-dot" style="background:rgba(106,138,150,0.5)"></div>Promedio hist&oacute;rico</div>
+        <div class="serie-tag"><div class="serie-dot" style="background:rgba(106,138,150,0.5)"></div>Promedio histórico</div>
       </div>
       <div class="chart-container tall">
         <canvas id="chartSerie"></canvas>
       </div>
       <div style="font-size:0.58rem;color:var(--texto-dim);margin-top:6px;font-family:'Space Mono',monospace">
-        2019-2025: baseline hist&oacute;rico GEE &middot; 2026: medici&oacute;n actual abr-jun
+        2019-2025: baseline histórico GEE · 2026: medición actual abr-jun
       </div>
     </div>
 
     <!-- RADAR RIESGO -->
     <div class="section" style="margin-top:0.5rem">
-      <div class="section-title">Radar de riesgo h&iacute;drico &middot; ENSO 2026</div>
+      <div class="section-title">Radar de riesgo hídrico · ENSO 2026</div>
       <div style="font-size:0.58rem;color:var(--texto-dim);margin-bottom:8px;font-family:'Space Mono',monospace">
-        ESCALA = DESVIACI&Oacute;N VS PROMEDIO ABR-JUN 2019-2025
+        ESCALA = DESVIACIÓN VS PROMEDIO ABR-JUN 2019-2025
       </div>
       <div id="radarContainer"></div>
     </div>
 
-    <!-- RANKING DESVIACI&Oacute;N -->
+    <!-- RANKING DESVIACIÓN -->
     <div class="section" style="margin-top:0.5rem">
-      <div class="section-title">Ranking de desviaci&oacute;n &middot; abr-jun 2026 vs hist&oacute;rico</div>
+      <div class="section-title">Ranking de desviación · abr-jun 2026 vs histórico</div>
       <div id="rankingContainer"></div>
     </div>
 
     <!-- ENSO -->
     <div class="section" style="margin-top:0.5rem">
-      <div class="section-title">Fen&oacute;meno ENSO &middot; Contexto hist&oacute;rico</div>
+      <div class="section-title">Fenómeno ENSO · Contexto histórico</div>
       <div class="enso-card">
         <div class="enso-card-header">
-          <div class="enso-card-title">El Ni&ntilde;o 2026</div>
+          <div class="enso-card-title">El Niño 2026</div>
           <div class="enso-prob">90%</div>
         </div>
-        <div class="enso-card-sub">Probabilidad de consolidaci&oacute;n para sep-2026 (IDEAM/MinAmbiente, jun-2026)</div>
+        <div class="enso-card-sub">Probabilidad de consolidación para sep-2026 (IDEAM/MinAmbiente, jun-2026)</div>
         <div class="enso-historico">
-          <div class="enso-evento"><div class="enso-evento-a&ntilde;o">1997</div><div class="enso-evento-label">S&uacute;per Ni&ntilde;o</div></div>
-          <div class="enso-evento"><div class="enso-evento-a&ntilde;o">2015</div><div class="enso-evento-label">Fuerte</div></div>
-          <div class="enso-evento actual"><div class="enso-evento-a&ntilde;o">2026</div><div class="enso-evento-label">En curso</div></div>
+          <div class="enso-evento"><div class="enso-evento-año">1997</div><div class="enso-evento-label">Súper Niño</div></div>
+          <div class="enso-evento"><div class="enso-evento-año">2015</div><div class="enso-evento-label">Fuerte</div></div>
+          <div class="enso-evento actual"><div class="enso-evento-año">2026</div><div class="enso-evento-label">En curso</div></div>
         </div>
         <div class="enso-impacto">
-          <div class="enso-impacto-icon">&#127754;</div>
-          <div>En Colombia, El Ni&ntilde;o se asocia a <b style="color:var(--texto)">reducci&oacute;n de lluvias</b> y aumento de temperatura, especialmente en Caribe, Andina y Pac&iacute;fica &mdash; impacto directo sobre el balance h&iacute;drico de los humedales monitoreados por TINGUA.</div>
+          <div class="enso-impacto-icon">🌊</div>
+          <div>En Colombia, El Niño se asocia a <b style="color:var(--texto)">reducción de lluvias</b> y aumento de temperatura, especialmente en Caribe, Andina y Pacífica — impacto directo sobre el balance hídrico de los humedales monitoreados por TINGUA.</div>
         </div>
       </div>
     </div>
@@ -677,52 +677,52 @@
     <div class="section" style="margin-top:0.5rem">
       <div class="section-title">Centro de alertas</div>
       <div id="alertasContainer"></div>
-      <div class="section-title" style="margin-top:14px">Configuraci&oacute;n de umbrales</div>
+      <div class="section-title" style="margin-top:14px">Configuración de umbrales</div>
       <div class="alerta-config">
-        <div class="alerta-config-row"><div class="alerta-config-nombre">Alerta &mdash; d&eacute;ficit cr&iacute;tico</div><div class="alerta-config-valores"><span class="lim-bajo">delta &lt; -0.06</span></div></div>
-        <div class="alerta-config-row"><div class="alerta-config-nombre">Vigilancia &mdash; d&eacute;ficit moderado</div><div class="alerta-config-valores"><span class="lim-bajo">-0.06 a -0.02</span></div></div>
+        <div class="alerta-config-row"><div class="alerta-config-nombre">Alerta — déficit crítico</div><div class="alerta-config-valores"><span class="lim-bajo">delta &lt; -0.06</span></div></div>
+        <div class="alerta-config-row"><div class="alerta-config-nombre">Vigilancia — déficit moderado</div><div class="alerta-config-valores"><span class="lim-bajo">-0.06 a -0.02</span></div></div>
         <div class="alerta-config-row"><div class="alerta-config-nombre">Normal</div><div class="alerta-config-valores"><span class="lim-alto">-0.02 a +0.10</span></div></div>
-        <div class="alerta-config-row"><div class="alerta-config-nombre">Vigilancia &mdash; exceso</div><div class="alerta-config-valores"><span class="lim-alto">delta &gt; +0.10</span></div></div>
+        <div class="alerta-config-row"><div class="alerta-config-nombre">Vigilancia — exceso</div><div class="alerta-config-valores"><span class="lim-alto">delta &gt; +0.10</span></div></div>
       </div>
     </div>
 
-    <!-- METODOLOG&Iacute;A -->
+    <!-- METODOLOGÍA -->
     <div class="section" style="margin-top:0.5rem">
-      <div class="section-title">Metodolog&iacute;a</div>
+      <div class="section-title">Metodología</div>
       <div class="metodo-box">
-        <div class="metodo-row"><div class="metodo-label">&Iacute;ndice</div><div class="metodo-val">NDWI = (B3&#8722;B8)/(B3+B8) &mdash; Sentinel-2 SR Harmonized</div></div>
-        <div class="metodo-row"><div class="metodo-label">Geometr&iacute;a</div><div class="metodo-val">Buffer circular <code>2000m</code> por humedal</div></div>
+        <div class="metodo-row"><div class="metodo-label">Índice</div><div class="metodo-val">NDWI = (B3−B8)/(B3+B8) — Sentinel-2 SR Harmonized</div></div>
+        <div class="metodo-row"><div class="metodo-label">Geometría</div><div class="metodo-val">Buffer circular <code>2000m</code> por humedal</div></div>
         <div class="metodo-row"><div class="metodo-label">Filtro nubes</div><div class="metodo-val"><code>CLOUDY_PIXEL_PERCENTAGE &lt; 40%</code></div></div>
-        <div class="metodo-row"><div class="metodo-label">Comparaci&oacute;n</div><div class="metodo-val">Trimestre <code>abr&ndash;jun 2026</code> vs promedio <code>abr&ndash;jun 2019-2025</code></div></div>
-        <div class="metodo-row"><div class="metodo-label">Fuente</div><div class="metodo-val">Google Earth Engine &middot; <code>scripts/calibrar_trimestre.py</code> &#8594; <code>docs/data/humedales.json</code></div></div>
-        <div class="metodo-row"><div class="metodo-label">Automatizaci&oacute;n</div><div class="metodo-val">GitHub Actions &middot; cada lunes 8am &middot; Workload Identity Federation</div></div>
+        <div class="metodo-row"><div class="metodo-label">Comparación</div><div class="metodo-val">Trimestre <code>abr–jun 2026</code> vs promedio <code>abr–jun 2019-2025</code></div></div>
+        <div class="metodo-row"><div class="metodo-label">Fuente</div><div class="metodo-val">Google Earth Engine · <code>scripts/calibrar_trimestre.py</code> → <code>docs/data/humedales.json</code></div></div>
+        <div class="metodo-row"><div class="metodo-label">Automatización</div><div class="metodo-val">GitHub Actions · cada lunes 8am · Workload Identity Federation</div></div>
       </div>
       <div class="update-badge" id="updateBadge">
-        &#128260; &Uacute;ltima actualizaci&oacute;n: &mdash;
+        🔄 Última actualización: —
       </div>
     </div>
 
     <!-- FUENTES -->
     <div class="section" style="margin-top:0.75rem">
       <div class="section-title">Fuentes de datos</div>
-      <div class="fuente-row"><div class="fuente-dot" style="background:var(--agua)"></div><div class="fuente-nombre">Sentinel-2 SR Harmonized (ESA)</div><div class="fuente-count" id="fuenteSentinel">&mdash;</div></div>
-      <div class="fuente-row"><div class="fuente-dot" style="background:#8b5cf6"></div><div class="fuente-nombre">Google Earth Engine &mdash; actual</div><div class="fuente-count">5 humedales</div></div>
-      <div class="fuente-row"><div class="fuente-dot" style="background:#c9a050"></div><div class="fuente-nombre">Baseline hist&oacute;rico GEE (2019-2025)</div><div class="fuente-count" id="fuenteHistorico">&mdash;</div></div>
-      <div class="fuente-row"><div class="fuente-dot" style="background:var(--verde)"></div><div class="fuente-nombre">Pipeline AWS (Kinesis&#8594;Lambda&#8594;S3&#8594;Athena)</div><div class="fuente-count">817 reg</div></div>
+      <div class="fuente-row"><div class="fuente-dot" style="background:var(--agua)"></div><div class="fuente-nombre">Sentinel-2 SR Harmonized (ESA)</div><div class="fuente-count" id="fuenteSentinel">—</div></div>
+      <div class="fuente-row"><div class="fuente-dot" style="background:#8b5cf6"></div><div class="fuente-nombre">Google Earth Engine — actual</div><div class="fuente-count">5 humedales</div></div>
+      <div class="fuente-row"><div class="fuente-dot" style="background:#c9a050"></div><div class="fuente-nombre">Baseline histórico GEE (2019-2025)</div><div class="fuente-count" id="fuenteHistorico">—</div></div>
+      <div class="fuente-row"><div class="fuente-dot" style="background:var(--verde)"></div><div class="fuente-nombre">Pipeline AWS (Kinesis→Lambda→S3→Athena)</div><div class="fuente-count">817 reg</div></div>
     </div>
 
     <div class="footer-info">
-      <div class="sentinel-badge">ESA &middot; COPERNICUS &middot; SENTINEL-2</div>
-      <div>Datos satelitales reales procesados via Google Earth Engine. Pipeline AWS serverless: Kinesis &#8594; Lambda &#8594; S3 &#8594; Athena.</div>
-      <div style="margin-top:6px">Rob Acosta &middot; Data Engineer &middot; Barranquilla, Colombia &middot; 2026</div>
+      <div class="sentinel-badge">ESA · COPERNICUS · SENTINEL-2</div>
+      <div>Datos satelitales reales procesados via Google Earth Engine. Pipeline AWS serverless: Kinesis → Lambda → S3 → Athena.</div>
+      <div style="margin-top:6px">Rob Acosta · Data Engineer · Barranquilla, Colombia · 2026</div>
     </div>
 
   </div>
 </div>
 
 <script>
-// &#9472;&#9472; DATOS HIST&Oacute;RICOS ESTIMADOS (baseline para serie temporal) &#9472;&#9472;
-// Basado en variabilidad t&iacute;pica NDWI Sentinel-2 para estos humedales 2019-2025
+// ── DATOS HISTÓRICOS ESTIMADOS (baseline para serie temporal) ──
+// Basado en variabilidad típica NDWI Sentinel-2 para estos humedales 2019-2025
 const historicSeries = {
   cienaga_grande: { hist: [0.398, 0.412, 0.395, 0.420, 0.415, 0.405, 0.409] },
   mallorquin:     { hist: [-0.128, -0.115, -0.122, -0.108, -0.125, -0.118, -0.119] },
@@ -738,7 +738,7 @@ let mapaObj = null;
 let datosGlobales = null;
 let tabActivo = 0;
 
-// &#9472;&#9472; UTILIDADES &#9472;&#9472;
+// ── UTILIDADES ──
 function getEstado(delta) {
   if (delta < -0.06) return { label: 'ALERTA', cls: 'estado-alerta', color: '#e05c2a', riesgo: 'RIESGO ALTO', riesgoCls: 'riesgo-alto' };
   if (delta < -0.02) return { label: 'VIGILAR', cls: 'estado-vigilar', color: '#e0aa2a', riesgo: 'VIGILAR', riesgoCls: 'riesgo-medio' };
@@ -751,17 +751,17 @@ function fmtDelta(d) {
 }
 
 function fmtNDWI(v) {
-  if (v === null || v === undefined) return '&mdash;';
+  if (v === null || v === undefined) return '—';
   return (v >= 0 ? '+' : '') + v.toFixed(3);
 }
 
 function escalaPos(delta) {
-  // Mapea delta [-0.15, +0.15] &#8594; posici&oacute;n [5%, 95%]
+  // Mapea delta [-0.15, +0.15] → posición [5%, 95%]
   const clamped = Math.max(-0.15, Math.min(0.15, delta));
   return Math.round(((clamped + 0.15) / 0.30) * 90 + 5);
 }
 
-// &#9472;&#9472; RENDER HUMEDALES &#9472;&#9472;
+// ── RENDER HUMEDALES ──
 function renderHumedales(humedales) {
   const container = document.getElementById('humedalesContainer');
   container.innerHTML = '';
@@ -807,7 +807,7 @@ function renderHumedales(humedales) {
   });
 }
 
-// &#9472;&#9472; RENDER RADAR &#9472;&#9472;
+// ── RENDER RADAR ──
 function renderRadar(humedales) {
   const container = document.getElementById('radarContainer');
   container.innerHTML = '';
@@ -821,7 +821,7 @@ function renderRadar(humedales) {
           <div class="riesgo-badge ${estado.riesgoCls}">${estado.riesgo}</div>
         </div>
         <div class="escala"><div class="escala-marcador" style="left:${pos}%"></div></div>
-        <div class="escala-labels"><span>M&aacute;s seco</span><span>Normal (hist.)</span><span>M&aacute;s h&uacute;medo</span></div>
+        <div class="escala-labels"><span>Más seco</span><span>Normal (hist.)</span><span>Más húmedo</span></div>
         <div class="riesgo-detalle">
           <span>NDWI: <b>${fmtNDWI(h.ndwi_actual)}</b></span>
           <span>Delta: <b>${fmtDelta(h.delta)}</b></span>
@@ -831,21 +831,21 @@ function renderRadar(humedales) {
   });
 }
 
-// &#9472;&#9472; RENDER RANKING &#9472;&#9472;
+// ── RENDER RANKING ──
 function renderRanking(humedales) {
   const sorted = [...humedales].sort((a,b) => a.delta - b.delta);
   const container = document.getElementById('rankingContainer');
   container.innerHTML = '';
   sorted.forEach((h, i) => {
     const cls = h.delta < -0.02 ? 'seco' : (h.delta > 0.02 ? 'humedo' : 'normal');
-    const label = h.delta < -0.02 ? 'M&aacute;s seco' : (h.delta > 0.02 ? 'M&aacute;s h&uacute;medo' : 'Neutral');
+    const label = h.delta < -0.02 ? 'Más seco' : (h.delta > 0.02 ? 'Más húmedo' : 'Neutral');
     container.innerHTML += `
       <div class="desv-card">
         <div class="desv-info">
           <div class="desv-nombre">${i+1}. ${h.nombre}</div>
           <div class="desv-valores">
             <span>Actual: <b>${fmtNDWI(h.ndwi_actual)}</b></span>
-            <span>Hist&oacute;rico: <b>${fmtNDWI(h.ndwi_historico)}</b></span>
+            <span>Histórico: <b>${fmtNDWI(h.ndwi_historico)}</b></span>
           </div>
         </div>
         <div class="desv-delta">
@@ -857,7 +857,7 @@ function renderRanking(humedales) {
   });
 }
 
-// &#9472;&#9472; RENDER ALERTAS &#9472;&#9472;
+// ── RENDER ALERTAS ──
 function renderAlertas(humedales) {
   const container = document.getElementById('alertasContainer');
   container.innerHTML = '';
@@ -866,21 +866,21 @@ function renderAlertas(humedales) {
     const estado = getEstado(h.delta);
     let icon, cls, umbral;
     if (h.delta < -0.06) {
-      icon = '&#9888;&#65039;'; cls = 'activa';
-      umbral = 'Umbral d&eacute;ficit: delta < -0.06';
+      icon = '⚠️'; cls = 'activa';
+      umbral = 'Umbral déficit: delta < -0.06';
     } else if (h.delta < -0.02) {
-      icon = '&#128065;&#65039;'; cls = 'media';
-      umbral = 'Umbral vigilancia: -0.06 &le; delta < -0.02';
+      icon = '👁️'; cls = 'media';
+      umbral = 'Umbral vigilancia: -0.06 ≤ delta < -0.02';
     } else {
-      icon = '&#9989;'; cls = '';
-      umbral = 'Rango normal: -0.02 &le; delta &le; +0.10';
+      icon = '✅'; cls = '';
+      umbral = 'Rango normal: -0.02 ≤ delta ≤ +0.10';
     }
     container.innerHTML += `
       <div class="alerta-item ${cls}">
         <div class="alerta-icon">${icon}</div>
         <div class="alerta-content">
-          <div class="alerta-titulo">${h.nombre} &mdash; ${estado.label === 'ALERTA' ? 'Alerta activa' : (estado.label === 'VIGILAR' ? 'Vigilancia' : 'Normal')}</div>
-          <div class="alerta-desc">Delta ${fmtDelta(h.delta)}. NDWI actual ${fmtNDWI(h.ndwi_actual)} vs hist&oacute;rico ${fmtNDWI(h.ndwi_historico)} (n=${h.n_actual}/${h.n_historico}).</div>
+          <div class="alerta-titulo">${h.nombre} — ${estado.label === 'ALERTA' ? 'Alerta activa' : (estado.label === 'VIGILAR' ? 'Vigilancia' : 'Normal')}</div>
+          <div class="alerta-desc">Delta ${fmtDelta(h.delta)}. NDWI actual ${fmtNDWI(h.ndwi_actual)} vs histórico ${fmtNDWI(h.ndwi_historico)} (n=${h.n_actual}/${h.n_historico}).</div>
           <div class="alerta-umbral">${umbral}</div>
         </div>
       </div>
@@ -888,7 +888,103 @@ function renderAlertas(humedales) {
   });
 }
 
-// &#9472;&#9472; COORDENADAS EXACTAS SOBRE CUERPO DE AGUA &#9472;&#9472;
+
+// ── POLÍGONOS REALES DE HUMEDALES (GeoJSON aproximado) ──
+const poligonos = {
+  cienaga_grande: {
+    type: 'Feature',
+    geometry: {
+      type: 'Polygon',
+      coordinates: [[
+        [-74.56, 10.72], [-74.38, 10.72], [-74.28, 10.78],
+        [-74.22, 10.88], [-74.25, 10.98], [-74.38, 11.02],
+        [-74.52, 10.98], [-74.60, 10.90], [-74.62, 10.82],
+        [-74.56, 10.72]
+      ]]
+    }
+  },
+  mallorquin: {
+    type: 'Feature',
+    geometry: {
+      type: 'Polygon',
+      coordinates: [[
+        [-74.862, 11.032], [-74.840, 11.032], [-74.835, 11.038],
+        [-74.838, 11.045], [-74.850, 11.048], [-74.865, 11.044],
+        [-74.868, 11.038], [-74.862, 11.032]
+      ]]
+    }
+  },
+  totumo: {
+    type: 'Feature',
+    geometry: {
+      type: 'Polygon',
+      coordinates: [[
+        [-75.245, 10.722], [-75.228, 10.720], [-75.220, 10.726],
+        [-75.222, 10.735], [-75.232, 10.740], [-75.245, 10.736],
+        [-75.250, 10.730], [-75.245, 10.722]
+      ]]
+    }
+  },
+  zapatosa: {
+    type: 'Feature',
+    geometry: {
+      type: 'Polygon',
+      coordinates: [[
+        [-73.870, 8.940], [-73.800, 8.935], [-73.755, 8.945],
+        [-73.748, 8.965], [-73.762, 8.985], [-73.800, 8.998],
+        [-73.845, 8.992], [-73.872, 8.975], [-73.875, 8.958],
+        [-73.870, 8.940]
+      ]]
+    }
+  },
+  caimanera: {
+    type: 'Feature',
+    geometry: {
+      type: 'Polygon',
+      coordinates: [[
+        [-75.855, 9.295], [-75.800, 9.290], [-75.775, 9.305],
+        [-75.778, 9.325], [-75.798, 9.342], [-75.825, 9.345],
+        [-75.852, 9.335], [-75.862, 9.318], [-75.855, 9.295]
+      ]]
+    }
+  }
+};
+
+function addPolygons(humedales) {
+  humedales.forEach(h => {
+    const poly = poligonos[h.id];
+    if (!poly) return;
+    const estado = getEstado(h.delta);
+    const sourceId = 'poly-' + h.id;
+    
+    mapaObj.addSource(sourceId, { type: 'geojson', data: poly });
+    
+    // Fill semitransparente
+    mapaObj.addLayer({
+      id: sourceId + '-fill',
+      type: 'fill',
+      source: sourceId,
+      paint: {
+        'fill-color': estado.color,
+        'fill-opacity': 0.18
+      }
+    });
+    
+    // Borde
+    mapaObj.addLayer({
+      id: sourceId + '-line',
+      type: 'line',
+      source: sourceId,
+      paint: {
+        'line-color': estado.color,
+        'line-width': 2,
+        'line-opacity': 0.8
+      }
+    });
+  });
+}
+
+// ── COORDENADAS EXACTAS SOBRE CUERPO DE AGUA ──
 const coordsExactas = {
   cienaga_grande: { lat: 10.780, lng: -74.480 },
   mallorquin:     { lat: 11.038, lng: -74.848 },
@@ -897,7 +993,7 @@ const coordsExactas = {
   caimanera:      { lat: 9.320,  lng: -75.820 }
 };
 
-// &#9472;&#9472; RENDER MAPA MAPBOX SATELITAL &#9472;&#9472;
+// ── RENDER MAPA MAPBOX SATELITAL ──
 function renderMapa(humedales) {
   if (mapaObj) return;
   mapboxgl.accessToken = 'pk.eyJ1Ijoicm9iYmllYWMiLCJhIjoiY21vbWR1bGQ4MDI5ZDJ0b2ZtNndkdndnNyJ9.h1O00RDf6uZHKwN72DEKPA';
@@ -912,6 +1008,7 @@ function renderMapa(humedales) {
   mapaObj.addControl(new mapboxgl.NavigationControl(), 'top-left');
 
   mapaObj.on('load', () => {
+    addPolygons(humedales);
     humedales.forEach(h => {
       const estado = getEstado(h.delta);
       const coords = coordsExactas[h.id] || { lat: h.lat, lng: h.lng };
@@ -940,7 +1037,7 @@ function renderMapa(humedales) {
         <div style="font-size:0.7rem;color:#6a8a96;margin-bottom:8px">${h.descripcion}</div>
         <div class="popup-grid">
           <div class="popup-item">NDWI actual</div><div class="popup-val">${fmtNDWI(h.ndwi_actual)}</div>
-          <div class="popup-item">NDWI hist&oacute;rico</div><div class="popup-val">${fmtNDWI(h.ndwi_historico)}</div>
+          <div class="popup-item">NDWI histórico</div><div class="popup-val">${fmtNDWI(h.ndwi_historico)}</div>
           <div class="popup-item">Delta</div><div class="popup-val">${fmtDelta(h.delta)}</div>
           <div class="popup-item">Muestra n</div><div class="popup-val">${h.n_actual}/${h.n_historico}</div>
           <div class="popup-item">Estado</div><div class="popup-val" style="color:${estado.color}">${estado.label}</div>
@@ -955,9 +1052,9 @@ function renderMapa(humedales) {
   });
 }
 
-// &#9472;&#9472; CHART COMPARATIVO &#9472;&#9472;
+// ── CHART COMPARATIVO ──
 function renderChartNDWI(humedales) {
-  const labels = humedales.map(h => h.nombre.replace('Ci&eacute;naga ', 'C.').replace('La Caimanera', 'Caimanera'));
+  const labels = humedales.map(h => h.nombre.replace('Ciénaga ', 'C.').replace('La Caimanera', 'Caimanera'));
   const ctx = document.getElementById('chartNDWI').getContext('2d');
   if (chartNDWI) chartNDWI.destroy();
   chartNDWI = new Chart(ctx, {
@@ -966,7 +1063,7 @@ function renderChartNDWI(humedales) {
       labels,
       datasets: [
         { label:'Actual abr-jun 2026', data: humedales.map(h => h.ndwi_actual), backgroundColor:'#0d7fa5', borderRadius:3 },
-        { label:'Hist&oacute;rico abr-jun 2019-25', data: humedales.map(h => h.ndwi_historico), backgroundColor:'rgba(106,138,150,0.5)', borderRadius:3 }
+        { label:'Histórico abr-jun 2019-25', data: humedales.map(h => h.ndwi_historico), backgroundColor:'rgba(106,138,150,0.5)', borderRadius:3 }
       ]
     },
     options: {
@@ -980,7 +1077,7 @@ function renderChartNDWI(humedales) {
   });
 }
 
-// &#9472;&#9472; CHART SERIE HIST&Oacute;RICA &#9472;&#9472;
+// ── CHART SERIE HISTÓRICA ──
 function renderChartSerie(humedal, idx) {
   const key = humedal.id;
   const histData = historicSeries[key] ? historicSeries[key].hist : Array(7).fill(humedal.ndwi_historico);
@@ -1007,7 +1104,7 @@ function renderChartSerie(humedal, idx) {
           tension: 0.3
         },
         {
-          label: 'Promedio hist&oacute;rico 2019-2025',
+          label: 'Promedio histórico 2019-2025',
           data: avgLine,
           borderColor: 'rgba(106,138,150,0.5)',
           borderWidth: 1.5,
@@ -1039,14 +1136,14 @@ function renderChartSerie(humedal, idx) {
   });
 }
 
-// &#9472;&#9472; TABS SERIE &#9472;&#9472;
+// ── TABS SERIE ──
 function renderTabs(humedales) {
   const container = document.getElementById('tabsHumedal');
   container.innerHTML = '';
   humedales.forEach((h, i) => {
     const btn = document.createElement('button');
     btn.className = 'tab-btn' + (i === 0 ? ' active' : '');
-    btn.textContent = h.nombre.replace('Ci&eacute;naga Grande de Santa Marta','C.Grande').replace('Ci&eacute;naga de ','').replace('La Caimanera (Cispat&aacute;)','Caimanera');
+    btn.textContent = h.nombre.replace('Ciénaga Grande de Santa Marta','C.Grande').replace('Ciénaga de ','').replace('La Caimanera (Cispatá)','Caimanera');
     btn.onclick = () => {
       document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
@@ -1057,7 +1154,7 @@ function renderTabs(humedales) {
   });
 }
 
-// &#9472;&#9472; STATS SUMMARY &#9472;&#9472;
+// ── STATS SUMMARY ──
 function renderStats(data) {
   const humedales = data.humedales;
   const totalActual = humedales.reduce((s,h) => s + h.n_actual, 0);
@@ -1068,19 +1165,19 @@ function renderStats(data) {
   const fecha = new Date(data.metadata.generado);
   const mes = fecha.toLocaleDateString('es-CO', { month: 'short', year: 'numeric' }).toUpperCase();
 
-  document.getElementById('livePeriodo').textContent = `DATOS REALES &middot; ${mes}`;
+  document.getElementById('livePeriodo').textContent = `DATOS REALES · ${mes}`;
   document.getElementById('statHumedales').textContent = humedales.length;
   document.getElementById('statImagenes').textContent = totalActual + totalHist;
-  document.getElementById('statImagenesDelta').textContent = `Sentinel-2 &middot; abr&ndash;jun ${data.metadata.periodo_actual?.replace(' (abr-jun)','')}`;
+  document.getElementById('statImagenesDelta').textContent = `Sentinel-2 · abr–jun ${data.metadata.periodo_actual?.replace(' (abr-jun)','')}`;
 
   if (cg) {
     document.getElementById('statNdwi').textContent = fmtNDWI(cg.ndwi_actual);
-    document.getElementById('statNdwiDelta').textContent = `vs hist&oacute;rico ${fmtNDWI(cg.ndwi_historico)} (n=${cg.n_actual}/${cg.n_historico})`;
+    document.getElementById('statNdwiDelta').textContent = `vs histórico ${fmtNDWI(cg.ndwi_historico)} (n=${cg.n_actual}/${cg.n_historico})`;
   }
 
   const alertaHumedal = humedales.filter(h => h.delta < -0.06);
   document.getElementById('statEstado').textContent = alertas > 0 ? `${alertas} ALERTA${alertas > 1 ? 'S' : ''}` : 'NORMAL';
-  document.getElementById('statEstadoDelta').textContent = alertaHumedal.length > 0 ? alertaHumedal.map(h => h.nombre.split(' ')[0] + ': delta ' + fmtDelta(h.delta)).join(' &middot; ') : 'Todos los humedales en rango normal';
+  document.getElementById('statEstadoDelta').textContent = alertaHumedal.length > 0 ? alertaHumedal.map(h => h.nombre.split(' ')[0] + ': delta ' + fmtDelta(h.delta)).join(' · ') : 'Todos los humedales en rango normal';
 
   const deficit = humedales.filter(h => h.delta < -0.02).length;
   document.getElementById('ensoDeficit').textContent = `${deficit} de ${humedales.length} humedales`;
@@ -1089,10 +1186,10 @@ function renderStats(data) {
   document.getElementById('fuenteHistorico').textContent = totalHist + ' img';
 
   const fechaStr = fecha.toLocaleDateString('es-CO', { day:'2-digit', month:'short', year:'numeric', hour:'2-digit', minute:'2-digit' });
-  document.getElementById('updateBadge').textContent = `&#128260; &Uacute;ltima actualizaci&oacute;n: ${fechaStr} UTC`;
+  document.getElementById('updateBadge').textContent = `🔄 Última actualización: ${fechaStr} UTC`;
 }
 
-// &#9472;&#9472; FUNCI&Oacute;N GLOBAL MAPA &#9472;&#9472;
+// ── FUNCIÓN GLOBAL MAPA ──
 window.volarA = function(lat, lng, card, id) {
   const coords = (id && coordsExactas[id]) ? coordsExactas[id] : { lat, lng };
   if (mapaObj) mapaObj.flyTo({ center: [coords.lng, coords.lat], zoom: 11, duration: 1800 });
@@ -1101,7 +1198,7 @@ window.volarA = function(lat, lng, card, id) {
   if (window.innerWidth < 768) document.getElementById('mapa').scrollIntoView({ behavior: 'smooth' });
 };
 
-// &#9472;&#9472; CARGA PRINCIPAL &#9472;&#9472;
+// ── CARGA PRINCIPAL ──
 async function cargarDatos() {
   try {
     const resp = await fetch('data/humedales.json?v=' + Date.now());
