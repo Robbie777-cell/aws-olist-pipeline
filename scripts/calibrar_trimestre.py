@@ -1,4 +1,4 @@
-﻿import ee
+import ee
 import json
 import os
 import smtplib
