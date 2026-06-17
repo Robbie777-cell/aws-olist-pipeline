@@ -4,13 +4,13 @@
     "metodologia": "Buffer circular 2000m por humedal, filtro cloud<40%, NDWI=(B3-B8)/(B3+B8), ventana trimestral abr-jun",
     "periodo_historico": "2019-2025 (abr-jun)",
     "periodo_actual": "2026 (abr-jun)",
-    "generado": "2026-06-15T02:17:20.290158+00:00",
+    "generado": "2026-06-17T10:46:17.409549+00:00",
     "proyecto": "TINGUA"
   },
   "humedales": [
     {
       "id": "cienaga_grande",
-      "nombre": "Ciénaga Grande de Santa Marta",
+      "nombre": "Cienaga Grande de Santa Marta",
       "lat": 10.85,
       "lng": -74.35,
       "descripcion": "Mayor humedal costero de Colombia. Sitio RAMSAR.",
@@ -22,7 +22,7 @@
     },
     {
       "id": "mallorquin",
-      "nombre": "Ciénaga de Mallorquín",
+      "nombre": "Cienaga de Mallorquin",
       "lat": 11.045,
       "lng": -74.835,
       "descripcion": "Laguna costera norte de Barranquilla. Manglar denso.",
@@ -34,10 +34,10 @@
     },
     {
       "id": "totumo",
-      "nombre": "Ciénaga de Totumo",
+      "nombre": "Cienaga de Totumo",
       "lat": 10.732,
       "lng": -75.229,
-      "descripcion": "Humedal salobre con volcán de lodo activo.",
+      "descripcion": "Humedal salobre con volcan de lodo activo.",
       "ndwi_actual": -0.0255,
       "n_actual": 7,
       "ndwi_historico": 0.011,
@@ -46,7 +46,7 @@
     },
     {
       "id": "zapatosa",
-      "nombre": "Ciénaga de Zapatosa",
+      "nombre": "Cienaga de Zapatosa",
       "lat": 8.95,
       "lng": -73.8,
       "descripcion": "Mayor humedal interior de Colombia (Cesar/Magdalena).",
@@ -58,10 +58,10 @@
     },
     {
       "id": "caimanera",
-      "nombre": "La Caimanera (Cispatá)",
+      "nombre": "La Caimanera (Cispata)",
       "lat": 9.37,
       "lng": -75.78,
-      "descripcion": "Complejo de manglares Cispatá, Golfo de Morrosquillo.",
+      "descripcion": "Complejo de manglares Cispata, Golfo de Morrosquillo.",
       "ndwi_actual": -0.36,
       "n_actual": 7,
       "ndwi_historico": -0.2869,
