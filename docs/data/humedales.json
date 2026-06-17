@@ -1,10 +1,10 @@
 {
   "metadata": {
     "fuente": "Sentinel-2 SR Harmonized (COPERNICUS/S2_SR_HARMONIZED)",
-    "metodologia": "Buffer circular 2000m por humedal, filtro cloud<40%, NDWI=(B3-B8)/(B3+B8), ventana trimestral abr-jun",
+    "metodologia": "Buffer circular 2000m, cloud<40%, NDWI=(B3-B8)/(B3+B8), abr-jun",
     "periodo_historico": "2019-2025 (abr-jun)",
     "periodo_actual": "2026 (abr-jun)",
-    "generado": "2026-06-17T10:46:17.409549+00:00",
+    "generado": "2026-06-17T12:35:38.435625+00:00",
     "proyecto": "TINGUA"
   },
   "humedales": [
@@ -25,7 +25,7 @@
       "nombre": "Cienaga de Mallorquin",
       "lat": 11.045,
       "lng": -74.835,
-      "descripcion": "Laguna costera norte de Barranquilla. Manglar denso.",
+      "descripcion": "Laguna costera norte de Barranquilla.",
       "ndwi_actual": -0.1615,
       "n_actual": 9,
       "ndwi_historico": -0.1189,
@@ -49,7 +49,7 @@
       "nombre": "Cienaga de Zapatosa",
       "lat": 8.95,
       "lng": -73.8,
-      "descripcion": "Mayor humedal interior de Colombia (Cesar/Magdalena).",
+      "descripcion": "Mayor humedal interior de Colombia.",
       "ndwi_actual": -0.2424,
       "n_actual": 17,
       "ndwi_historico": -0.2503,
@@ -61,7 +61,7 @@
       "nombre": "La Caimanera (Cispata)",
       "lat": 9.37,
       "lng": -75.78,
-      "descripcion": "Complejo de manglares Cispata, Golfo de Morrosquillo.",
+      "descripcion": "Complejo de manglares Cispata.",
       "ndwi_actual": -0.36,
       "n_actual": 7,
       "ndwi_historico": -0.2869,
