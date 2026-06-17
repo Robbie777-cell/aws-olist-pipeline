@@ -29,6 +29,9 @@ jobs:
         run: pip install earthengine-api google-auth
 
       - name: Ejecutar calibracion
+        env:
+          GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
+          ALERT_EMAIL: ${{ secrets.ALERT_EMAIL }}
         run: python scripts/calibrar_trimestre.py
 
       - name: Commit resultados
@@ -38,4 +41,3 @@ jobs:
           git add docs/data/humedales.json
           git diff --staged --quiet || git commit -m "auto: actualizar NDWI humedales $(date +%Y-%m-%d)"
           git push
-
