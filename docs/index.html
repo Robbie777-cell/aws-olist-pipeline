@@ -888,102 +888,6 @@ function renderAlertas(humedales) {
   });
 }
 
-
-// ── POLÍGONOS REALES DE HUMEDALES (GeoJSON aproximado) ──
-const poligonos = {
-  cienaga_grande: {
-    type: 'Feature',
-    geometry: {
-      type: 'Polygon',
-      coordinates: [[
-        [-74.56, 10.72], [-74.38, 10.72], [-74.28, 10.78],
-        [-74.22, 10.88], [-74.25, 10.98], [-74.38, 11.02],
-        [-74.52, 10.98], [-74.60, 10.90], [-74.62, 10.82],
-        [-74.56, 10.72]
-      ]]
-    }
-  },
-  mallorquin: {
-    type: 'Feature',
-    geometry: {
-      type: 'Polygon',
-      coordinates: [[
-        [-74.862, 11.032], [-74.840, 11.032], [-74.835, 11.038],
-        [-74.838, 11.045], [-74.850, 11.048], [-74.865, 11.044],
-        [-74.868, 11.038], [-74.862, 11.032]
-      ]]
-    }
-  },
-  totumo: {
-    type: 'Feature',
-    geometry: {
-      type: 'Polygon',
-      coordinates: [[
-        [-75.245, 10.722], [-75.228, 10.720], [-75.220, 10.726],
-        [-75.222, 10.735], [-75.232, 10.740], [-75.245, 10.736],
-        [-75.250, 10.730], [-75.245, 10.722]
-      ]]
-    }
-  },
-  zapatosa: {
-    type: 'Feature',
-    geometry: {
-      type: 'Polygon',
-      coordinates: [[
-        [-73.870, 8.940], [-73.800, 8.935], [-73.755, 8.945],
-        [-73.748, 8.965], [-73.762, 8.985], [-73.800, 8.998],
-        [-73.845, 8.992], [-73.872, 8.975], [-73.875, 8.958],
-        [-73.870, 8.940]
-      ]]
-    }
-  },
-  caimanera: {
-    type: 'Feature',
-    geometry: {
-      type: 'Polygon',
-      coordinates: [[
-        [-75.855, 9.295], [-75.800, 9.290], [-75.775, 9.305],
-        [-75.778, 9.325], [-75.798, 9.342], [-75.825, 9.345],
-        [-75.852, 9.335], [-75.862, 9.318], [-75.855, 9.295]
-      ]]
-    }
-  }
-};
-
-function addPolygons(humedales) {
-  humedales.forEach(h => {
-    const poly = poligonos[h.id];
-    if (!poly) return;
-    const estado = getEstado(h.delta);
-    const sourceId = 'poly-' + h.id;
-    
-    mapaObj.addSource(sourceId, { type: 'geojson', data: poly });
-    
-    // Fill semitransparente
-    mapaObj.addLayer({
-      id: sourceId + '-fill',
-      type: 'fill',
-      source: sourceId,
-      paint: {
-        'fill-color': estado.color,
-        'fill-opacity': 0.18
-      }
-    });
-    
-    // Borde
-    mapaObj.addLayer({
-      id: sourceId + '-line',
-      type: 'line',
-      source: sourceId,
-      paint: {
-        'line-color': estado.color,
-        'line-width': 2,
-        'line-opacity': 0.8
-      }
-    });
-  });
-}
-
 // ── COORDENADAS EXACTAS SOBRE CUERPO DE AGUA ──
 const coordsExactas = {
   cienaga_grande: { lat: 10.780, lng: -74.480 },
@@ -1008,7 +912,6 @@ function renderMapa(humedales) {
   mapaObj.addControl(new mapboxgl.NavigationControl(), 'top-left');
 
   mapaObj.on('load', () => {
-    addPolygons(humedales);
     humedales.forEach(h => {
       const estado = getEstado(h.delta);
       const coords = coordsExactas[h.id] || { lat: h.lat, lng: h.lng };
