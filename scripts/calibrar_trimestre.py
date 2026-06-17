@@ -1,20 +1,18 @@
-import ee
+﻿import ee
 import json
 from datetime import datetime, timezone
 
 GEE_PROJECT = "tingua-earth-engine"
 BUFFER_M = 2000
 CLOUD_MAX = 40
-AÑO_ACTUAL = 2026
+AÃ‘O_ACTUAL = 2026
 MES_INICIO = 4   # abril
 MES_FIN = 6      # junio
 
 def init_gee():
-    try:
-        ee.Initialize(project=GEE_PROJECT)
-    except Exception:
-        ee.Authenticate()
-        ee.Initialize(project=GEE_PROJECT)
+    import google.auth
+    credentials, _ = google.auth.default(scopes=["https://www.googleapis.com/auth/earthengine"])
+    ee.Initialize(credentials=credentials, project=GEE_PROJECT)
     print("GEE OK:", GEE_PROJECT)
 
 def ndwi_promedio(geom, y1, y2, m1, m2):
@@ -39,11 +37,11 @@ def main():
     init_gee()
 
     wetlands = [
-        {"id":"cienaga_grande", "nombre":"Ciénaga Grande de Santa Marta", "lat":10.85, "lng":-74.35, "descripcion":"Mayor humedal costero de Colombia. Sitio RAMSAR."},
-        {"id":"mallorquin", "nombre":"Ciénaga de Mallorquín", "lat":11.045, "lng":-74.835, "descripcion":"Laguna costera norte de Barranquilla. Manglar denso."},
-        {"id":"totumo", "nombre":"Ciénaga de Totumo", "lat":10.732, "lng":-75.229, "descripcion":"Humedal salobre con volcán de lodo activo."},
-        {"id":"zapatosa", "nombre":"Ciénaga de Zapatosa", "lat":8.95, "lng":-73.80, "descripcion":"Mayor humedal interior de Colombia (Cesar/Magdalena)."},
-        {"id":"caimanera", "nombre":"La Caimanera (Cispatá)", "lat":9.37, "lng":-75.78, "descripcion":"Complejo de manglares Cispatá, Golfo de Morrosquillo."}
+        {"id":"cienaga_grande", "nombre":"CiÃ©naga Grande de Santa Marta", "lat":10.85, "lng":-74.35, "descripcion":"Mayor humedal costero de Colombia. Sitio RAMSAR."},
+        {"id":"mallorquin", "nombre":"CiÃ©naga de MallorquÃ­n", "lat":11.045, "lng":-74.835, "descripcion":"Laguna costera norte de Barranquilla. Manglar denso."},
+        {"id":"totumo", "nombre":"CiÃ©naga de Totumo", "lat":10.732, "lng":-75.229, "descripcion":"Humedal salobre con volcÃ¡n de lodo activo."},
+        {"id":"zapatosa", "nombre":"CiÃ©naga de Zapatosa", "lat":8.95, "lng":-73.80, "descripcion":"Mayor humedal interior de Colombia (Cesar/Magdalena)."},
+        {"id":"caimanera", "nombre":"La Caimanera (CispatÃ¡)", "lat":9.37, "lng":-75.78, "descripcion":"Complejo de manglares CispatÃ¡, Golfo de Morrosquillo."}
     ]
 
     resultado = {
@@ -51,7 +49,7 @@ def main():
             "fuente": "Sentinel-2 SR Harmonized (COPERNICUS/S2_SR_HARMONIZED)",
             "metodologia": f"Buffer circular {BUFFER_M}m por humedal, filtro cloud<{CLOUD_MAX}%, NDWI=(B3-B8)/(B3+B8), ventana trimestral abr-jun",
             "periodo_historico": "2019-2025 (abr-jun)",
-            "periodo_actual": f"{AÑO_ACTUAL} (abr-jun)",
+            "periodo_actual": f"{AÃ‘O_ACTUAL} (abr-jun)",
             "generado": datetime.now(timezone.utc).isoformat(),
             "proyecto": "TINGUA"
         },
@@ -67,8 +65,8 @@ def main():
         print(w["nombre"])
         geom = ee.Geometry.Point([w["lng"], w["lat"]]).buffer(BUFFER_M)
 
-        val_actual, n_actual = ndwi_promedio(geom, AÑO_ACTUAL, AÑO_ACTUAL, MES_INICIO, MES_FIN)
-        print(f"  Actual abr-jun {AÑO_ACTUAL}: {val_actual} (n={n_actual})")
+        val_actual, n_actual = ndwi_promedio(geom, AÃ‘O_ACTUAL, AÃ‘O_ACTUAL, MES_INICIO, MES_FIN)
+        print(f"  Actual abr-jun {AÃ‘O_ACTUAL}: {val_actual} (n={n_actual})")
 
         val_hist, n_hist = ndwi_promedio(geom, 2019, 2025, MES_INICIO, MES_FIN)
         print(f"  Hist abr-jun 2019-2025: {val_hist} (n={n_hist})")
@@ -98,3 +96,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+

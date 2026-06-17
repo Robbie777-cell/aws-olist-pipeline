@@ -26,7 +26,7 @@ jobs:
           python-version: '3.11'
 
       - name: Instalar dependencias
-        run: pip install earthengine-api
+        run: pip install earthengine-api google-auth
 
       - name: Ejecutar calibracion
         run: python scripts/calibrar_trimestre.py
@@ -38,3 +38,4 @@ jobs:
           git add docs/data/humedales.json
           git diff --staged --quiet || git commit -m "auto: actualizar NDWI humedales $(date +%Y-%m-%d)"
           git push
+
