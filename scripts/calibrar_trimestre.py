@@ -1,4 +1,4 @@
-import ee
+﻿import ee
 import json
 import os
 import smtplib
@@ -76,7 +76,8 @@ def main():
         {"id":"mallorquin","nombre":"Cienaga de Mallorquin","lat":11.045,"lng":-74.835,"descripcion":"Laguna costera norte de Barranquilla."},
         {"id":"totumo","nombre":"Cienaga de Totumo","lat":10.732,"lng":-75.229,"descripcion":"Humedal salobre con volcan de lodo activo."},
         {"id":"zapatosa","nombre":"Cienaga de Zapatosa","lat":8.95,"lng":-73.80,"descripcion":"Mayor humedal interior de Colombia."},
-        {"id":"caimanera","nombre":"La Caimanera (Cispata)","lat":9.37,"lng":-75.78,"descripcion":"Complejo de manglares Cispata."}
+        {"id":"caimanera","nombre":"La Caimanera (Cispata)","lat":9.37,"lng":-75.78,"descripcion":"Complejo de manglares Cispata."},
+        {"id":"manaties","nombre":"Cienaga de los Manaties","lat":9.735,"lng":-75.532,"descripcion":"Habitat critico del manati antillano. San Onofre, Sucre."}
     ]
     resultado = {
         "metadata": {
@@ -117,3 +118,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
