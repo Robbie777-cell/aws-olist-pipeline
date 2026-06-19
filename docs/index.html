@@ -928,8 +928,8 @@ function renderMapa(humedales) {
   mapaObj = new mapboxgl.Map({
     container: 'mapa',
     style: 'mapbox://styles/mapbox/satellite-streets-v12',
-    center: [-74.8, 9.8],
-    zoom: 5.5,
+    center: [-74.5, 10.2],
+    zoom: 7,
     attributionControl: false
   });
 
@@ -1029,14 +1029,14 @@ function renderMapa(humedales) {
       })
       .catch(() => {});
 
-    // ── 2. MARCADORES para humedales SIN polígono OSM ────
-    const conPoligono = new Set();
+    // ── 2. MARCADORES solo para humedales SIN polígono OSM ────
     fetch('data/water_bodies.geojson?v=' + Date.now())
       .then(r => r.ok ? r.json() : { features: [] })
       .then(gj => {
-        gj.features.forEach(f => conPoligono.add(f.properties.id));
+        const conPoligono = new Set(gj.features.map(f => f.properties.id));
 
         humedales.forEach(h => {
+          if (conPoligono.has(h.id)) return; // tiene polígono, no poner punto
           const estado = estadoMap[h.id];
           const coords = coordsExactas[h.id] || { lat: h.lat, lng: h.lng };
           const size   = estado.label === 'ALERTA' ? 24 : 18;
@@ -1047,7 +1047,6 @@ function renderMapa(humedales) {
             background:${estado.color};border:2.5px solid #fff;
             box-shadow:0 0 0 3px ${estado.color}55,0 2px 8px rgba(0,0,0,0.5);
             cursor:pointer;transition:transform 0.2s;
-            ${conPoligono.has(h.id) ? 'opacity:0.85;' : ''}
           `;
           el.onmouseenter = () => el.style.transform = 'scale(1.3)';
           el.onmouseleave = () => el.style.transform = 'scale(1)';
@@ -1204,7 +1203,7 @@ function renderStats(data) {
 // &#9472;&#9472; FUNCI&Oacute;N GLOBAL MAPA &#9472;&#9472;
 window.volarA = function(lat, lng, card, id) {
   const coords = (id && coordsExactas[id]) ? coordsExactas[id] : { lat, lng };
-  if (mapaObj) mapaObj.flyTo({ center: [coords.lng, coords.lat], zoom: 11, duration: 1800 });
+  if (mapaObj) mapaObj.flyTo({ center: [coords.lng, coords.lat], zoom: 10, duration: 1800 });
   document.querySelectorAll('.humedal-card').forEach(c => c.classList.remove('active'));
   if (card) card.classList.add('active');
   if (window.innerWidth < 768) document.getElementById('mapa').scrollIntoView({ behavior: 'smooth' });
