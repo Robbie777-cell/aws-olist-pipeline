@@ -941,75 +941,90 @@ function renderMapa(humedales) {
 
   mapaObj.on('load', () => {
 
-    // ── 1. CARGAR POLÍGONOS OSM ──────────────────────────
+    // ── 1. CARGAR CAPAS POR TIPO ─────────────────────────
     fetch('data/water_bodies.geojson?v=' + Date.now())
       .then(r => r.ok ? r.json() : null)
       .then(gj => {
         if (!gj || !gj.features || gj.features.length === 0) return;
 
-        // Enriquecer cada feature con datos NDWI del humedal
+        // Separar features por tipo
+        const tingua   = { type:'FeatureCollection', features: [] };
+        const ciengas  = { type:'FeatureCollection', features: [] };
+        const rios     = { type:'FeatureCollection', features: [] };
+        const manglares= { type:'FeatureCollection', features: [] };
+
         gj.features.forEach(feat => {
+          const tipo = feat.properties.tipo || '';
           const h = humedales.find(x => x.id === feat.properties.id);
           if (h) {
             const est = estadoMap[h.id];
-            feat.properties.ndwi_actual    = h.ndwi_actual;
-            feat.properties.ndwi_historico = h.ndwi_historico;
-            feat.properties.delta          = h.delta;
-            feat.properties.estado         = est.label;
-            feat.properties.fill_color     = colorFill(est);
-            feat.properties.stroke_color   = colorStroke(est);
+            feat.properties.estado       = est.label;
+            feat.properties.fill_color   = colorFill(est);
+            feat.properties.stroke_color = colorStroke(est);
           }
+          if (tipo === 'cienaga_tingua') tingua.features.push(feat);
+          else if (tipo === 'cienaga')   ciengas.features.push(feat);
+          else if (tipo === 'rio')       rios.features.push(feat);
+          else if (tipo === 'manglar')   manglares.features.push(feat);
         });
 
-        mapaObj.addSource('humedales-poly', { type: 'geojson', data: gj });
+        // ── MANGLARES (verde oscuro, muy transparente) ──
+        mapaObj.addSource('manglares', { type:'geojson', data: manglares });
+        mapaObj.addLayer({ id:'manglares-fill', type:'fill', source:'manglares',
+          paint:{ 'fill-color':'#1a4a2e', 'fill-opacity': 0.35 }
+        });
+        mapaObj.addLayer({ id:'manglares-stroke', type:'line', source:'manglares',
+          paint:{ 'line-color':'#2d7a4a', 'line-width':0.8, 'line-opacity':0.6 }
+        });
 
-        // Relleno del polígono
-        mapaObj.addLayer({
-          id: 'humedales-fill',
-          type: 'fill',
-          source: 'humedales-poly',
-          paint: {
-            'fill-color': ['get', 'fill_color'],
+        // ── CIÉNAGAS CONTEXTO (azul suave, muy transparente) ──
+        mapaObj.addSource('ciengas-ctx', { type:'geojson', data: ciengas });
+        mapaObj.addLayer({ id:'ciengas-fill', type:'fill', source:'ciengas-ctx',
+          paint:{ 'fill-color':'#0d5fa5', 'fill-opacity': 0.20 }
+        });
+        mapaObj.addLayer({ id:'ciengas-stroke', type:'line', source:'ciengas-ctx',
+          paint:{ 'line-color':'#4fb8d4', 'line-width':0.8, 'line-opacity':0.5 }
+        });
+
+        // ── RÍOS (azul brillante, línea) ──
+        mapaObj.addSource('rios', { type:'geojson', data: rios });
+        mapaObj.addLayer({ id:'rios-line', type:'line', source:'rios',
+          paint:{ 'line-color':'#4fb8d4', 'line-width':1.5, 'line-opacity':0.75 }
+        });
+
+        // ── CIÉNAGAS TINGUA (coloreadas por NDWI, encima de todo) ──
+        mapaObj.addSource('tingua-poly', { type:'geojson', data: tingua });
+        mapaObj.addLayer({ id:'tingua-fill', type:'fill', source:'tingua-poly',
+          paint:{
+            'fill-color': ['coalesce', ['get','fill_color'], 'rgba(26,158,110,0.3)'],
             'fill-opacity': 1
           }
         });
-
-        // Borde del polígono
-        mapaObj.addLayer({
-          id: 'humedales-stroke',
-          type: 'line',
-          source: 'humedales-poly',
-          paint: {
-            'line-color': ['get', 'stroke_color'],
-            'line-width': 2,
-            'line-opacity': 0.9
+        mapaObj.addLayer({ id:'tingua-stroke', type:'line', source:'tingua-poly',
+          paint:{
+            'line-color': ['coalesce', ['get','stroke_color'], '#1a9e6e'],
+            'line-width': 2.5, 'line-opacity': 1
           }
         });
 
-        // Etiqueta flotante sobre el polígono
-        mapaObj.addLayer({
-          id: 'humedales-label',
-          type: 'symbol',
-          source: 'humedales-poly',
-          layout: {
-            'text-field': ['concat',
-              ['get', 'nombre'], '\n',
-              ['get', 'estado']
-            ],
+        // ── ETIQUETAS solo para ciénagas TINGUA ──
+        mapaObj.addLayer({ id:'tingua-label', type:'symbol', source:'tingua-poly',
+          layout:{
+            'text-field': ['concat', ['get','nombre'], '\n', ['coalesce',['get','estado'],'']],
             'text-size': 11,
             'text-anchor': 'center',
-            'text-font': ['DIN Pro Medium', 'Arial Unicode MS Regular'],
+            'text-font': ['DIN Pro Medium','Arial Unicode MS Regular'],
             'text-max-width': 10,
           },
-          paint: {
-            'text-color': '#ffffff',
-            'text-halo-color': 'rgba(0,0,0,0.7)',
+          paint:{
+            'text-color':'#ffffff',
+            'text-halo-color':'rgba(0,0,0,0.8)',
             'text-halo-width': 1.5,
           }
         });
 
-        // Click en polígono → popup
-        mapaObj.on('click', 'humedales-fill', e => {
+        // Click en polígono TINGUA → popup
+        mapaObj.on('click', 'tingua-fill', e => {
           const props = e.features[0].properties;
           const h = humedales.find(x => x.id === props.id);
           if (!h) return;
@@ -1019,13 +1034,8 @@ function renderMapa(humedales) {
             .setHTML(popupHTML(h, est))
             .addTo(mapaObj);
         });
-
-        mapaObj.on('mouseenter', 'humedales-fill', () => {
-          mapaObj.getCanvas().style.cursor = 'pointer';
-        });
-        mapaObj.on('mouseleave', 'humedales-fill', () => {
-          mapaObj.getCanvas().style.cursor = '';
-        });
+        mapaObj.on('mouseenter', 'tingua-fill', () => { mapaObj.getCanvas().style.cursor = 'pointer'; });
+        mapaObj.on('mouseleave', 'tingua-fill', () => { mapaObj.getCanvas().style.cursor = ''; });
       })
       .catch(() => {});
 
