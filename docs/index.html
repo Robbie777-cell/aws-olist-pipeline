@@ -948,10 +948,8 @@ function renderMapa(humedales) {
         if (!gj || !gj.features || gj.features.length === 0) return;
 
         // Separar features por tipo
-        const tingua   = { type:'FeatureCollection', features: [] };
-        const ciengas  = { type:'FeatureCollection', features: [] };
-        const rios     = { type:'FeatureCollection', features: [] };
-        const manglares= { type:'FeatureCollection', features: [] };
+        const tingua = { type:'FeatureCollection', features: [] };
+        const rios   = { type:'FeatureCollection', features: [] };
 
         gj.features.forEach(feat => {
           const tipo = feat.properties.tipo || '';
@@ -963,36 +961,16 @@ function renderMapa(humedales) {
             feat.properties.stroke_color = colorStroke(est);
           }
           if (tipo === 'cienaga_tingua') tingua.features.push(feat);
-          else if (tipo === 'cienaga')   ciengas.features.push(feat);
           else if (tipo === 'rio')       rios.features.push(feat);
-          else if (tipo === 'manglar')   manglares.features.push(feat);
         });
 
-        // ── MANGLARES (verde oscuro, muy transparente) ──
-        mapaObj.addSource('manglares', { type:'geojson', data: manglares });
-        mapaObj.addLayer({ id:'manglares-fill', type:'fill', source:'manglares',
-          paint:{ 'fill-color':'#1a4a2e', 'fill-opacity': 0.35 }
-        });
-        mapaObj.addLayer({ id:'manglares-stroke', type:'line', source:'manglares',
-          paint:{ 'line-color':'#2d7a4a', 'line-width':0.8, 'line-opacity':0.6 }
-        });
-
-        // ── CIÉNAGAS CONTEXTO (azul suave, muy transparente) ──
-        mapaObj.addSource('ciengas-ctx', { type:'geojson', data: ciengas });
-        mapaObj.addLayer({ id:'ciengas-fill', type:'fill', source:'ciengas-ctx',
-          paint:{ 'fill-color':'#0d5fa5', 'fill-opacity': 0.20 }
-        });
-        mapaObj.addLayer({ id:'ciengas-stroke', type:'line', source:'ciengas-ctx',
-          paint:{ 'line-color':'#4fb8d4', 'line-width':0.8, 'line-opacity':0.5 }
-        });
-
-        // ── RÍOS (azul brillante, línea) ──
+        // ── RÍOS (línea azul fina) ──
         mapaObj.addSource('rios', { type:'geojson', data: rios });
         mapaObj.addLayer({ id:'rios-line', type:'line', source:'rios',
-          paint:{ 'line-color':'#4fb8d4', 'line-width':1.5, 'line-opacity':0.75 }
+          paint:{ 'line-color':'#4fb8d4', 'line-width': 1.2, 'line-opacity': 0.6 }
         });
 
-        // ── CIÉNAGAS TINGUA (coloreadas por NDWI, encima de todo) ──
+        // ── CIÉNAGAS TINGUA (coloreadas por NDWI) ──
         mapaObj.addSource('tingua-poly', { type:'geojson', data: tingua });
         mapaObj.addLayer({ id:'tingua-fill', type:'fill', source:'tingua-poly',
           paint:{
@@ -1007,7 +985,7 @@ function renderMapa(humedales) {
           }
         });
 
-        // ── ETIQUETAS solo para ciénagas TINGUA ──
+        // ── ETIQUETAS ciénagas TINGUA ──
         mapaObj.addLayer({ id:'tingua-label', type:'symbol', source:'tingua-poly',
           layout:{
             'text-field': ['concat', ['get','nombre'], '\n', ['coalesce',['get','estado'],'']],
