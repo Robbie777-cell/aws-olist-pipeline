@@ -891,7 +891,7 @@ function renderAlertas(humedales) {
 // &#9472;&#9472; COORDENADAS EXACTAS SOBRE CUERPO DE AGUA &#9472;&#9472;
 const coordsExactas = {
   cienaga_grande: { lat: 10.780, lng: -74.480 },
-  mallorquin:     { lat: 11.038, lng: -74.848 },
+  mallorquin:     { lat: 11.030, lng: -74.850 },
   totumo:         { lat: 10.728, lng: -75.235 },
   zapatosa:       { lat: 8.980,  lng: -73.820 },
   caimanera:      { lat: 9.320,  lng: -75.820 },
@@ -1192,7 +1192,10 @@ function renderStats(data) {
 // &#9472;&#9472; FUNCI&Oacute;N GLOBAL MAPA &#9472;&#9472;
 window.volarA = function(lat, lng, card, id) {
   const coords = (id && coordsExactas[id]) ? coordsExactas[id] : { lat, lng };
-  if (mapaObj) mapaObj.flyTo({ center: [coords.lng, coords.lat], zoom: 10, duration: 1800 });
+  // Zoom mayor para humedales muy cercanos entre sí (Mallorquín/Manatíes)
+  const zoomCercanos = { mallorquin: 13.5, manaties: 13.5 };
+  const zoom = zoomCercanos[id] || 10;
+  if (mapaObj) mapaObj.flyTo({ center: [coords.lng, coords.lat], zoom, duration: 1800 });
   document.querySelectorAll('.humedal-card').forEach(c => c.classList.remove('active'));
   if (card) card.classList.add('active');
   if (window.innerWidth < 768) document.getElementById('mapa').scrollIntoView({ behavior: 'smooth' });
