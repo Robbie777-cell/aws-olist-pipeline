@@ -4,7 +4,7 @@
     "metodologia": "Buffer circular 2000m, cloud<40%, NDWI=(B3-B8)/(B3+B8), abr-jun",
     "periodo_historico": "2019-2025 (abr-jun)",
     "periodo_actual": "2026 (abr-jun)",
-    "generado": "2026-06-18T13:49:08.564041+00:00",
+    "generado": "2026-06-22T13:33:22.928444+00:00",
     "proyecto": "TINGUA"
   },
   "humedales": [
@@ -14,11 +14,11 @@
       "lat": 10.85,
       "lng": -74.35,
       "descripcion": "Mayor humedal costero de Colombia. Sitio RAMSAR.",
-      "ndwi_actual": 0.4698,
-      "n_actual": 27,
+      "ndwi_actual": 0.4709,
+      "n_actual": 28,
       "ndwi_historico": 0.409,
       "n_historico": 109,
-      "delta": 0.0608
+      "delta": 0.0619
     },
     {
       "id": "mallorquin",
@@ -38,11 +38,11 @@
       "lat": 10.732,
       "lng": -75.229,
       "descripcion": "Humedal salobre con volcan de lodo activo.",
-      "ndwi_actual": -0.0255,
-      "n_actual": 7,
+      "ndwi_actual": -0.028,
+      "n_actual": 8,
       "ndwi_historico": 0.011,
       "n_historico": 44,
-      "delta": -0.0365
+      "delta": -0.039
     },
     {
       "id": "zapatosa",
@@ -62,11 +62,11 @@
       "lat": 9.37,
       "lng": -75.78,
       "descripcion": "Complejo de manglares Cispata.",
-      "ndwi_actual": -0.36,
-      "n_actual": 7,
+      "ndwi_actual": -0.3283,
+      "n_actual": 8,
       "ndwi_historico": -0.2869,
       "n_historico": 22,
-      "delta": -0.0731
+      "delta": -0.0414
     },
     {
       "id": "manaties",
@@ -74,11 +74,11 @@
       "lat": 9.735,
       "lng": -75.532,
       "descripcion": "Habitat critico del manati antillano. San Onofre, Sucre.",
-      "ndwi_actual": -0.4311,
-      "n_actual": 7,
+      "ndwi_actual": -0.4349,
+      "n_actual": 8,
       "ndwi_historico": -0.3991,
       "n_historico": 22,
-      "delta": -0.032
+      "delta": -0.0358
     }
   ]
 }
