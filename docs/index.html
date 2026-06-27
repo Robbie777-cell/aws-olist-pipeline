@@ -558,7 +558,7 @@
   </div>
   <div class="header-sources">
     <div>Sentinel-2 &middot; ESA/Copernicus</div>
-    <div>AWS &middot; Google Earth Engine</div>
+    <div>GitHub Actions &middot; Google Earth Engine</div>
   </div>
   <div class="live-badge" id="liveBadge">
     <div class="live-dot"></div>
@@ -706,14 +706,14 @@
     <div class="section" style="margin-top:0.75rem">
       <div class="section-title">Fuentes de datos</div>
       <div class="fuente-row"><div class="fuente-dot" style="background:var(--agua)"></div><div class="fuente-nombre">Sentinel-2 SR Harmonized (ESA)</div><div class="fuente-count" id="fuenteSentinel">&mdash;</div></div>
-      <div class="fuente-row"><div class="fuente-dot" style="background:#8b5cf6"></div><div class="fuente-nombre">Google Earth Engine &mdash; actual</div><div class="fuente-count">5 humedales</div></div>
+      <div class="fuente-row"><div class="fuente-dot" style="background:#8b5cf6"></div><div class="fuente-nombre">Google Earth Engine &mdash; actual</div><div class="fuente-count">15 humedales</div></div>
       <div class="fuente-row"><div class="fuente-dot" style="background:#c9a050"></div><div class="fuente-nombre">Baseline hist&oacute;rico GEE (2019-2025)</div><div class="fuente-count" id="fuenteHistorico">&mdash;</div></div>
-      <div class="fuente-row"><div class="fuente-dot" style="background:var(--verde)"></div><div class="fuente-nombre">Pipeline AWS (Kinesis&#8594;Lambda&#8594;S3&#8594;Athena)</div><div class="fuente-count">817 reg</div></div>
+      <div class="fuente-row"><div class="fuente-dot" style="background:var(--verde)"></div><div class="fuente-nombre">GitHub Actions &middot; GitHub Pages</div><div class="fuente-count">15 humedales</div></div>
     </div>
 
     <div class="footer-info">
       <div class="sentinel-badge">ESA &middot; COPERNICUS &middot; SENTINEL-2</div>
-      <div>Datos satelitales reales procesados via Google Earth Engine. Pipeline AWS serverless: Kinesis &#8594; Lambda &#8594; S3 &#8594; Athena.</div>
+      <div>Datos satelitales reales procesados via Google Earth Engine &middot; GitHub Actions &middot; GitHub Pages. 15 humedales monitoreados &mdash; Costa Caribe colombiana.</div>
       <div style="margin-top:6px">Rob Acosta &middot; Data Engineer &middot; Barranquilla, Colombia &middot; 2026</div>
     </div>
 
@@ -728,7 +728,17 @@ const historicSeries = {
   mallorquin:     { hist: [-0.128, -0.115, -0.122, -0.108, -0.125, -0.118, -0.119] },
   totumo:         { hist: [0.008, 0.015, 0.005, 0.018, 0.012, 0.009, 0.011] },
   zapatosa:       { hist: [-0.258, -0.245, -0.252, -0.240, -0.255, -0.248, -0.250] },
-  caimanera:      { hist: [-0.280, -0.295, -0.278, -0.290, -0.285, -0.292, -0.287] }
+  caimanera:      { hist: [-0.280, -0.295, -0.278, -0.290, -0.285, -0.292, -0.287] },
+  manaties:       { hist: [0.035, 0.042, 0.030, 0.045, 0.038, 0.033, 0.040] },
+  guajaro:        { hist: [0.150, 0.162, 0.145, 0.168, 0.155, 0.148, 0.158] },
+  luruaco:        { hist: [0.080, 0.092, 0.075, 0.095, 0.085, 0.078, 0.088] },
+  malambo:        { hist: [0.120, 0.135, 0.118, 0.140, 0.128, 0.122, 0.130] },
+  sabanagrande:   { hist: [0.095, 0.108, 0.090, 0.112, 0.100, 0.093, 0.102] },
+  santo_tomas:    { hist: [0.110, 0.122, 0.105, 0.125, 0.115, 0.108, 0.118] },
+  tocagua:        { hist: [0.088, 0.100, 0.082, 0.105, 0.092, 0.085, 0.095] },
+  ayapel:         { hist: [0.320, 0.335, 0.318, 0.340, 0.328, 0.322, 0.332] },
+  lorica:         { hist: [0.210, 0.225, 0.208, 0.228, 0.218, 0.212, 0.220] },
+  betanci:        { hist: [0.180, 0.195, 0.178, 0.198, 0.188, 0.182, 0.190] }
 };
 const YEARS = [2019, 2020, 2021, 2022, 2023, 2024, 2025, 2026];
 
@@ -895,7 +905,16 @@ const coordsExactas = {
   totumo:         { lat: 10.728, lng: -75.235 },
   zapatosa:       { lat: 8.980,  lng: -73.820 },
   caimanera:      { lat: 9.320,  lng: -75.820 },
-  manaties:       { lat: 11.0418, lng: -74.9095 }
+  manaties:       { lat: 11.0418, lng: -74.9095 },
+  guajaro:        { lat: 10.800,  lng: -74.900 },
+  luruaco:        { lat: 10.606,  lng: -75.100 },
+  malambo:        { lat: 10.910,  lng: -74.908 },
+  sabanagrande:   { lat: 10.803,  lng: -74.978 },
+  santo_tomas:    { lat: 10.754,  lng: -74.959 },
+  tocagua:        { lat: 10.700,  lng: -74.920 },
+  ayapel:         { lat: 8.310,   lng: -75.140 },
+  lorica:         { lat: 9.230,   lng: -75.810 },
+  betanci:        { lat: 8.770,   lng: -75.930 }
 };
 
 // &#9472;&#9472; RENDER MAPA MAPBOX SATELITAL &#9472;&#9472;
